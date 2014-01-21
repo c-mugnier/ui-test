@@ -2,13 +2,20 @@ package org.exoplatform.selenium.platform.wiki.sniff;
 
 import static org.exoplatform.selenium.TestLogger.info;
 
+import java.net.URL;
+
 import org.exoplatform.selenium.platform.HomePageActivity;
 import org.exoplatform.selenium.platform.ManageAccount;
 import org.exoplatform.selenium.platform.NavigationToolbar;
 import org.exoplatform.selenium.platform.social.ManageMember;
 import org.exoplatform.selenium.platform.wiki.Template;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 /** 
@@ -22,10 +29,20 @@ public class Wiki_Search extends Template {
 	HomePageActivity activity;
 	ManageMember magMem;
 
+	
 	@BeforeMethod
-	public void setUpBeforeTest(){
-		initSeleniumTest();
-		driver.get(baseUrl);
+	@Parameters({"driver.hub", "driver.browser"})
+	public void setUpBeforeTest(String hub, String browser) throws Exception{
+		
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+    	capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+    	capabilities.setBrowserName(browser);
+    	
+        WebDriver driver = new RemoteWebDriver(new URL(hub), capabilities);
+        
+        
+		driver.get("http://localhost:8080");
+		//initSeleniumTest();
 		magAc = new ManageAccount(driver);
 		naTool = new NavigationToolbar(driver);
 		activity = new HomePageActivity(driver);

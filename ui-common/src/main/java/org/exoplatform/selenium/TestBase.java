@@ -108,7 +108,7 @@ public class TestBase {
 	}
 
 	public void initSeleniumTest(Object... opParams){
-		initSeleniumTestWithOutTermAndCondition();
+		//initSeleniumTestWithOutTermAndCondition();
 		info("Term and conditions");
 		termsAndConditions(opParams);
 		info("End of term and conditions");
