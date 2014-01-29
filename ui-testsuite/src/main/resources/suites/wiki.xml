@@ -1,25 +1,44 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Platform Functional Test" verbose="1" preserve-order="true" parallel="tests" thread-count="3">
+<suite name="Platform Functional Test" verbose="1" preserve-order="true" parallel="tests" thread-count="2">
 	<test name="FF1" preserve-order="true">
-	<parameter name="driver.hub" value="http://localhost:4444/wd/hub" />
-	<parameter name="driver.browser" value="firefox" />
+		<parameter name="driver.hub" value="http://localhost:4444/wd/hub" />
+		<parameter name="driver.browser" value="firefox" />
 		<classes>
 			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_Search" />
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_BasicAction_ManagePage" />
+			<!-- <class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_Information" />
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_Attachment" />
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_BasicAction_Other" />
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_PublicActivity" />
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_WikiSetting_ManageTemplate" />
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_WikiSetting_ManagePermission" /> -->	
 		</classes>
 	</test>
 	<test name="FF2" preserve-order="true">
-	<parameter name="driver.hub" value="http://localhost:4444/wd/hub" />
-	<parameter name="driver.browser" value="firefox" />
+		<parameter name="driver.hub" value="http://localhost:4444/wd/hub" />
+		<parameter name="driver.browser" value="firefox" />
 		<classes>
-			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_Search" />
+			<!-- <class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_Attachment" />
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_BasicAction_Other" />
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_PublicActivity" />
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_WikiSetting_ManageTemplate" /> -->
+			<class name="org.exoplatform.selenium.platform.calendar.sniff.Calendar_Calendar" />
+			<class name="org.exoplatform.selenium.platform.calendar.sniff.Calendar_Category" />
+			<!-- <class name="org.exoplatform.selenium.platform.calendar.sniff.Calendar_Event" />
+			<class name="org.exoplatform.selenium.platform.calendar.sniff.Calendar_PublishActivities_Event" />
+			<class name="org.exoplatform.selenium.platform.calendar.sniff.Calendar_PublishActivities_Task" />
+			<class name="org.exoplatform.selenium.platform.calendar.sniff.Calendar_Search" />
+			<class name="org.exoplatform.selenium.platform.calendar.sniff.Calendar_Settings" />
+			<class name="org.exoplatform.selenium.platform.calendar.sniff.Calendar_Task" />
+			<class name="org.exoplatform.selenium.platform.calendar.sniff.Calendar_Views" /> -->
 		</classes>
 	</test>
-	<test name="FF3" preserve-order="true">
-	<parameter name="driver.hub" value="http://localhost:4444/wd/hub" />
-	<parameter name="driver.browser" value="firefox" />
+	<!-- <test name="FF3" preserve-order="true">
+		<parameter name="driver.hub" value="http://localhost:4444/wd/hub" />
+		<parameter name="driver.browser" value="firefox" />
 		<classes>
-			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_Search" />
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_WikiSetting_ManagePermission" />
 		</classes>
-	</test>
+	</test> -->
 </suite>

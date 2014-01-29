@@ -7,6 +7,7 @@ import org.exoplatform.selenium.platform.ManageAccount;
 import org.exoplatform.selenium.platform.wiki.Template;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 /**
@@ -19,9 +20,11 @@ public class Wiki_WikiSetting_ManageTemplate extends Template {
 	Button but;
 	
 	@BeforeMethod
-	public void setUpBeforeTest(){
-		initSeleniumTest();
+	@Parameters({"driver.hub", "driver.browser"})
+	public void setUpBeforeTest(String hub, String browser) throws Exception{
+		setUpHubDriver(hub, browser);
 		driver.get(baseUrl);
+		
 		magAc = new ManageAccount(driver);
 		but = new Button(driver);
 		magAc.signIn("john", "gtn"); 
@@ -30,7 +33,7 @@ public class Wiki_WikiSetting_ManageTemplate extends Template {
 
 	@AfterMethod
 	public void afterTest(){
-		magAc.signOut();
+		//magAc.signOut();
 		driver.manage().deleteAllCookies();
 		driver.quit();
 	}

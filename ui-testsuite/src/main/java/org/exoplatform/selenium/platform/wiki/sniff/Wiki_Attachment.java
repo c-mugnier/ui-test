@@ -8,6 +8,7 @@ import org.exoplatform.selenium.platform.wiki.BasicAction;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 /**
@@ -20,8 +21,10 @@ public class Wiki_Attachment extends BasicAction {
 	ManageAccount magAc;
 	
 	@BeforeMethod
-	public void setUpBeforeTest(){
+	@Parameters({"driver.hub", "driver.browser"})
+	public void setUpBeforeTest(String hub, String browser) throws Exception {
 		getDriverAutoSave();
+		setUpHubDriver(hub, browser);
 		driver.get(baseUrl);
 		magAc = new ManageAccount(driver);
 		magAc.signIn("john", "gtn"); 

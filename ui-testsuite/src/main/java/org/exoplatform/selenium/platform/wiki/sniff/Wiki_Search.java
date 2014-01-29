@@ -2,6 +2,7 @@ package org.exoplatform.selenium.platform.wiki.sniff;
 
 import static org.exoplatform.selenium.TestLogger.info;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.exoplatform.selenium.platform.HomePageActivity;
@@ -9,6 +10,7 @@ import org.exoplatform.selenium.platform.ManageAccount;
 import org.exoplatform.selenium.platform.NavigationToolbar;
 import org.exoplatform.selenium.platform.social.ManageMember;
 import org.exoplatform.selenium.platform.wiki.Template;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -29,36 +31,29 @@ public class Wiki_Search extends Template {
 	HomePageActivity activity;
 	ManageMember magMem;
 
-	
+
 	@BeforeMethod
 	@Parameters({"driver.hub", "driver.browser"})
 	public void setUpBeforeTest(String hub, String browser) throws Exception{
+		setUpHubDriver(hub, browser);
+		driver.get(baseUrl);
 		
-		DesiredCapabilities capabilities = new DesiredCapabilities();
-    	capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-    	capabilities.setBrowserName(browser);
-    	
-        WebDriver driver = new RemoteWebDriver(new URL(hub), capabilities);
-        
-        
-		driver.get("http://localhost:8080");
-		//initSeleniumTest();
 		magAc = new ManageAccount(driver);
 		naTool = new NavigationToolbar(driver);
 		activity = new HomePageActivity(driver);
 		magMem = new ManageMember(driver);
-		
+
 		magAc.signIn("john", "gtn");
 		goToWiki();
 	}
-	
+
 	@AfterMethod
 	public void afterTest(){
-		magAc.signOut();
+		//magAc.signOut();
 		driver.manage().deleteAllCookies();
 		driver.quit();
 	}
-	
+
 	/**CaseId: 68844
 	 * Quick search
 	 */
@@ -67,18 +62,18 @@ public class Wiki_Search extends Template {
 		String title = "Wiki_search_title_01";
 		String content = "line1/line2/line3/line4/line5";
 		String result = ELEMENT_PAGE_RESULT.replace("${title}", title);
-		
+
 		info("Add new wiki page");		
 		addWikiPageWithContentMultiLine(title, content);
-		
+
 		quickSearch("line5");
 		assert getText(ELEMENT_SEARCH_RESULT) != "0";
 		waitForAndGetElement(result);
-		
+
 		click(result);
 		deleteCurrentWikiPage();
 	}
-	
+
 	/**CaseId: 68845
 	 * Advanced search -> wait to merge SOC common functions (need create page in space)
 	 * 
@@ -88,21 +83,21 @@ public class Wiki_Search extends Template {
 		String title = "Wiki_search_title_02";
 		String content = "line1/line2/line3/line4/line5";
 		String spaceName = "SearchSpace021";
-		
+
 		magMem.goToAllSpaces();
 		magMem.addNewSpace(spaceName, "", "Visible", "Validation", "", "");
 		goToWikiFromSpace(spaceName);
 		addWikiPageWithContentMultiLine(title, content);
-		
+
 		goToWiki();
 		advancedSearch("line5", spaceName);
 		assert getText(ELEMENT_SEARCH_RESULT) != "0";
 		waitForAndGetElement(ELEMENT_PAGE_RESULT.replace("${title}", title));
-		
+
 		magMem.goToAllSpaces();
 		magMem.deleteSpace(spaceName, 180000);
 	}
-	
+
 	/**CaseId: 70263
 	 * Search template
 	 */

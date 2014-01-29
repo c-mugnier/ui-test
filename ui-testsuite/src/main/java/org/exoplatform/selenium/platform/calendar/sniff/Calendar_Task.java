@@ -7,6 +7,7 @@ import org.exoplatform.selenium.platform.ManageAccount;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.exoplatform.selenium.platform.calendar.CalendarBase;
 import org.exoplatform.selenium.platform.calendar.Event;
@@ -25,8 +26,12 @@ public class Calendar_Task extends CalendarBase {
 	Task tsk;
 
 	@BeforeMethod
-	public void setUpBeforeTest(){
+	@Parameters({"driver.hub", "driver.browser"})
+	public void setUpBeforeTest(String hub, String browser) throws Exception {
 		getDriverAutoSave();
+		setUpHubDriver(hub, browser);
+		driver.get(baseUrl);
+		
 		acc = new ManageAccount(driver);
 		evt = new Event(driver);
 		tsk = new Task(driver);

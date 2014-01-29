@@ -5,6 +5,7 @@ import static org.exoplatform.selenium.TestLogger.*;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.exoplatform.selenium.Button;
 import org.exoplatform.selenium.platform.HomePageActivity;
@@ -26,9 +27,13 @@ public class Calendar_PublishActivities_Task extends CalendarBase{
 	SpaceManagement sp;
 	NavigationToolbar toolBar;
 	HomePageActivity homeAct;
+	
 	@BeforeMethod
-	public void setUpBeforeTest(){
-		initSeleniumTest();
+	@Parameters({"driver.hub", "driver.browser"})
+	public void setUpBeforeTest(String hub, String browser) throws Exception {
+		setUpHubDriver(hub, browser);
+		driver.get(baseUrl);
+		
 		acc = new ManageAccount(driver);
 		acc.signIn(DATA_USER1, DATA_PASS);
 		sp = new SpaceManagement(driver);
