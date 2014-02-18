@@ -5,6 +5,7 @@ import static org.exoplatform.selenium.TestLogger.info;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -32,9 +33,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 
 public class TestBase {
 
@@ -102,9 +106,9 @@ public class TestBase {
 			ieFlag = true;
 		} else {
 			FirefoxProfile profile = new FirefoxProfile();
-            profile.setPreference("plugins.hide_infobar_for_missing_plugin", true);
-            DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-            capabilities.setCapability(FirefoxDriver.PROFILE, profile);
+			profile.setPreference("plugins.hide_infobar_for_missing_plugin", true);
+			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+			capabilities.setCapability(FirefoxDriver.PROFILE, profile);
 			driver = new FirefoxDriver(capabilities);
 		}
 		baseUrl = System.getProperty("baseUrl");
@@ -134,26 +138,31 @@ public class TestBase {
 		}
 	}
 
-
+	/**
+	 * Selenium-Grid 2
+	 * @param hub
+	 * <li> the central point that will receive all the test request 
+	 *      and distribute them the the right nodes </li>
+	 * @param browser
+	 * <li> FireFox; Chrome; Internet Explorer</li>
+	 * @throws Exception
+	 */
+	@Parameters({"driver.hub", "driver.browser"})
+	public void setUpHubDriver(String hub, String browser) throws Exception {
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+		capabilities.setBrowserName(browser);
+		driver = new RemoteWebDriver(new URL(hub), capabilities);
+		baseUrl = System.getProperty("baseUrl");
+		if (baseUrl==null) baseUrl = DEFAULT_BASEURL;
+		action = new Actions(driver);
+	}
 
 	/**
 	 * Check term and conditions
 	 * 
 	 */
 	public void termsAndConditions(Object... opParams){
-		//By ELEMENT_FIRSTNAME_ACCOUNT = By.name("firstNameAccount");
-		//By ELEMENT_LASTNAME_ACCOUNT = By.name("lastNameAccount");
-		//By ELEMENT_EMAIL_ACCOUNT = By.name("emailAccount");
-		//By ELEMENT_CONFIRM_PASS_ACCOUNT = By.name("confirmUserPasswordAccount");
-		//By ELEMENT_ROOT_PASS_ACCOUNT = By.name("adminPassword");
-		//By ELEMENT_ROOT_CONFIRM_PASS_ACCOUNT = By.name("confirmAdminPassword");
-		//By ELEMENT_AGREEMENT_CHECKBOX = By.xpath("//*[@id = 'agreement']");
-		//By ELEMENT_INPUT_USERNAME = By.name("username"); 
-		//By ELEMENT_CONTINUE_BUTTON = By.xpath("//button[text()='Continue']");
-		//By ELEMENT_START_BUTTON = By.xpath("//button[text()='Start']");
-		//By ELEMENT_SUBMIT_BUTTON = By.xpath("//*[text()='Submit']");
-		//By ELEMENT_INPUT_PASSWORD = By.name("password");
-		//By ELEMENT_ACCOUNT_NAME_LINK = By.xpath("//*[@id='UIUserPlatformToolBarPortlet']/a");
 		Boolean isCreateAccount = (Boolean)(opParams.length>0 ? opParams[0]:true);
 		driver.get(baseUrl);
 		info("Agreement page");
@@ -170,18 +179,6 @@ public class TestBase {
 			info("-- Administrator account (FQA) has been created successfully... --");
 		}else if (waitForAndGetElement(ELEMENT_ROOT_PASS_ACCOUNT, 5000, 0, 2) != null){
 			info("-- Creating an Admin account: FQA... --");
-			//type(ELEMENT_INPUT_USERNAME, "fqa", true);
-			//type(ELEMENT_FIRSTNAME_ACCOUNT, "FQA", true);
-			//type(ELEMENT_LASTNAME_ACCOUNT, "VN", true);
-			//type(ELEMENT_EMAIL_ACCOUNT, "fqa@exoplatform.com", true);	
-			//type(ELEMENT_INPUT_PASSWORD, "gtngtn", true);
-			//type(ELEMENT_CONFIRM_PASS_ACCOUNT, "gtngtn", true);	
-			//type(ELEMENT_ROOT_PASS_ACCOUNT, "gtngtn", true);
-			//type(ELEMENT_ROOT_CONFIRM_PASS_ACCOUNT, "gtngtn", true);
-			//click(ELEMENT_SUBMIT_BUTTON);
-			//waitForTextNotPresent("Create your account");
-			//click(ELEMENT_START_BUTTON);
-			//waitForAndGetElement(ELEMENT_ACCOUNT_NAME_LINK);
 			accountSetup();
 			firstTimeLogin = true;
 			info("-- Administrator account (FQA) has been created successfully... --");
@@ -719,7 +716,6 @@ public class TestBase {
 		//				"application/x-zip;application/x-zip-compressed;application/x-winzip;application/zip;application/bzip2;" +
 		//				"gzip/document;multipart/x-zip;application/x-gunzip;application/x-gzip;application/x-gzip-compressed;" +
 		//				"application/x-bzip;application/gzipped;application/gzip-compressed;application/gzip;application/octet-stream");
-
 		fp.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/x-xpinstall;" +
 				"application/x-zip;application/x-zip-compressed;application/x-winzip;application/zip;" +
 				"gzip/document;multipart/x-zip;application/x-gunzip;application/x-gzip;application/x-gzip-compressed;" +
@@ -731,12 +727,12 @@ public class TestBase {
 				"application/x-jpg;image/pjpeg;image/pipeg;image/vnd.swiftview-jpeg;image/x-xbitmap;image/png;application/xml;text/xml;text/icalendar;");
 
 		fp.setPreference("browser.helperApps.alwaysAsk.force", false);
-		driver = new FirefoxDriver(fp);
-		baseUrl = System.getProperty("baseUrl");
-		if (baseUrl==null) baseUrl = DEFAULT_BASEURL;
-		action = new Actions(driver);
-		termsAndConditions();
-		checkPLFVersion();
+		//driver = new FirefoxDriver(fp);
+		//baseUrl = System.getProperty("baseUrl");
+		//if (baseUrl==null) baseUrl = DEFAULT_BASEURL;
+		//action = new Actions(driver);
+		//termsAndConditions();
+		//checkPLFVersion();
 	}
 
 	/**function set driver to auto open new window when click link

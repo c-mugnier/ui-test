@@ -1,23 +1,32 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Platform Sniff Test" verbose="1" preserve-order="true">
-	<test name="wiki-sniff" enabled="true">
-		<groups>
-			<run>
-				<exclude name="pending" />
-			</run>
-		</groups>
+
+<suite name="Platform Sniff Test" verbose="1" preserve-order="true" parallel="tests" thread-count="3">
+	<test name="Wiki-Sniff-FF1" preserve-order="true">
+		<parameter name="driver.hub" value="http://localhost:4444/wd/hub" />
+		<parameter name="driver.browser" value="firefox" />
 		<classes>
-			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_Attachment" />
-			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_BasicAction_ManagePage" />
-			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_BasicAction_Other" />
-			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_Information" />
-			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_PublicActivity" />
 			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_Search" />
-			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_WikiSetting_ManagePermission" />
-			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_WikiSetting_ManageTemplate" />
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_BasicAction_ManagePage" />
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_Information" />
+			<!-- <class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_WikiSetting_ManagePermission" /> -->
 		</classes>
 	</test>
-	<listeners>
-		<listener class-name="org.exoplatform.selenium.TestReportListener" />
-	</listeners>
+	<test name="Wiki-Sniff-FF2" preserve-order="true">
+		<parameter name="driver.hub" value="http://localhost:4444/wd/hub" />
+		<parameter name="driver.browser" value="firefox" />
+		<classes>
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_Attachment"  /> 
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_BasicAction_Other" /> 
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_PublicActivity" /> 
+            <!-- <class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_WikiSetting_ManageTemplate" /> -->
+		</classes>
+	</test>
+	<test name="Wiki-Sniff-FF3" preserve-order="true"> 
+		<parameter name="driver.hub" value="http://localhost:4444/wd/hub" /> 
+		<parameter name="driver.browser" value="firefox" /> 
+		<classes> 
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_WikiSetting_ManagePermission" /> 
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_WikiSetting_ManageTemplate" />
+		</classes> 
+	</test>
 </suite>

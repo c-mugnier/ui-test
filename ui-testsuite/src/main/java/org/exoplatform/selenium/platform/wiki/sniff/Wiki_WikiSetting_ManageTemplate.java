@@ -7,6 +7,7 @@ import org.exoplatform.selenium.platform.ManageAccount;
 import org.exoplatform.selenium.platform.wiki.Template;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 /**
@@ -14,27 +15,29 @@ import org.testng.annotations.Test;
  * @author lientm
  */
 public class Wiki_WikiSetting_ManageTemplate extends Template {
-	
+
 	ManageAccount magAc;
 	Button but;
-	
+
 	@BeforeMethod
-	public void setUpBeforeTest(){
-		initSeleniumTest();
+	@Parameters({"driver.hub", "driver.browser"})
+	public void setUpBeforeTest(String hub, String browser) throws Exception{
+		setUpHubDriver(hub, browser);
 		driver.get(baseUrl);
+
 		magAc = new ManageAccount(driver);
 		but = new Button(driver);
-		magAc.signIn("john", "gtn"); 
+		magAc.signIn("john", "gtn");
 		goToWiki();
 	}
 
 	@AfterMethod
 	public void afterTest(){
-		magAc.signOut();
+		//magAc.signOut();
 		driver.manage().deleteAllCookies();
 		driver.quit();
 	}
-	
+
 	/**CaseId: 70253 + 70255 + 70262
 	 * Add, edit and delete template
 	 */
@@ -48,13 +51,13 @@ public class Wiki_WikiSetting_ManageTemplate extends Template {
 
 		info("Create new template");
 		addTemplate(title, description, content);
-		
+
 		info("Edit template");
 		editTemplate(title, newTitle, null, newContent);
-				
+
 		deleteTemplate(newTitle);
 	}
-	
+
 	/**CaseId: 70256
 	 * Preview template
 	 */
@@ -63,13 +66,13 @@ public class Wiki_WikiSetting_ManageTemplate extends Template {
 		String title = "Wiki template title 02";
 		String description = "Global";
 		String content = "Wiki template content 02";
-		
+
 		goToTemplateManagement();
 		click(ELEMENT_ADD_TEMPLATE_LINK);
 		type(ELEMENT_TITLE_TEMPLATE_INPUT,title,true);
 		type(ELEMENT_DESC_TEMPLATE_INPUT,description,true);
 		type(ELEMENT_CONTENT_TEMPLATE_INPUT,content,true);
-		
+
 		info("Preview this template");
 		click(ELEMENT_PREVIEW_TEMPLATE);
 		waitForTextPresent(content);

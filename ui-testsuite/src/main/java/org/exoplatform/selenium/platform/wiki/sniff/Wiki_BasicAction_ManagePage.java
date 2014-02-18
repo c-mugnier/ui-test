@@ -14,12 +14,12 @@ import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.annotations.Parameters;
 
 /**
  * @date 2-July-2013
  * @author lientm
  */
-
 public class Wiki_BasicAction_ManagePage extends ManageDraft{
 	ManageAccount magAc;
 	Button but;
@@ -27,9 +27,13 @@ public class Wiki_BasicAction_ManagePage extends ManageDraft{
 	HomePageActivity activity;
 
 	@BeforeMethod
-	public void setUpBeforeTest(){
-		initSeleniumTest();
+	@Parameters({"driver.hub", "driver.browser"})
+	public void setUpBeforeTest(String hub, String browser) throws Exception {
+		//initSeleniumTest();
+		//driver.get(baseUrl);
+		setUpHubDriver(hub, browser);
 		driver.get(baseUrl);
+
 		magAc = new ManageAccount(driver);
 		but = new Button(driver);
 		naTool = new NavigationToolbar(driver);
@@ -40,7 +44,7 @@ public class Wiki_BasicAction_ManagePage extends ManageDraft{
 
 	@AfterMethod
 	public void afterTest(){
-		magAc.signOut();
+		//magAc.signOut();
 		driver.manage().deleteAllCookies();
 		driver.quit();
 	}
