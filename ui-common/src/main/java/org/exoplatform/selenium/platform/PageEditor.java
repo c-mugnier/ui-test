@@ -9,7 +9,9 @@ import org.exoplatform.selenium.Utils;
 import org.exoplatform.selenium.platform.UserGroupManagement;
 import org.exoplatform.selenium.platform.NavigationToolbar;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class PageEditor extends PlatformBase {
 
@@ -406,11 +408,20 @@ public class PageEditor extends PlatformBase {
 	 * @param elementContainer: ex: ELEMENT_DROP_TARGET_HAS_LAYOUT
 
 	 */
-	public void goToEditContainer(Object elementContainer){	
+	public void goToEditContainer(Object elementContainer, Object...params){	
+		Boolean isEmptyContainer = (Boolean) (params.length > 0 ? params[0] : false) ;
+		
 		info("Go to edit container ");
 		click(ELEMENT_CONTAINER_TAB);
 		mouseOver(elementContainer, true);
-		click(ELEMENT_EDIT_CONTAINER_ICON);
+	
+		if (isEmptyContainer){
+			WebElement editContainer = waitForAndGetElement(ELEMENT_EDIT_EMPTY_CONTAINER_ICON, DEFAULT_TIMEOUT,0,2);
+			((JavascriptExecutor)driver).executeScript("arguments[0].click();", editContainer);
+		}
+		else {
+			click(ELEMENT_EDIT_CONTAINER_ICON);
+		}
 		waitForAndGetElement(By.id("UIContainerForm"));
 	}
 
@@ -476,7 +487,13 @@ public class PageEditor extends PlatformBase {
 		//		WebElement e = waitForAndGetElement(iconDelete,DEFAULT_TIMEOUT,1,2);
 		//		((JavascriptExecutor)driver).executeScript("arguments[0].click();",e);
 		//		((JavascriptExecutor)driver).executeScript("javascript:if(confirm('Are you sure you want to delete this Container?'))ajaxGet('/portal/intranet/?portal:componentId="+idContainer+"&portal:action=DeleteComponent&ajaxRequest=true')");
-		click(iconDelete);
+		if (verify){
+			WebElement element = waitForAndGetElement(iconDelete, DEFAULT_TIMEOUT, 1, 2);
+			((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
+		}
+		else{
+			click(iconDelete);
+		}
 		magAlert.acceptAlert();
 		if(verify)
 			waitForElementNotPresent(container);

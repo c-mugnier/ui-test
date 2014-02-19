@@ -5,7 +5,6 @@
 		<parameter name="driver.hub" value="http://localhost:4444/wd/hub" />
 		<parameter name="driver.browser" value="firefox" />
 		<classes>
-			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_Search" />
 			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_BasicAction_ManagePage" />
 			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_Information" />
 			<!-- <class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_WikiSetting_ManagePermission" /> -->
@@ -15,9 +14,10 @@
 		<parameter name="driver.hub" value="http://localhost:4444/wd/hub" />
 		<parameter name="driver.browser" value="firefox" />
 		<classes>
-			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_Attachment"  /> 
-			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_BasicAction_Other" /> 
-			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_PublicActivity" /> 
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_Attachment"  />  
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_PublicActivity" />
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_BasicAction_Other" />
+			<class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_Search" /> 
             <!-- <class name="org.exoplatform.selenium.platform.wiki.sniff.Wiki_WikiSetting_ManageTemplate" /> -->
 		</classes>
 	</test>

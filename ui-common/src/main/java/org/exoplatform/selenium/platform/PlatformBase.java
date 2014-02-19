@@ -538,7 +538,9 @@ public class PlatformBase extends TestBase {
 	public final By ELEMENT_CONTAINER_ROW_1 = By.xpath("//*[@class='UIRowContainer']/div[1]");
 	public final By ELEMENT_CONTAINER_TAB = By.linkText("Containers");
 	public final By ELEMENT_EDIT_CONTAINER_ICON = By.xpath("//*[@data-original-title='Edit Container']");
+	public final By ELEMENT_EDIT_EMPTY_CONTAINER_ICON = By.xpath("//div[@class='UIRowContainer EmptyContainer']/../../../div[2]//*[@data-original-title='Edit Container']");
 	public final By ELEMENT_DELETE_CONTAINER_ICON = By.xpath("//*[@data-original-title='Delete Container']");
+	public final String ELEMENT_DELETE_CONTAINER_BY_NAME = "//*[contains(text(), '${nameContainer}')]/../*[@data-original-title='Delete Container']";
 	public final By ELEMENT_CONTAINER_TITLE = By.id("title");
 	public final By ELEMENT_CONTAINER_DRAG_DROP_ICON = By.xpath(ELEMENT_DRAG_CONTAINER);
 	public final By ELEMENT_CONTAINER_COLUMN_EDIT_ICON = By.xpath("//*[@data-original-title='Edit Table']");
