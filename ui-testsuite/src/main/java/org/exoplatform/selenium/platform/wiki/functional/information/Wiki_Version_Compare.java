@@ -60,8 +60,8 @@ public class Wiki_Version_Compare extends Version{
 		editWikiPage("2nd edit compare 01", "2nd edit page content", 0);
 
 		goToRevisionsPage();
-
-		//waitForAndGetElement(ELEMENT_CURRENT_VERSION.replace("${version}", "3"));
+		viewPageHistory();
+		waitForAndGetElement(ELEMENT_CURRENT_VERSION.replace("${version}", "3"));
 
 		compareVersion("1", "3");
 
@@ -95,8 +95,8 @@ public class Wiki_Version_Compare extends Version{
 		editWikiPage("2nd edit compare 02", "2nd edit page content", 0);
 
 		goToRevisionsPage();
-
-		//waitForAndGetElement(ELEMENT_CURRENT_VERSION.replace("${version}", "3"));
+		viewPageHistory();
+		waitForAndGetElement(ELEMENT_CURRENT_VERSION.replace("${version}", "3"));
 
 		Utils.pause(500);
 		driver.navigate().refresh();
@@ -107,6 +107,7 @@ public class Wiki_Version_Compare extends Version{
 
 		waitForAndGetElement(ELEMENT_DISABLE_COMPARE_BUTTON_AUX);
 
+		click(ELEMENT_NODE_WIKI_PAGE.replace("{$node}","2nd edit compare 02"));
 		deleteCurrentWikiPage();
 	}
 
@@ -133,11 +134,13 @@ public class Wiki_Version_Compare extends Version{
 		editWikiPage("2nd edit comapre 03", "2nd edit page content", 0);
 
 		goToRevisionsPage();
+		viewPageHistory();
+		
+		waitForAndGetElement(ELEMENT_CURRENT_VERSION.replace("${version}", "3"));
 
-		//waitForAndGetElement(ELEMENT_CURRENT_VERSION.replace("${version}", "3"));
+		waitForAndGetElement(ELEMENT_DISABLE_COMPARE_BUTTON_AUX);
 
-		//waitForAndGetElement(ELEMENT_DISABLE_COMPARE_BUTTON);
-
+		click(ELEMENT_NODE_WIKI_PAGE.replace("{$node}","2nd edit comapre 03"));
 		deleteCurrentWikiPage();
 	}	
 }

@@ -130,7 +130,7 @@ public class PLF_ContentNavigation extends PlatformBase{
 		Utils.pause(5000);
 		click(ELEMENT_UP_LEVEL);
 		info("Create page");
-		mPage.addNewPageEditorWithColum(nodeName, displayName,"",title, portletIds, container, containerIds, false, false);
+		mPage.addNewPageEditorWithColumn(nodeName, displayName,"",title, portletIds, container, containerIds, false, false);
 		Utils.pause(5000);
 		waitForTextPresent(message);
 

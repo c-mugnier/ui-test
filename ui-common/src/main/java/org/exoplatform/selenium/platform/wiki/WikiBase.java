@@ -241,7 +241,8 @@ public class WikiBase extends PlatformBase{
 	public By ELEMENT_NO_SPACE_OPTION = By.id("UISpaceSwitcher_nospace");
 
 	//Wiki page > Revisions page
-	public final String ELEMENT_CURRENT_VERSION = "//*[@id='UIWikiPageInfo']//a[text()='Current Version (v.${version})']";
+	public final String ELEMENT_CURRENT_VERSION = "//a[contains(text(), 'v.${version}') and contains(text(), 'Current Version')]";
+	//"//*[@id='UIWikiPageInfo']//a[contains(text(), 'v.${version}') and contains(text(), 'Current Version')]";
 	public final By ELEMENT_DISABLE_COMPARE_BUTTON = By.xpath("//*[contains(@class, 'disableButton') and text()='Compare Selected']");
 	public final By ELEMENT_DISABLE_COMPARE_BUTTON_AUX = By.xpath("//*[contains(@class, 'disableButton') and text()='Compare the selected versions']");
 

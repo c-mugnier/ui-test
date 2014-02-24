@@ -727,12 +727,12 @@ public class TestBase {
 				"application/x-jpg;image/pjpeg;image/pipeg;image/vnd.swiftview-jpeg;image/x-xbitmap;image/png;application/xml;text/xml;text/icalendar;");
 
 		fp.setPreference("browser.helperApps.alwaysAsk.force", false);
-		//driver = new FirefoxDriver(fp);
-		//baseUrl = System.getProperty("baseUrl");
-		//if (baseUrl==null) baseUrl = DEFAULT_BASEURL;
-		//action = new Actions(driver);
-		//termsAndConditions();
-		//checkPLFVersion();
+		driver = new FirefoxDriver(fp);
+		baseUrl = System.getProperty("baseUrl");
+		if (baseUrl==null) baseUrl = DEFAULT_BASEURL;
+		action = new Actions(driver);
+		termsAndConditions();
+		checkPLFVersion();
 	}
 
 	/**function set driver to auto open new window when click link

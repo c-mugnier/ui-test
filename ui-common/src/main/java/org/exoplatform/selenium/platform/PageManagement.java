@@ -17,7 +17,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class PageManagement extends PlatformBase {
-	
+
 	public PageManagement(WebDriver dr, String...plfVersion){
 		driver = dr;
 		this.plfVersion = plfVersion.length>0?plfVersion[0]:"4.0";
@@ -45,14 +45,14 @@ public class PageManagement extends PlatformBase {
 	public final By ELEMENT_SELECT_OWNER_TYPE = By.xpath("//select[@name='ownerType']");
 	public final By ELEMENT_SELECT_OWNER_ID = By.xpath("//select[@name='ownerId']");
 	public final By ELEMENT_OWNER_ID_INTRANET = By.xpath("//input[@id='ownerId' and @value='intranet']");
-		
+
 	//Message
 	public final String MESSAGE_DELETE_PAGE = "Do you want to delete this page?";
-	
+
 	//Page's list 
 	public final String ELEMENT_LIST_PAGE = "//*[@id='UIRepeater']//tbody/tr[${number}]//*[@title='${titlePage}']"; 
 	public final String ELEMENT_PAGE_DELETE_ICON_AUX = ELEMENT_LIST_PAGE.replace("${number}", "${number}").replace("${titlePage}", "${titlePage}") + "/../..//*[@class='uiIconDelete uiIconLightGray']";
-	
+
 	//Manage page form
 	public final By ELEMENT_SITEMAP_PAGE = By.xpath("//a[@href='/portal/intranet/SiteMapPage']");
 	public final By ELEMENT_PORTAL_ADMINISTRATION = By.xpath("//div[@class='ExpandIcon ClearFix']//a[@class='NodeIcon DefaultPageIcon' and text()='Portal Administration']");
@@ -60,14 +60,14 @@ public class PageManagement extends PlatformBase {
 	public final By ELEMENT_MANAGE_PAGES = By.xpath("//div[@class='ChildrenContainer']//a[@class='NodeIcon DefaultPageIcon' and text()='Manage Pages']");
 	public final By ELEMENT_ADD_USER_PAGES = By.xpath("//div[@class='ChildrenContainer']//a[@class='NodeIcon DefaultPageIcon' and text()='Add User']");
 	public final By ELEMENT_MANAGE_USERS_AND_GROUPS_PAGES = By.xpath("//div[@class='ChildrenContainer']//a[@class='NodeIcon DefaultPageIcon' and text()='Manage Users and Groups']");
-	
+
 	/*================== Common Function ===================*/
 	//Add a new page in PageManagement
 	public void addNewPageAtManagePages(PageType type, String pageName, String pageTitle, boolean publicMode, 
 			Map<String, String> permissions, String groupId, String membership, String pageConfig, Object pageLayout, boolean validate, String...ownerId ){
 
 		button = new Button(driver);
-		
+
 		click(ELEMENT_ADD_PAGE_BUTTON);
 		waitForTextPresent("Page Settings");	
 		switch (type){
@@ -114,7 +114,7 @@ public class PageManagement extends PlatformBase {
 		button.save();
 		Utils.pause(1000);
 		if (validate) {
-		searchPageInManagementPage(type, pageTitle, true);
+			searchPageInManagementPage(type, pageTitle, true);
 		}
 	}
 
@@ -124,6 +124,16 @@ public class PageManagement extends PlatformBase {
 		searchPageInManagementPage(type, pageTitle, true);
 		click(pageEditIcon);
 		Utils.pause(1000);
+	}
+	
+	//Edit page title in View page properties
+	public void editPageTitleInViewPageProperties(String pageTitleEdited){
+		info("== Editing page's title...==");
+		if (waitForAndGetElement(ELEMENT_TITLE_TEXTBOX, DEFAULT_TIMEOUT, 0, 2) != null){
+			type(ELEMENT_TITLE_TEXTBOX, pageTitleEdited, true);
+		}else {
+			type(ELEMENT_INPUT_PAGE_TITLE, pageTitleEdited, true);
+		}
 	}
 
 	//Delete a page
@@ -193,7 +203,7 @@ public class PageManagement extends PlatformBase {
 			String category = ELEMENT_EDIT_PAGE_CATEGORY_MENU.replace("${categoryLabel}", categoryTitle);
 			click(category);
 		}
-		
+
 		for (String portletId : portletIds.keySet()) {
 			String elementEditPagePage = ELEMENT_EDIT_PAGE_PAGE;
 			//String verification = PORTLET_LABEL.replace("${portletName}", portletIdsAndVerifications.get(portletId));
@@ -208,63 +218,64 @@ public class PageManagement extends PlatformBase {
 			waitForTextNotPresent("Page Editor");
 		}
 	}
-	
+
 	// Input data for page choose Column Page Configs 
-		public void addNewPageEditorWithColum(String nodeName, String displayName, String language, String categoryTitle, 
-				Map<String, String> portletIds, String containers, Map<String, String>containerIds,  boolean extendedLabelMode, boolean verify){
+	public void addNewPageEditorWithColumn(String nodeName, String displayName, String language, String categoryTitle, 
+			Map<String, String> portletIds, String containers, Map<String, String>containerIds,  boolean extendedLabelMode, boolean verify){
 
-			type(ELEMENT_INPUT_NODE_NAME, nodeName, true);
-			WebElement element = waitForAndGetElement(ELEMENT_CHECKBOX_EXTENDED_LABEL_MODE, DEFAULT_TIMEOUT, 1, 2);
-			if (extendedLabelMode){
-				Assert.assertTrue(element.isSelected());
-				select(ELEMENT_SELECT_LANGUAGE, language);
+		type(ELEMENT_INPUT_NODE_NAME, nodeName, true);
+		WebElement element = waitForAndGetElement(ELEMENT_CHECKBOX_EXTENDED_LABEL_MODE, DEFAULT_TIMEOUT, 1, 2);
+		if (extendedLabelMode){
+			Assert.assertTrue(element.isSelected());
+			select(ELEMENT_SELECT_LANGUAGE, language);
 
-			}else {
-				uncheck(ELEMENT_CHECKBOX_EXTENDED_LABEL_MODE, 2);
-				type(ELEMENT_INPUT_PAGE_DISPLAY_NAME, displayName, true);
-			}
+		}else {
+			uncheck(ELEMENT_CHECKBOX_EXTENDED_LABEL_MODE, 2);
+			type(ELEMENT_INPUT_PAGE_DISPLAY_NAME, displayName, true);
+		}
 
-			click(ELEMENT_PAGE_EDITOR_NEXT_STEP);
-			waitForTextPresent("Empty Layout");
-			click(ELEMENT_PAGE_EDITOR_NEXT_STEP);
-			if (containers != null){
-				click(ELEMENT_CONTAINER_TAB);
-				String containersID= ELEMENT_EDIT_PAGE_CATEGORY_MENU.replace("${categoryLabel}", containers);
-				click(containersID);
-				for (String containerId : containerIds.keySet()) {					
-					String elementEditPagePage = ELEMENT_EDIT_PAGE_PAGE;					
-					dragAndDropToObject("//div[@id='" + containerId + "']/div", elementEditPagePage);
-					if(containerIds.get(containerId) != ""){
-						dragAndDropToObject("//div[@id='" + containerIds.get(containerId) + "']/div", elementEditPagePage);
-					}
+		click(ELEMENT_PAGE_EDITOR_NEXT_STEP);
+		waitForTextPresent("Empty Layout");
+		click(ELEMENT_PAGE_EDITOR_NEXT_STEP);
+		if (containers != null){
+			click(ELEMENT_CONTAINER_TAB);
+			String containersID= ELEMENT_EDIT_PAGE_CATEGORY_MENU.replace("${categoryLabel}", containers);
+			click(containersID);
+			for (String containerId : containerIds.keySet()) {					
+				String elementEditPagePage = ELEMENT_EDIT_PAGE_PAGE;					
+				dragAndDropToObject("//div[@id='" + containerId + "']/div", elementEditPagePage);
+				if(containerIds.get(containerId) != ""){
+					dragAndDropToObject("//div[@id='" + containerIds.get(containerId) + "']/div", elementEditPagePage);
 				}
 			}
-			Utils.pause(500);
-			if (categoryTitle != null){
-				click(ELEMENT_APPLICATIONS_LINK);
-				String category = ELEMENT_EDIT_PAGE_CATEGORY_MENU.replace("${categoryLabel}", categoryTitle);
-				click(category);
-			}			
-			for (String portletId : portletIds.keySet()) {
-				String elementEditPagePage1 = ELEMENT_PAGE_COLUMN.replace("${index}", "1");
-				dragAndDropToObject("//div[@id='" + portletId + "']/div", elementEditPagePage1);
-				if(portletIds.get(portletId) != ""){
-					dragAndDropToObject("//div[@id='" + portletIds.get(portletId) + "']/div", elementEditPagePage1);
-				}
-				String elementEditPagePage2 = ELEMENT_PAGE_COLUMN.replace("${index}", "2");
-				dragAndDropToObject("//div[@id='" + portletId + "']/div", elementEditPagePage1);
-				if(portletIds.get(portletId) != ""){
-					dragAndDropToObject("//div[@id='" + portletIds.get(portletId) + "']/div", elementEditPagePage2);
-				}
+		}
+		Utils.pause(500);
+		if (categoryTitle != null){
+			click(ELEMENT_APPLICATIONS_LINK);
+			String category = ELEMENT_EDIT_PAGE_CATEGORY_MENU.replace("${categoryLabel}", categoryTitle);
+			click(category);
+		}			
+		for (String portletId : portletIds.keySet()) {
+			String elementEditPagePage1 = ELEMENT_PAGE_COLUMN.replace("${index}", "1");
+			dragAndDropToObject("//div[@id='" + portletId + "']/div", elementEditPagePage1);
+			if(portletIds.get(portletId) != ""){
+				dragAndDropToObject("//div[@id='" + portletIds.get(portletId) + "']/div", elementEditPagePage1);
 			}
-			
-			if (!verify) { 
-				Utils.pause(500);
-				click(ELEMENT_PAGE_FINISH_BUTTON);
-				waitForTextNotPresent("Page Editor");
+			String elementEditPagePage2 = ELEMENT_PAGE_COLUMN.replace("${index}", "2");
+			dragAndDropToObject("//div[@id='" + portletId + "']/div", elementEditPagePage1);
+			if(portletIds.get(portletId) != ""){
+				dragAndDropToObject("//div[@id='" + portletIds.get(portletId) + "']/div", elementEditPagePage2);
 			}
 		}
 
+		if (!verify) { 
+			Utils.pause(500);
+			click(ELEMENT_PAGE_FINISH_BUTTON);
+			waitForTextNotPresent("Page Editor");
+		}
+	}
+
+	//Delete a page
 	public void deletePageAtManagePageAndPortalNavigation(String pageName, boolean PageTypePortal, String portalName, 
 			boolean PageTypeGroup, String groupName, String... nodeName){
 		info("-- Deleting "+ pageName +" at Manage page and Portal Navigation--");
@@ -292,12 +303,13 @@ public class PageManagement extends PlatformBase {
 			}
 		}
 	}
-	
+
+	//Go to Page Permission
 	public void goToPagePermissionOfAddPageInPageManagement() {
 		info("--Go to Add new Page--");
-			click(ELEMENT_ADD_PAGE_BUTTON);
-			waitForTextPresent("Page Settings");	
+		click(ELEMENT_ADD_PAGE_BUTTON);
+		waitForTextPresent("Page Settings");	
 		info("--Choose Permission tab--");
-			click(ELEMENT_PERMISSION_SETTING_TAB);
+		click(ELEMENT_PERMISSION_SETTING_TAB);
 	}
 }

@@ -60,9 +60,11 @@ public class Wiki_Version_Restore extends Version{
 		waitForTextPresent("page content 01");
 
 		goToRevisionsPage();
+		viewPageHistory();
 
-		//waitForAndGetElement(ELEMENT_CURRENT_VERSION.replace("${version}", "4"));
+		waitForAndGetElement(ELEMENT_CURRENT_VERSION.replace("${version}", "4"));
 
+		click(ELEMENT_NODE_WIKI_PAGE.replace("{$node}","2nd edit restore 01"));
 		deleteCurrentWikiPage();
 	}
 }

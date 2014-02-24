@@ -153,7 +153,7 @@ public class Gatein_PortalNavigation_Edit_EditLayout extends PortalManagement{
 		pageEditor.addNewContainer(categoryContainer, typeContainer, ELEMENT_NAVIGATION_BODY_RIGHT);
 
 		//- Move mouse on the container and click on Edit icon of added container on mark layer
-		pageEditor.goToEditContainer(ELEMENT_DROP_TARGET_HAS_LAYOUT);
+		pageEditor.goToEditContainer(ELEMENT_DROP_TARGET_HAS_LAYOUT, true);
 
 		//Edit container form appears with 2 tabs:
 		//Container settings:
@@ -194,9 +194,11 @@ public class Gatein_PortalNavigation_Edit_EditLayout extends PortalManagement{
 		pageEditor.finishEditLayout();
 		
 		/*Clear data*/
+		navTool.goToSites();
 		goToPortalEditLayout(portalName);
 		click(ELEMENT_CONTAINER_TAB);
-		pageEditor.removeContainer(ELEMENT_DROP_TARGET_HAS_LAYOUT,ELEMENT_DELETE_CONTAINER_ICON);
+		pageEditor.removeContainer(ELEMENT_DROP_TARGET_HAS_LAYOUT, ELEMENT_DELETE_CONTAINER_BY_NAME.replace("${nameContainer}", containerTitle), true);
+		//pageEditor.removeContainer(ELEMENT_DROP_TARGET_HAS_LAYOUT,ELEMENT_DELETE_CONTAINER_ICON);
 		waitForElementNotPresent(ELEMENT_DROP_TARGET_HAS_LAYOUT);	
 		pageEditor.finishEditLayout();
 	}
