@@ -41,8 +41,8 @@ public class PLF_HomepageGadgets_CalendarGadget_Settings extends CalendarBase{
 		brandMag = new BrandingManagement(driver, this.plfVersion);
 		button = new Button(driver, this.plfVersion);
 		event = new Event(driver);
-		magAc.signIn(DATA_USER1,DATA_PASS);;
-			    
+
+		magAc.signIn(DATA_USER1, DATA_PASS);			    
 	}
 
 	@AfterMethod

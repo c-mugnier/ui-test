@@ -81,6 +81,7 @@ public class WikiBase extends PlatformBase{
 	public final String ELEMENT_PAGE_RESULT = "//*[@href='/portal/intranet/wiki/${title}']";
 	public final String ELEMENT_PAGE_RESULT_AUX = "//*[contains(@href, '${title}')]";
 	//public final String ELEMENT_PAGE_SPACE_RESULT="";
+    //public final String ELEMENT_PAGE_RESULT="//*[@id='UIWikiSearchSpaceArea']//*[contains(@href,'${title}')]";
 	
 	//Wiki Home
 	public final By ELEMENT_WIKI_HOME_LINK=By.xpath("//a[text()='Wiki Home']");

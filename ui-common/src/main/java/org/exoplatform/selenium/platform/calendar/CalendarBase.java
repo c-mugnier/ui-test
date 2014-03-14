@@ -32,14 +32,14 @@ public class CalendarBase extends PlatformBase {
 	public By ELEMENT_CALENDAR_ACTIONS_ICON = By.xpath("//*[@class='uiIconCalSimplePlus uiIconLightGray']");
 	public By ELEMENT_CALENDAR_ADD_MENU = By.xpath("//*[@id='tmpMenuElement']//a[contains(@href,'AddCalendar')]");
 	public By ELEMENT_CALENDAR_SETTINGS = By.xpath("//*[@id='tmpMenuElement']//a[contains(@href,'CalendarSetting')]");
-	public By ELEMENT_CALENDAR_IMPORT_MENU = By.xpath("//*[@id='tmpMenuElement']//a[contains(@href,'ImportCalendar')]");
+	public By ELEMENT_CALENDAR_IMPORT_MENU = By.xpath("//*[@id='tmpMenuElement']//a[contains(.,'Add Event Category')]/../../li/a[contains(.,'Import')]");
 	public String ELEMENT_CALENDAR_GET_BY_TAG_LI = "//a[@class='calendarName' and contains(text(), '${calendar}')]/../..";
 	public By ELEMENT_CALENDAR_POPUP_WINDOW = By.xpath("//*[@id='UICalendarPopupWindow']/div[2]");
 	public String ELEMENT_VERIFY_CALENDAR_FORM = "//*[@id='defaultCalendarTab'] //div[@class='myCalendar']/*[@class='calendarTitle']/..//li[contains(@class,'calendarItem' )]//*[text()='${UserName}']/../a[@class='${CheckboxColor}']";
 	public String ELEMENT_DISPLAY_CALENDAR= "//a[@data-original-title='${calendar}']";
 	public String ELEMENT_COLOR_ICON = "//*[@class='calendarName' and text()='${calendar}']/..//*[@class='colorOpacity']/..";
 	public String ELEMENT_CALENDAR_ID = "//*[@class='calendarName' and text()='${calendar}']/..";
-	
+
 	//--------------Mini calendar-------------------
 	public String ELEMENT_MINI_CALENDAR_DATE_HIGHLIGHT = "//td[contains(@class,'highLight') and contains(text(),'${date}')]";
 
@@ -141,7 +141,8 @@ public class CalendarBase extends PlatformBase {
 	//public String ELEMENT_EVENT_TASK_ONE_DAY = "//*[@id='UIWeekViewGrid']//div[contains(text(),'${taskName}')]/parent::div[@class='clearfix']/div[@class='eventContainerBar eventTitle pull-left']";
 	public String ELEMENT_EVENT_TASK_DETAIL_DATE = "//*[@id='UIWeekViewGrid']//*[contains(@startfull,'${date}')]//div[contains(text(),'${taskName}')]";
 	public String ELEMENT_EVENT_TASK_DETAIL_ALL_DAY = "//*[@id='UIWeekViewGridAllDay']//*[contains(@starttimefull,'${date}')]//div[contains(text(),'${event}')]";
-	public String ELEMENT_EVENT_TASK_ONE_DAY = "//*[@id='UIWeekViewGrid']//div[contains(text(),'${taskName}')]";
+	//public String ELEMENT_EVENT_TASK_ONE_DAY = "//*[@id='UIWeekViewGrid']//div[contains(text(),'${taskName}')]";
+	public String ELEMENT_EVENT_TASK_ONE_DAY = "//*[@id='UIWeekViewGrid']//div[contains(@deschtml,'${taskName}')]";
 	public String ELEMENT_EVENT_TASK_ONE_DAY_1 = "//*[@id='UIWeekView']//div[contains(text(),'${taskName}')]";
 	public String ELEMENT_EVENT_TASK_WORKING_PANE = "//*[@id='UIWeekViewGrid']//div[@class='eventContainer' and contains(text(),'${event}')]";
 	public String ELEMENT_EVENT_TASK_WORKING_PANE_PLF41 = "//*[@id='UIWeekViewGrid']//div[contains(@class,'eventAlldayContent') and contains(.,'${event}')]";
@@ -201,6 +202,7 @@ public class CalendarBase extends PlatformBase {
 	public String EVENT_DAY_VIEW = "//*[@id='UIDayView']//div[contains(text(),'${eventTitle}')]/..";
 	public String EVENT_MONTH_VIEW = "//*[@id='UIMonthView']//span[contains(text(),'${eventTitle}')]";
 	public String EVENT_LIST_VIEW = "//*[@id='UIListUsers']//span[contains(text(),'${eventTitle}')]";
+	public By ELEMENT_MONTH_VIEW_MORE = By.xpath("//div[@class='moreEvent'][last()]/div[contains(text(),'more')]") ;
 	//	public String EVENT_WORK_WEEK_VIEW = "//*[@id='UIWeekViewGridAllDay']//div[contains(text(),'${eventTitle}')]";
 
 	//----------------Group calendar---------------------------------
@@ -719,6 +721,7 @@ public class CalendarBase extends PlatformBase {
 		info("--Delete a Calendar-");
 
 		executeActionCalendar(name,"RemoveCalendar");
+		waitForMessage(MSG_CALENDAR_DELETE);
 		button.yes();
 		if (check){
 			waitForElementNotPresent(ELEMENT_CALENDAR_GET_BY_TAG_LI.replace("{$calendar}", name));

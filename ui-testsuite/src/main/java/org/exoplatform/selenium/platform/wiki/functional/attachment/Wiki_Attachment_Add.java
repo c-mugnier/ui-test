@@ -28,7 +28,8 @@ public class Wiki_Attachment_Add extends BasicAction{
 		driver.get(baseUrl);
 		magAcc = new ManageAccount(driver);
 		button = new Button(driver);
-		magAcc.signIn(DATA_USER1,DATA_PASS);;
+
+		magAcc.signIn(DATA_USER1, DATA_PASS);
 		goToWiki();
 	}
 

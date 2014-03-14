@@ -26,9 +26,9 @@ public class PLF_HomepageGadget_WhoIsOnlineGadget extends PlatformBase {
 	NavigationToolbar navToolBar;
 	PeopleConnection peopleC;
 	
-	String User1 = "fqa";
-	String User2 = "root";
-	String Pass1 = "gtngtn";
+	String User1 = DATA_USER1;
+	String User2 = USER_ROOT;
+	String Pass1 = DATA_PASS;
 	String fullNameUser2="Root Root";
 	
 	@BeforeMethod
@@ -37,7 +37,7 @@ public class PLF_HomepageGadget_WhoIsOnlineGadget extends PlatformBase {
 		initSeleniumTest();
 		acc = new ManageAccount(driver);
 		hg = new HomePageGadget(driver);
-		peopleC = new PeopleConnection(driver);
+		peopleC = new PeopleConnection(driver, this.plfVersion);
 		navToolBar = new NavigationToolbar(driver);
 		acc.signIn(User1, Pass1);
 	}
@@ -59,7 +59,7 @@ public class PLF_HomepageGadget_WhoIsOnlineGadget extends PlatformBase {
 		navToolBar.goToHomePage();
 				
 		info("Switch to other browser to login by user acc 2");
-		loginWithAnotherAccOnThesameBrowser(User2, Pass1);
+		loginWithAnotherAccOnThesameBrowser(User2, PASS_ROOT);
 	
 		info("Confirm if WhoisOnline gadget dislays or not with user1");
 		hg=new HomePageGadget(newDriver);
@@ -79,7 +79,7 @@ public class PLF_HomepageGadget_WhoIsOnlineGadget extends PlatformBase {
 		navToolBar.goToHomePage();
 		
 		info("Switch to other browser to login by user acc 2");
-		loginWithAnotherAccOnThesameBrowser(User2, Pass1);
+		loginWithAnotherAccOnThesameBrowser(User2, PASS_ROOT);
 		
 		info("Confirm if WhoisOnline gadget dislays or not with user1");
 		hg=new HomePageGadget(newDriver);
@@ -98,7 +98,7 @@ public class PLF_HomepageGadget_WhoIsOnlineGadget extends PlatformBase {
 		navToolBar.goToHomePage();
 		
 		info("Switch to other browser to login by user acc 2");
-		loginWithAnotherAccOnThesameBrowser(User2, Pass1);
+		loginWithAnotherAccOnThesameBrowser(User2, PASS_ROOT);
 		hg=new HomePageGadget(newDriver);
 		hg.checkUserInfoOnWhoisOnlineGadget(User1, false , "", false, false);
 		
@@ -123,7 +123,7 @@ public class PLF_HomepageGadget_WhoIsOnlineGadget extends PlatformBase {
 		
 		info("-- Clear data --");
 		navToolBar = new NavigationToolbar(newDriver);
-		peopleC = new PeopleConnection(newDriver);
+		peopleC = new PeopleConnection(newDriver, this.plfVersion);
 		navToolBar.goToConnectionPage();
 		peopleC.ignoreInvitation(fullNameUser2);
 		newDriver.manage().deleteAllCookies();
@@ -140,7 +140,7 @@ public class PLF_HomepageGadget_WhoIsOnlineGadget extends PlatformBase {
 		navToolBar.goToHomePage();
 		
 		info("Switch to other browser to login by user acc 2");
-		loginWithAnotherAccOnThesameBrowser(User2, Pass1);
+		loginWithAnotherAccOnThesameBrowser(User2, PASS_ROOT);
 		
 		info("User 2 connect with user 1 from Who's Online gadget");
 		hg=new HomePageGadget(newDriver);

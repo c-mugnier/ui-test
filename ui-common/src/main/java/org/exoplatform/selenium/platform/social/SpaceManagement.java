@@ -270,7 +270,6 @@ public class SpaceManagement extends SocialBase {
 		info("-- Deleting Space..." + name);
 		int iTimeout = params.length > 0 ? params[0] : DEFAULT_TIMEOUT;    
 		spSearch.searchSpaceByName(name, true);
-
 		doAction("Delete", name);    
 		magAlert = new ManageAlert(driver);
 		magAlert.acceptAlert();
@@ -319,6 +318,7 @@ public class SpaceManagement extends SocialBase {
 	 */
 	public void gotoEditSpace(String name){  
 		info("-- Go to Edit space page --");
+		spSearch.searchSpaceByName(name,true);
 		doAction("Edit", name);
 		waitForAndGetElement(ELEMENT_SPACE_SETTING_MENU,60000);    
 	}

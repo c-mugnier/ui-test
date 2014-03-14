@@ -35,9 +35,6 @@ public class ECMS_SE_Admin extends PlatformBase {
 	ContentTemplate cTemplate;
 	ContextMenu cMenu;
 	SitesExplorer siteExp;
-
-	String DATA_USER = "john";
-	String DATA_PASS = "gtn";
 	
 	/**CaseID 65844 Export a node
 	 * Step 1: Export a node
@@ -70,7 +67,7 @@ public class ECMS_SE_Admin extends PlatformBase {
 		String node1 = "test02_AddCategory";
 		By bNode = By.xpath(siteExp.ELEMENT_SE_NODE.replace("{$node}", node1));
 		String categoryPath = "Defense";
-		String categoryTree = "powers";
+		String categoryTree = "intranet";
 		
 		info("Add Category");
 		//Create node
@@ -179,7 +176,7 @@ public class ECMS_SE_Admin extends PlatformBase {
 	public void test06_DeleteCategory() {
 		String node1 = "test06_DeleteCategory1";
 		By bNode = By.xpath(siteExp.ELEMENT_SE_NODE.replace("{$node}", node1));
-		String catePath="powers";
+		String catePath="intranet";
 
 		info("Add Category");
 		//Create node
@@ -294,7 +291,7 @@ public class ECMS_SE_Admin extends PlatformBase {
 		cTemplate = new ContentTemplate(driver);
 		cMenu = new ContextMenu(driver);
 		siteExp = new SitesExplorer(driver);
-		magAcc.signIn(DATA_USER, DATA_PASS);
+		magAcc.signIn(DATA_USER1, DATA_PASS);
 		navToolBar.goToSiteExplorer();
 	}
 

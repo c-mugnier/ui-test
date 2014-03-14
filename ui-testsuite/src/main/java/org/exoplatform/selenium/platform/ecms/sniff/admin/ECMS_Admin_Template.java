@@ -30,21 +30,18 @@ public class ECMS_Admin_Template extends PlatformBase{
 	ManageTemplate magTem;
 	ManageNodeType magNType;
 
-	public final String DATA_USER_ADMIN = "john";
-	public final String DATA_PASS = "gtn";
-
 	@BeforeMethod
 	public void beforeMethod(){
 		initSeleniumTest();
 		driver.get(baseUrl);
-		info("LogIn to Intranet with User..." + DATA_USER_ADMIN);
+		info("LogIn to Intranet with User..." + DATA_USER1);
 		alt = new ManageAlert(driver,this.plfVersion);
 		magAcc = new ManageAccount(driver,this.plfVersion);
 		ecms = new EcmsBase(driver,this.plfVersion);
 		ecMain = new ECMainFunction(driver,this.plfVersion);
 		magTem = new ManageTemplate(driver,this.plfVersion);
 		magNType = new ManageNodeType(driver);
-		magAcc.signIn(DATA_USER_ADMIN, DATA_PASS);
+		magAcc.signIn(DATA_USER1, DATA_PASS);
 	}
 
 	@AfterMethod

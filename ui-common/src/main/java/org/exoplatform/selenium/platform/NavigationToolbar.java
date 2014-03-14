@@ -298,22 +298,24 @@ public class NavigationToolbar extends PlatformBase {
 
 	//Enter Sites Management Form 
 	public void goToSiteExplorer(){
+		String url =DEFAULT_BASEURL+"/g/:platform:web-contributors/siteExplorer";
 		Utils.pause(500);
 		for(int repeat=0;; repeat ++){
 			if (repeat > 1){
-				mouseOverAndClick(ELEMENT_LINK_SETUP);
+				driver.get(url);
 				break;
 			}
 			mouseOver(ELEMENT_LINK_SETUP, true);
 			if (waitForAndGetElement(ELEMENT_MENU_CONTENT_LINK, 5000, 0) != null){
 				info("Element " + ELEMENT_MENU_CONTENT_LINK + "... is displayed");
+				mouseOverAndClick(ELEMENT_MENU_CONTENT_LINK);
 				break;
 			}
 			info("Retry...[" + repeat + "]");
 		}
 		//mouseOverAndClick(ELEMENT_LINK_SETUP);
 		//mouseOver(ELEMENT_LINK_SETUP, true);
-		mouseOverAndClick(ELEMENT_MENU_CONTENT_LINK);
+		//mouseOverAndClick(ELEMENT_MENU_CONTENT_LINK);
 		//click(ELEMENT_MENU_SITE_EXPLORER);
 		Utils.pause(2000);
 	}
@@ -356,8 +358,8 @@ public class NavigationToolbar extends PlatformBase {
 	//Go to Page Creation Wizard
 	public void goToPageCreationWizard(){
 		info("Go to add page wizard");
-//		mouseOverAndClick(ELEMENT_MENU_EDIT_LINK);
-//		mouseOver(ELEMENT_MENU_PAGE_LINK, true);
+		mouseOverAndClick(ELEMENT_MENU_EDIT_LINK);
+		mouseOver(ELEMENT_MENU_PAGE_LINK, true);
 //		click(ELEMENT_ADD_PAGE_MENU);
 		((JavascriptExecutor)driver).executeScript("javascript:ajaxGet(eXo.env.server.createPortalURL('UIWorkingWorkspace', 'PageCreationWizard', true));");
 

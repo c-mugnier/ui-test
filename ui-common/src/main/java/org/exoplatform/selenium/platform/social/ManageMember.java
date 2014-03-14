@@ -94,7 +94,7 @@ public class ManageMember extends SpaceManagement {
 	public void inviteSingleUser(String name, String...params ) {
 		String member = "//th[text()='Members']/ancestor::table//td[text()='Root Root']";  
 		selectUser(name);
-		if (name.equals("root")){
+		if (name.equals(USER_ROOT)){
 			info("--------------------------------");
 			waitForAndGetElement(By.xpath(member));
 		}else{

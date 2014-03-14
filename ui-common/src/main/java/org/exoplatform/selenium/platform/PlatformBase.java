@@ -21,9 +21,13 @@ import static org.exoplatform.selenium.TestLogger.info;
 
 public class PlatformBase extends TestBase {
 
+	public final String USER_ROOT = "root";
+	public final String PASS_ROOT = "gtn";
 	public final String DATA_USER1 = "john";
-	public final String DATA_PASS = "gtn";
 	public final String DATA_USER2 = "mary";
+	public final String DATA_USER3 = "james";
+	public final String DATA_USER4 = "jack";
+	public final String DATA_PASS = "gtngtn";
 	public ManageAlert alert = new ManageAlert(driver);
 	public Button button = new Button(driver);
 	public Dialog dialog = new Dialog(driver);
@@ -41,6 +45,7 @@ public class PlatformBase extends TestBase {
 	 * */
 	public final String ELEMENT_SIGN_IN_LINK = "//b[contains(text(),'Sign in')]";
 	public final By ELEMENT_REFRESH = By.xpath("//div[@class='activityStreamStatus pull-left']");
+	public final By ELEMENT_ACTIVITY_TEXTBOX = By.id("DisplaycomposerInput");
 
 	/*
 	 * Log in Form - Sign-out 
@@ -457,6 +462,7 @@ public class PlatformBase extends TestBase {
 
 	public final String ELEMENT_LIST_NODE_LINK = ELEMENT_NODE_LINK.replace("${nodeLabel}", "${nodeLabel}") + "/..//li[${number}]//*[@title='${childNode}']";
 	public final String ELEMENT_CHILD_NODE_LINK = ELEMENT_NODE_LINK.replace("${nodeLabel}", "${nodeLabel}") + "/../*[contains(@class, 'childrenContainer')]//*[@title='${childNode}']";
+	public final By ELEMENT_NODE_LIST_IN_NAVIGATION = By.xpath("//*[@class='node']//*[@title='Home']/..//ul[@class='childrenContainer nodeGroup']/li");
 	public final String ELEMENT_SELECT_HOME_PAGE = "//div[@id='UIRepeater']//table//tbody/tr/td[5]/div[@class='ActionContainer']/img";
 	public final String ELEMENT_NAVIGATION_HOME_NODE = "//div[@class='HomeNode']";				 
 	public final String ELEMENT_NODE_ADD_NEW_TOP_NODE = "//div[@id='UINavigationNodeSelectorPopupMenu']/div[@class='UIContextMenuContainer']//a[@class='ItemIcon AddNode16x16Icon']";
@@ -1361,7 +1367,7 @@ public class PlatformBase extends TestBase {
 	 * @param content: mail content
 	 */
 	public void checkAndDeleteMail(By mail, String content){
-		waitForAndGetElement(mail,300000);
+		waitForAndGetElement(mail,360000);
 
 		click(mail);	
 		if(waitForAndGetElement(ELEMENT_GMAIL_CONTENT.replace("${content}",content),20000,0) == null )

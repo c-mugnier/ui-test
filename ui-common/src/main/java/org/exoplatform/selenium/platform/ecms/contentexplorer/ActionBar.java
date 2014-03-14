@@ -581,13 +581,15 @@ public class ActionBar extends EcmsBase{
 			}else{
 				magView.setup2ShowViewAction(item, view, tab);
 				magAcc.signOut();
-				signIn(DATA_USER1, DATA_PASS);
+				magAcc.signIn(DATA_USER1, DATA_PASS);
 				navToolBar.goToSiteExplorer();
 			}
 		}else {
 			magView.setup2ShowViewAction(item, view, tab);
 			magAcc.signOut();
-			magAcc.signIn("john", "gtn");
+			if (baseUrl==null) baseUrl = DEFAULT_BASEURL;
+			driver.get(baseUrl);
+			magAcc.signIn(DATA_USER1, DATA_PASS);
 			navToolBar.goToSiteExplorer();
 		}
 		driver.navigate().refresh();
@@ -681,13 +683,13 @@ public class ActionBar extends EcmsBase{
 			}else{
 				magView.setup2ShowViewAction("addSymLink", "Web");
 				magAcc.signOut();
-				magAcc.signIn("john", "gtn");
+				magAcc.signIn(DATA_USER1, DATA_PASS);
 				navToolBar.goToSiteExplorer();
 			}
 		}else {
 			magView.setup2ShowViewAction("addSymLink", "Web");
 			magAcc.signOut();
-			magAcc.signIn("john", "gtn");
+			magAcc.signIn(DATA_USER1, DATA_PASS);
 			navToolBar.goToSiteExplorer();
 		}
 		Utils.pause(1000);
@@ -777,14 +779,14 @@ public class ActionBar extends EcmsBase{
 			}else{
 				magView.setup2ShowViewAction("addDocument", "List", "List");
 				magAcc.signOut();
-				magAcc.signIn("john", "gtn");
+				magAcc.signIn(DATA_USER1, DATA_PASS);
 				navToolBar.goToPersonalDocuments();
 				goToViewMode("List");
 			}
 		}else {
 			magView.setup2ShowViewAction("addDocument", "List", "List");
 			magAcc.signOut();
-			magAcc.signIn("john", "gtn");
+			magAcc.signIn(DATA_USER1, DATA_PASS);
 			navToolBar.goToPersonalDocuments();
 			goToViewMode("List");
 		}
@@ -806,14 +808,14 @@ public class ActionBar extends EcmsBase{
 			}else{
 				magView.setup2ShowViewAction("addSymLink", "List", "List");
 				magAcc.signOut();
-				magAcc.signIn("john", "gtn");
+				magAcc.signIn(DATA_USER1, DATA_PASS);
 				navToolBar.goToPersonalDocuments();
 				goToViewMode("List");
 			}
 		}else {
 			magView.setup2ShowViewAction("addSymLink", "List", "List");
 			magAcc.signOut();
-			magAcc.signIn("john", "gtn");
+			magAcc.signIn(DATA_USER1, DATA_PASS);
 			navToolBar.goToPersonalDocuments();
 			goToViewMode("List");
 		}
@@ -835,13 +837,13 @@ public class ActionBar extends EcmsBase{
 			}else{
 				magView.setup2ShowViewAction("manageVersions");
 				magAcc.signOut();
-				magAcc.signIn("john", "gtn");
+				magAcc.signIn(DATA_USER1, DATA_PASS);
 				navToolBar.goToSiteExplorer();
 			}
 		}else {
 			magView.setup2ShowViewAction("manageVersions");
 			magAcc.signOut();
-			magAcc.signIn("john", "gtn");
+			magAcc.signIn(DATA_USER1, DATA_PASS);
 			navToolBar.goToSiteExplorer();
 		}
 	}*/
@@ -859,13 +861,13 @@ public class ActionBar extends EcmsBase{
 			}else{
 				magView.setup2ShowViewAction("manageRelations", "Web");
 				magAcc.signOut();
-				magAcc.signIn("john", "gtn");
+				magAcc.signIn(DATA_USER1, DATA_PASS);
 				navToolBar.goToSiteExplorer();
 			}
 		}else {
 			magView.setup2ShowViewAction("manageRelations", "Web");
 			magAcc.signOut();
-			magAcc.signIn("john", "gtn");
+			magAcc.signIn(DATA_USER1, DATA_PASS);
 			navToolBar.goToSiteExplorer();
 		}
 		Utils.pause(1000);
@@ -979,12 +981,12 @@ public class ActionBar extends EcmsBase{
 			}else{
 				magView.setup2ShowViewAction("comment");
 				magAcc.signOut();
-				magAcc.signIn("john", "gtn");
+				magAcc.signIn(DATA_USER1, DATA_PASS);
 			}
 		}else {
 			magView.setup2ShowViewAction("comment");
 			magAcc.signOut();
-			magAcc.signIn("john", "gtn");
+			magAcc.signIn(DATA_USER1, DATA_PASS);
 		}
 	}*/
 
@@ -1135,14 +1137,14 @@ public class ActionBar extends EcmsBase{
 					navToolBar.goToContentAdministration();
 					magView.setup2ShowViewAction("exportNode");
 					magAcc.signOut();
-					magAcc.signIn("john", "gtn");
+					magAcc.signIn(DATA_USER1, DATA_PASS);
 					navToolBar.goToSiteExplorer();
 				}
 			}else{
 				navToolBar.goToContentAdministration();
 				magView.setup2ShowViewAction("exportNode");
 				magAcc.signOut();
-				magAcc.signIn("john", "gtn");
+				magAcc.signIn(DATA_USER1, DATA_PASS);
 				navToolBar.goToSiteExplorer();
 			}
 		}
@@ -1165,14 +1167,14 @@ public class ActionBar extends EcmsBase{
 					navToolBar.goToContentAdministration();
 					magView.setup2ShowViewAction("addCategory");
 					magAcc.signOut();
-					magAcc.signIn("john", "gtn");
+					magAcc.signIn(DATA_USER1, DATA_PASS);
 					navToolBar.goToSiteExplorer();
 				}
 			}else{
 				navToolBar.goToContentAdministration();
 				magView.setup2ShowViewAction("addCategory");
 				magAcc.signOut();
-				magAcc.signIn("john", "gtn");
+				magAcc.signIn(DATA_USER1, DATA_PASS);
 				navToolBar.goToSiteExplorer();
 			}
 		}
@@ -1256,14 +1258,14 @@ public class ActionBar extends EcmsBase{
 					navToolBar.goToContentAdministration();
 					magView.setup2ShowViewAction("viewProperties");
 					magAcc.signOut();
-					magAcc.signIn("john", "gtn");
+					magAcc.signIn(DATA_USER1, DATA_PASS);
 					navToolBar.goToSiteExplorer();
 				}
 			}else{
 				navToolBar.goToContentAdministration();
 				magView.setup2ShowViewAction("viewProperties");
 				magAcc.signOut();
-				magAcc.signIn("john", "gtn");
+				magAcc.signIn(DATA_USER1, DATA_PASS);
 				navToolBar.goToSiteExplorer();
 			}
 		}
@@ -1354,14 +1356,14 @@ public class ActionBar extends EcmsBase{
 					navToolBar.goToContentAdministration();
 					magView.setup2ShowViewAction("importNode");
 					magAcc.signOut();
-					magAcc.signIn("john", "gtn");
+					magAcc.signIn(DATA_USER1, DATA_PASS);
 					navToolBar.goToSiteExplorer();
 				}	
 			}else{
 				navToolBar.goToContentAdministration();
 				magView.setup2ShowViewAction("importNode");
 				magAcc.signOut();
-				magAcc.signIn("john", "gtn");
+				magAcc.signIn(DATA_USER1, DATA_PASS);
 				navToolBar.goToSiteExplorer();
 			}
 		}
@@ -1382,13 +1384,13 @@ public class ActionBar extends EcmsBase{
 			}else{
 				magView.setup2ShowViewAction("viewMetadatas", "Web");
 				magAcc.signOut();
-				magAcc.signIn("john", "gtn");
+				magAcc.signIn(DATA_USER1, DATA_PASS);
 				navToolBar.goToSiteExplorer();
 			}
 		}else {
 			magView.setup2ShowViewAction("viewMetadatas", "Web");
 			magAcc.signOut();
-			magAcc.signIn("john", "gtn");
+			magAcc.signIn(DATA_USER1, DATA_PASS);
 			navToolBar.goToSiteExplorer();
 		}
 	}*/

@@ -65,8 +65,10 @@ public class ManageAccount extends PlatformBase {
 		type(ELEMENT_INPUT_USERNAME, username, true);
 		type(ELEMENT_INPUT_PASSWORD, password, true);
 		click(ELEMENT_SIGN_IN_BUTTON);
-		if(verify)
+		if(verify){
+			//waitForAndGetElement(ELEMENT_ACTIVITY_TEXTBOX);
 			waitForElementNotPresent(ELEMENT_SIGN_IN_BUTTON);
+		}
 		Utils.pause(2000);
 	}
 
@@ -332,19 +334,19 @@ public class ManageAccount extends PlatformBase {
 		}
 		switch (user) {
 		case ROOT:
-			signIn("root", "gtngtn");
+			signIn(USER_ROOT, PASS_ROOT);
 			break;
 		case ADMIN:
-			signIn("john", DATA_PASS);
+			signIn(DATA_USER1, DATA_PASS);
 			break;	
 		case AUTHOR:
-			signIn("james", DATA_PASS);
+			signIn(DATA_USER3, DATA_PASS);
 			break;
 		case DEVELOPER:
-			signIn("demo", DATA_PASS);
+			signIn(DATA_USER4, DATA_PASS);
 			break;
 		case PUBLISHER:
-			signIn("mary", DATA_PASS);
+			signIn(DATA_USER2, DATA_PASS);
 			break;
 		default:
 			break;

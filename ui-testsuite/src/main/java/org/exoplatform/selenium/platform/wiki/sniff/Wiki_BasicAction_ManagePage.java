@@ -35,7 +35,7 @@ public class Wiki_BasicAction_ManagePage extends ManageDraft{
 		but = new Button(driver);
 		naTool = new NavigationToolbar(driver);
 		activity = new HomePageActivity(driver);
-		magAc.signIn(DATA_USER1,DATA_PASS);
+		magAc.signIn(DATA_USER1, DATA_PASS);
 		goToWiki();
 	}
 
@@ -84,9 +84,9 @@ public class Wiki_BasicAction_ManagePage extends ManageDraft{
 		typeEnterInRichText();
 		createColorMacro("red", message);
 		typeEnterInRichText();
-		insertPageLink2WikiPage(true, pageLink, "Link to pageLink", "Go to pageLink");
-		typeEnterInRichText();
 		insertTable2WikiPage("2", "2");
+		typeEnterInRichText();
+		insertPageLink2WikiPage(true, pageLink, "Link to pageLink", "Go to pageLink");
 		click(ELEMENT_SAVE_BUTTON_ADD_PAGE);
 		waitForElementNotPresent(ELEMENT_SAVE_BUTTON_ADD_PAGE);
 		//waitForAndGetElement(By.xpath("//a[@title='Go to pageLink' and contains(text(), 'Link to pageLink')]"));

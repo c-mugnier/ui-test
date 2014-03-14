@@ -99,7 +99,7 @@ import org.testng.annotations.*;
 		*Expected Outcome: Tha activity where the user A has mentioned the user B is displayed in the stream
 		* "My activities" of the user B		*/ 
 		acc.signOut();
-		acc.signIn("demo", DATA_PASS);
+		acc.signIn(DATA_USER4, DATA_PASS);
 		selectFileter("My Activities");
 		waitForAndGetElement(ELEMENT_USER_NAME_LINK_COMMENT.replace("${activityText}", text).replace("${userName}", user1));
 		
@@ -138,7 +138,7 @@ import org.testng.annotations.*;
 		*Expected Outcome: Tha activity where the user A has mentioned the user B 
 		*is displayed in the stream "My activities" of the user B		*/ 
 		acc.signOut();
-		acc.signIn("demo", DATA_PASS);
+		acc.signIn(DATA_USER4, DATA_PASS);
 		selectFileter("My Activities");
 		waitForAndGetElement(ELEMENT_USER_MENTION_BY_OTHER_USER.replace("${author}",user).replace("${userName}", user1));
 		
@@ -187,7 +187,7 @@ import org.testng.annotations.*;
 		*Input Data: 
 		*Expected Outcome: Tha activity where the user A has mentioned the user B is displayed in the stream "My activities" of the user B		*/ 
 		
-		acc.signIn("demo", DATA_PASS);
+		acc.signIn(DATA_USER4, DATA_PASS);
 		mMember.goToMySpacePage();
 		mMember.acceptInvitation(spaceName);
 		nav.goToHomePage();
@@ -236,7 +236,7 @@ import org.testng.annotations.*;
 		*Input Data: 
 		*Expected Outcome: Tha activity where the user A has mentioned the user 
 		*B is displayed in the stream "My activities" of the user B		*/ 
-		acc.signIn("demo", DATA_PASS);
+		acc.signIn(DATA_USER4, DATA_PASS);
 		mMember.goToMySpacePage();
 		mMember.acceptInvitation(spaceName);
 		nav.goToHomePage();
@@ -284,7 +284,7 @@ import org.testng.annotations.*;
 		*Input Data: 
 		*Expected Outcome: Tha activity where the user A has mentioned the user B is displayed in the stream "My activities" of the user B		*/ 
 		
-		acc.signIn("demo", DATA_PASS);
+		acc.signIn(DATA_USER4, DATA_PASS);
 		nav.goToHomePage();
 		selectFileter("My Activities");
 		waitForAndGetElement(ELEMENT_USER_MENTION_BY_OTHER_USER.replace("${author}",user).replace("${userName}", user1));
@@ -330,7 +330,7 @@ import org.testng.annotations.*;
 		- Open the stream [My activities]
 		*Input Data: 
 		*Expected Outcome: Tha activity where the user A has mentioned the user B is displayed in the stream "My activities" of the user B		*/ 
-		acc.signIn("demo", DATA_PASS);
+		acc.signIn(DATA_USER4, DATA_PASS);
 		nav.goToHomePage();
 		selectFileter("My Activities");
 		waitForAndGetElement(ELEMENT_USER_NAME_LINK_COMMENT.replace("${activityText}", text).replace("${userName}", user1));
@@ -375,7 +375,7 @@ import org.testng.annotations.*;
 		- Open the stream [My activities]
 		*Input Data: 
 		*Expected Outcome: Tha activity where the user A has mentioned the user B is displayed in the stream "My activities" of the user B		*/ 
-		acc.signIn("demo", DATA_PASS);
+		acc.signIn(DATA_USER4, DATA_PASS);
 		nav.goToHomePage();
 		selectFileter("My Activities");
 		waitForAndGetElement(ELEMENT_USER_NAME_LINK_COMMENT.replace("${activityText}", text).replace("${userName}", user1));
@@ -417,7 +417,7 @@ import org.testng.annotations.*;
 		- Open the stream "My activities"
 		*Input Data: 
 		*Expected Outcome: Tha activity where the user A has mentioned the user B is displayed in the stream "My activities" of the user B		*/ 
-		acc.signIn("demo", DATA_PASS);
+		acc.signIn(DATA_USER4, DATA_PASS);
 		nav.goToHomePage();
 		selectFileter("My Activities");
 		waitForAndGetElement(ELEMENT_USER_MENTION_BY_OTHER_USER.replace("${author}",user).replace("${userName}", user1));

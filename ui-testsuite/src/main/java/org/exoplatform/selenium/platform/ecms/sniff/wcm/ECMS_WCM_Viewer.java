@@ -55,6 +55,7 @@ public class ECMS_WCM_Viewer extends PlatformBase{
 		actBar = new ActionBar(driver, this.plfVersion);
 		cTemplate = new ContentTemplate(driver, this.plfVersion);
 		cMenu = new ContextMenu(driver, this.plfVersion);
+
 		cList = new ContentListPreference(driver);
 		magAcc.signIn(DATA_USER1, DATA_PASS);
 		driver.get(acmeURL);

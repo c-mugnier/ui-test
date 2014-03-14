@@ -317,6 +317,7 @@ public class Forum_Forum_Category_Add extends ForumBase {
 		String order = "0";
 		int chooseRestricted = 1;
 		String[] restricted = {"member:/developers"};
+		//String[] restricted = { DATA_USER1 };
 		String description = "Description";
 		int setPermission = 0;
 		String[] userGroup = null;
@@ -987,7 +988,7 @@ public class Forum_Forum_Category_Add extends ForumBase {
 		nav.goToNewStaff();
 		acc.addNewUserAccount(username, password, password, firstName, lastName, "", email1, null, null, true);
 		acc.signOut();
-		acc.signIn(username, password);
+		acc.signIn(DATA_USER3, DATA_PASS);
 		goToForums();
 		click(By.linkText(catName));
 		click(By.linkText(addForum[0]));

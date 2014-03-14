@@ -32,9 +32,6 @@ public class ECMS_SE_Collaboration extends PlatformBase {
 	Button button;
 	PageEditor pageE;
 
-	public final String DATA_USER = "john";
-	public final String DATA_PASS = "gtn";
-
 	@BeforeMethod
 	public void beforeMethods() {
 		initSeleniumTest();
@@ -49,7 +46,7 @@ public class ECMS_SE_Collaboration extends PlatformBase {
 		pageE = new PageEditor(driver,this.plfVersion);
 		button = new Button(driver,this.plfVersion);
 
-		magAcc.signIn(DATA_USER, DATA_PASS);
+		magAcc.signIn(DATA_USER1, DATA_PASS);
 	}
 
 	@AfterMethod
@@ -70,7 +67,7 @@ public class ECMS_SE_Collaboration extends PlatformBase {
 		By elementFile = By.linkText(file);
 
 		navToolBar.goToSiteExplorer();
-		click(By.linkText("acme"));
+		click(By.linkText("intranet"));
 		click(By.linkText("documents"));
 		click(By.linkText("metro.pdf"));
 		actBar.addItem2ActionBar("comment", actBar.ELEMENT_ADD_COMMENT_LINK);
@@ -101,7 +98,7 @@ public class ECMS_SE_Collaboration extends PlatformBase {
 		By elementUploadFile = By.linkText(fileUpload);
 
 		navToolBar.goToSiteExplorer();
-		click(By.linkText("acme"));
+		click(By.linkText("intranet"));
 		click(By.linkText("documents"));
 		click(By.linkText("metro.pdf"));
 		actBar.addItem2ActionBar("comment", actBar.ELEMENT_ADD_COMMENT_LINK);

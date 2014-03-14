@@ -349,6 +349,7 @@ public class ECMS_WCM_Others extends PlatformBase{
 		cMenu = new ContextMenu(driver, this.plfVersion);
 		siteExp = new SitesExplorer(driver, this.plfVersion);
 		pages = new PageManagement(driver, this.plfVersion);
+
 		seo = new SEO(driver);
 		magAcc.signIn(DATA_USER1, DATA_PASS);
 		driver.get(acmeURL);

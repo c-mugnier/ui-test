@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Platform Sniff Test" verbose="1" preserve-order="true">
-	<test name="wiki-sniff" enabled="true">
+	<test name="wiki-sniff" enabled="true" preserve-order="true">
 		<groups>
 			<run>
 				<exclude name="pending" />

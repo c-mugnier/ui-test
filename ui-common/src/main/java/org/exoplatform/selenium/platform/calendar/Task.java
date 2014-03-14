@@ -475,6 +475,7 @@ public class Task extends CalendarBase{
 		goToEditTaskForm(oldName);
 		inputDataTabDetailTask(name, note, from, to, allDay, path, opt);
 		click(ELEMENT_BUTTON_TASK_SAVE_EDIT);
+		waitForElementNotPresent(ELEMENT_BUTTON_TASK_SAVE_EDIT);
 	}
 
 	/*================End of ....======================*/

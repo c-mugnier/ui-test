@@ -30,7 +30,7 @@ public class Gatein_Authentication extends PlatformBase {
 		navTool = new NavigationToolbar(driver);
 		user = new UserGroupManagement(driver);
 		
-		magAc.signIn(DATA_USER1,DATA_PASS);;
+		magAc.signIn(DATA_USER1, DATA_PASS);
 	}
 
 	@AfterMethod
@@ -63,7 +63,8 @@ public class Gatein_Authentication extends PlatformBase {
 		
 		driver.get(DEFAULT_BASEURL);
 		magAc = new ManageAccount(driver);
-		magAc.signIn(DATA_USER1,DATA_PASS);;
+
+		magAc.signIn(DATA_USER1, DATA_PASS);
 		Utils.pause(2000);
 		driver.close();
 		
@@ -95,9 +96,8 @@ public class Gatein_Authentication extends PlatformBase {
 		waitForTextPresent(firstName + " " + lastName);
 		magAc.signOut();
 		
-		magAc.signIn(DATA_USER1,DATA_PASS);;
+		magAc.signIn(DATA_USER1, DATA_PASS);
 		navTool.goToUsersAndGroupsManagement();
 		user.deleteUser(username);
-	}
-	
+	}	
 }

@@ -29,13 +29,14 @@ public class Social_HomePage_ActivityStream extends Activity {
 	ManageMember magMember;
 	ActionBar actBar;
 
-	String user = "John Smith";
-	String user1="Mary Williams";
-	String user2="Jack Miller";
-	String user3="James Davis";
-	String user4="Root Root";
-	String user_login1 = "mary";
-	String user_login2 = "demo";
+	String user = DATA_USER1; //john
+	String user1 = DATA_USER2; //mary
+	String user2 = DATA_USER4; //jack
+	String user3 = DATA_USER3; //james
+	String user4 = USER_ROOT; //root
+
+	String user_login1 = DATA_USER2;
+	String user_login2 = DATA_USER4;
 
 	//Social
 	PeopleConnection peoConn;
@@ -75,7 +76,7 @@ public class Social_HomePage_ActivityStream extends Activity {
 	@Test
 	public void test01_DeleteYourActivity(){
 		//Declare variable
-		String activity1 = "activity 1";
+		String activity1 = "activity 67892";
 
 		/*Step 1: Delete a comment*/ 
 		//- Select the activity 
@@ -147,8 +148,8 @@ public class Social_HomePage_ActivityStream extends Activity {
 		//Declare variable
 		String spacename = "Space64719";
 		String spacedesc = "Description Of Space03";
-		String activityOfUser = "activity of ";
-		String activityOfSpace = "activity of space ";
+		String activityOfUser = "activity64719 of ";
+		String activityOfSpace = "activity64719 of space ";
 
 		//Create data
 		//Create Space
@@ -213,8 +214,10 @@ public class Social_HomePage_ActivityStream extends Activity {
 		magMember.goToMySpacePage();
 		magMember.deleteSpace(spacename,300000);
 		magAcc.userSignIn(userType.PUBLISHER);
+		driver.navigate().refresh();
 		activity.deleteActivity(activityOfUser+user1);
 		magAcc.userSignIn(userType.DEVELOPER);
+		driver.navigate().refresh();
 		activity.deleteActivity(activityOfUser+user2);
 	}
 
@@ -298,8 +301,10 @@ public class Social_HomePage_ActivityStream extends Activity {
 		magMember.goToMySpacePage();
 		magMember.deleteSpace(spacename,300000);
 		magAcc.userSignIn(userType.PUBLISHER);
+		driver.navigate().refresh();
 		activity.deleteActivity(activityOfUser+user1);
 		magAcc.userSignIn(userType.DEVELOPER);
+		driver.navigate().refresh();
 		activity.deleteActivity(activityOfUser+user2);
 	}
 
@@ -316,8 +321,8 @@ public class Social_HomePage_ActivityStream extends Activity {
 		//Declare variable
 		String spacename = "Space64721";
 		String spacedesc = "Description Of Space64721";
-		String activityOfUser = "activity of ";
-		String activityOfSpace = "activity of space ";
+		String activityOfUser = "activity64721 of ";
+		String activityOfSpace = "activity64721 of space ";
 
 		//Create data
 		//Create Space
@@ -399,11 +404,11 @@ public class Social_HomePage_ActivityStream extends Activity {
 		//Declare variable
 		String spacename = "Space64722";
 		String spacedesc = "Description Of Space64722";
-		String activityOfUser = "activity of ";
-		String activityOfSpace = "activity of space ";
-		String activityComment = "activity comment of ";
-		String activityLike = "activity like of ";
-		String activityMention = "activity mention of ";
+		String activityOfUser = "activity64722 of ";
+		String activityOfSpace = "activity64722 of space ";
+		String activityComment = "activity64722 comment of ";
+		String activityLike = "activity64722 like of ";
+		String activityMention = "activity64722 mention of ";
 
 		//Create data
 		//Add activity of user
@@ -432,8 +437,11 @@ public class Social_HomePage_ActivityStream extends Activity {
 		//Add activity of connection user
 		navToolBar.goToHomePage();
 		addActivity(true, activityOfUser+user1, false,"");
+		driver.navigate().refresh();
 		addActivity(true, activityComment+user1, false,"");
+		driver.navigate().refresh();
 		addActivity(true, activityMention+user1, false,"");
+		driver.navigate().refresh();
 		addActivity(true, activityLike+user1, false,"");
 		
 		navToolBar.goToConnectionPage();
@@ -445,7 +453,7 @@ public class Social_HomePage_ActivityStream extends Activity {
 		//Add activity of connection user
 		navToolBar.goToHomePage();
 		//Mention user in comment
-		mentionActivity(false,"activity mention of "+user1, user);
+		mentionActivity(false,activityMention +user1, "John Smith");
 		
 		//Remove connection
 		navToolBar.goToConnectionPage();

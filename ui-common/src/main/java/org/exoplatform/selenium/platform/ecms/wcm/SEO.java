@@ -42,6 +42,7 @@ public class SEO extends EcmsBase{
 	public final String MSG_SEO_DELETE = "Are you sure you want to delete these SEO data?";
 	public final By ELEMENT_DESC_HELP_ICON = By.id("DescriptionHelp");
 	public final By ELEMENT_KEY_HELP_ICON = By.xpath("//*[@name='keywords']/..//*[@id='DescriptionHelp' or id='KeywordsHelp']");
+	//public final By ELEMENT_KEY_HELP_ICON = By.xpath("//*[contains(text(), 'Keywords:')]/..//*[@id='DescriptionHelp']");
 	public final By ELEMENT_PRI_HELP_ICON = By.id("PriorityHelp");
 	public final String ELEMENT_SEO_TOOLTIP = "//*[contains(text(),'${tooltip}')]";
 

@@ -501,7 +501,7 @@ public class Forum_Forum_Category_Edit extends ForumBase{
 		- Select category created by [root] at step1 to perform delete category: + Click on [Manage Category] button, select [Delete] option in Category section.
 		 *Input Data: 
 		 *Expected Outcome: Category is deleted by admin [john].		*/
-		fmCat.loginInNewWindowToDeleteCategory("root","gtngtn",catName);
+		fmCat.loginInNewWindowToDeleteCategory(USER_ROOT, PASS_ROOT, catName);
 
 		/*
 		- Back to browser that user [root] logged-in. [root] is still standing at the category created at step1.

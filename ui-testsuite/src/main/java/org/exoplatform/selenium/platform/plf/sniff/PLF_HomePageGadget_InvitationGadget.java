@@ -70,11 +70,16 @@ public class PLF_HomePageGadget_InvitationGadget extends Activity{
 		String spaceName2 = "space705792";
 		String user2="Jack Miller";
 		String user3="James Davis";
-		String user_login2 = "demo";
-		String user_login4 = "james";
+		String user5="John Smith";
+//		String user_login2 = "demo";
+//		String user_login4 = "james";
 //		String user_login5 = "john";
+		
 		String eInvitationUser = "";
-
+		String user_login2 = DATA_USER4;
+		//String user_login3 = DATA_USER2;
+		String user_login4 = DATA_USER3;
+		//String user_login5 = DATA_USER1;
 		String number_gadget = "4";
 		String status = "Private Space";
 		
@@ -105,9 +110,19 @@ public class PLF_HomePageGadget_InvitationGadget extends Activity{
 		acc.signIn(user_login2, DATA_PASS);
 		magMember.goToMySpacePage();
 		magMember.addNewSpace(spaceName2, "");
-		magMember.managerInviteUserToJoinSpace(userType.PUBLISHER,spaceName2,userType.NEW_USER,false, name);
+		magMember.managerInviteUserToJoinSpace(userType.PUBLISHER,spaceName2,userType.ADMIN,false);
+		acc.signOut();
+
+		//Login by demo
+		acc.signIn(user_login2,DATA_PASS);
 		navToolBar.goToConnectionPage();
-		peoConn.connectPeople(name + " " + name);
+		peoConn.connectPeople(user5);
+		acc.signOut();
+
+		//Login by james
+		acc.signIn(user_login4,DATA_PASS);
+		navToolBar.goToConnectionPage();
+		peoConn.connectPeople(user5);
 		acc.signOut();
 		
 		//Login with new user check invitation gadget
@@ -131,6 +146,12 @@ public class PLF_HomePageGadget_InvitationGadget extends Activity{
 
 		//Remove invitation
 		homeGad.removeInvitationGadget(user3);
+
+		/*Clear data*/
+		info("-- clear data --");
+		//remove connection
+		navToolBar.goToConnectionPage();
+		peoConn.removeConnection(user2);
 		acc.signOut();
 
 		//Delete space

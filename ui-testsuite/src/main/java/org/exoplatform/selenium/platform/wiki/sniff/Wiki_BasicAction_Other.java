@@ -6,7 +6,9 @@ import org.exoplatform.selenium.Button;
 import org.exoplatform.selenium.Dialog;
 import org.exoplatform.selenium.Utils;
 import org.exoplatform.selenium.platform.ManageAccount;
+import org.exoplatform.selenium.platform.NavigationToolbar;
 import org.exoplatform.selenium.platform.PlatformPermission;
+import org.exoplatform.selenium.platform.UserGroupManagement;
 import org.exoplatform.selenium.platform.social.ManageMember;
 import org.exoplatform.selenium.platform.wiki.Permalink;
 import org.openqa.selenium.By;
@@ -26,6 +28,8 @@ public class Wiki_BasicAction_Other extends Permalink {
 	Button button;
 	ManageMember magMem;
 	PlatformPermission per;
+	NavigationToolbar navBar;
+	UserGroupManagement userGroupMag;
 	
 	@BeforeMethod
 	public void setUpBeforeTest(){
@@ -36,8 +40,10 @@ public class Wiki_BasicAction_Other extends Permalink {
 		button = new Button(driver);
 		magMem = new ManageMember(driver);
 		per = new PlatformPermission(driver);
-		
-		magAc.signIn(DATA_USER1, DATA_PASS);
+
+		userGroupMag = new UserGroupManagement(driver, this.plfVersion);
+		navBar = new NavigationToolbar(driver, this.plfVersion);
+		magAc.signIn(DATA_USER1, DATA_PASS); 
 		goToWiki();
 	}
 
@@ -249,7 +255,7 @@ public class Wiki_BasicAction_Other extends Permalink {
 		addBlankWikiPage(title1, content1, 0);		
 		magAc.signOut();
 		
-		magAc.signIn("mary", "gtn");
+		magAc.signIn(DATA_USER2, DATA_PASS);
 		addWikiForSpace(spaceName, title2, content2);
 		
 		info("Move page2 of space to page1 of Intranet");
@@ -279,7 +285,7 @@ public class Wiki_BasicAction_Other extends Permalink {
 		dialog.closeMessageDialog();
 		magAc.signOut();
 		
-		goToWikiByPermalink("demo", permalink, true, content);
+		goToWikiByPermalink(DATA_USER4, permalink, true, content);
 		
 		goToWikiPage("Wiki Home/" + title, ManageAccount.userType.ADMIN);
 		deleteCurrentWikiPage();		
@@ -300,7 +306,7 @@ public class Wiki_BasicAction_Other extends Permalink {
 		dialog.closeMessageDialog();
 		magAc.signOut();
 		
-		goToWikiByPermalink("demo", permalink, false, content);
+		goToWikiByPermalink(DATA_USER4, permalink, false, content);
 		
 		goToWikiPage("Wiki Home/" + title, ManageAccount.userType.ADMIN);
 		deleteCurrentWikiPage();
@@ -320,7 +326,7 @@ public class Wiki_BasicAction_Other extends Permalink {
 		magAc.signOut();
 		
 		info("User demo joint in space");
-		magAc.signIn("demo", "gtn");
+		magAc.signIn(DATA_USER4, DATA_PASS);
 		magMem.joinOpenSpace(spaceName);
 		magAc.signOut();
 		
@@ -334,7 +340,7 @@ public class Wiki_BasicAction_Other extends Permalink {
 		dialog.closeMessageDialog();
 		magAc.signOut();
 		
-		goToWikiByPermalink("demo", permalink, true, content);
+		goToWikiByPermalink(DATA_USER4, permalink, true, content);
 		
 		magAc.signIn(DATA_USER1, DATA_PASS);
 		magMem.goToAllSpaces();
@@ -356,7 +362,7 @@ public class Wiki_BasicAction_Other extends Permalink {
 		dialog.closeMessageDialog();
 		magAc.signOut();
 		
-		goToWikiByPermalink("demo", permalink, false, content);
+		goToWikiByPermalink(DATA_USER4, permalink, false, content);
 		
 		magAc.signIn(DATA_USER1, DATA_PASS);
 		magMem.goToAllSpaces();
@@ -370,7 +376,7 @@ public class Wiki_BasicAction_Other extends Permalink {
 	public void test13_CheckWhenChangePermalinkStatus(){
 		String title = "Wiki_sniff_permalink_title_13";
 		String content = "Wiki_sniff_permalink_content_13";
-		String user = "demo";
+		String user = DATA_USER4;
 		
 		info("Create new page at restricted status");
 		addBlankWikiPage(title, content, 0);
@@ -406,7 +412,7 @@ public class Wiki_BasicAction_Other extends Permalink {
 	public void test14_ChangePermissionOfPageInPermalink_SelectUser(){
 		String title = "Wiki_sniff_permalink_title_14_1";
 		String content = "Wiki_sniff_permalink_content_14_1";
-		String[] userGroup1 = {"mary"};
+		String[] userGroup1 = {DATA_USER2};
 		
 		addBlankWikiPage(title, content, 0);
 		deletePagePermission("any");
@@ -433,6 +439,14 @@ public class Wiki_BasicAction_Other extends Permalink {
 		String content = "Wiki_sniff_permalink_content_14_2";
 		String userGroup2 = "Development/Select this Group";
 		
+		//Group Management
+		navBar.goToUsersAndGroupsManagement();
+		userGroupMag.chooseGroupTab();
+		userGroupMag.selectGroup("Development", true);
+		if(isElementNotPresent(userGroupMag.ELEMENT_GROUP_USER_IN_TABLE.replace("${username}", DATA_USER4)))
+			userGroupMag.addUsersToGroup(DATA_USER4, "*", true, true);
+		goToWiki();
+		
 		addBlankWikiPage(title, content, 0);
 		deletePagePermission("any");
 		
@@ -456,7 +470,15 @@ public class Wiki_BasicAction_Other extends Permalink {
 	public void test14_ChangePermissionOfPageInPermalink_SelectMembership(){
 		String title = "Wiki_sniff_permalink_title_14_3";
 		String content = "Wiki_sniff_permalink_content_14_3";
-		String[] userGroup3 = {"Platform/Content Management", "author"}; 
+		String[] userGroup3 = {"Platform/Content Management", "author"};
+		
+		//Group Management
+		navBar.goToUsersAndGroupsManagement();
+		userGroupMag.chooseGroupTab();
+		userGroupMag.selectGroup("Platform/Content Management", true);
+		if(isElementNotPresent(userGroupMag.ELEMENT_GROUP_USER_IN_TABLE.replace("${username}", DATA_USER3)))
+			userGroupMag.addUsersToGroup(DATA_USER3, "author", true, true);
+		goToWiki();
 		
 		addBlankWikiPage(title, content, 0);
 		deletePagePermission("any");

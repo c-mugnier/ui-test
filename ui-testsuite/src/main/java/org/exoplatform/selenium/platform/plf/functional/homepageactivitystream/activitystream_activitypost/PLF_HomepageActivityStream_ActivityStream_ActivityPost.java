@@ -26,7 +26,7 @@ public class PLF_HomepageActivityStream_ActivityStream_ActivityPost extends Acti
 	PeopleConnection conn;
 	String fullname_john = "John Smith";
 	String fullname_demo="Jack Miller";
-	String user_demo = "demo";
+	String user_demo = DATA_USER4;
 
 	@BeforeMethod
 	public void setUpBeforeTest(){
@@ -36,8 +36,8 @@ public class PLF_HomepageActivityStream_ActivityStream_ActivityPost extends Acti
 		hpActivity = new HomePageActivity(driver);
 		spaceMag = new SpaceManagement(driver);
 		conn = new PeopleConnection(driver);
-		magAc.signIn(DATA_USER1,DATA_PASS);;
 
+		magAc.signIn(DATA_USER1, DATA_PASS);
 	}
 
 	@AfterMethod

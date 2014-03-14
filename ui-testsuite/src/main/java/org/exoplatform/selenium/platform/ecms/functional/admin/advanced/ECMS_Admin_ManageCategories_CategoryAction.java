@@ -36,11 +36,12 @@ public class ECMS_Admin_ManageCategories_CategoryAction extends PlatformBase{
 	ManageCategory magCa;
 	ContentTemplate cTemplate;
 
+	//Data for these test cases
 	String categoryName = "category1";
 	String newCategoryName = "category2";
 	String categoryWorkspace = "collaboration";
 	String nodeHomePath = "sites/intranet";
-	//String username = "john";
+	//String username = DATA_USER1;
 	String groupID = "Platform/Administration"; 
 	String actionName = "test";
 	String optionLifeCycle = "Content Addition"; 
@@ -474,7 +475,7 @@ public class ECMS_Admin_ManageCategories_CategoryAction extends PlatformBase{
 		magCa.addNewCategoryTree(form1, false, true, form2, DATA_USER1, setPermission, form3);
 
 		info("-- Step 2: Edit a Category --");
-		magCa.addNewCategoryTree_Step4(categoryTreeName, categoryName, newCategoryName, "mary", true, true, true);
+		magCa.addNewCategoryTree_Step4(categoryTreeName, categoryName, newCategoryName, DATA_USER2, true, true, true);
 
 		info("-- Reset Data --");
 		magCa.deleteCategory(categoryTreeName);

@@ -34,9 +34,6 @@ public class ECMS_SE_PublicActivity extends PlatformBase {
 	SitesExplorer siteExp;
 	NavigationToolbar navToolBar;
 
-	public String DATA_USER = "john";
-	public String DATA_PASS = "gtn";
-
 	@BeforeMethod
 	public void beforeMethods(){
 		initSeleniumTest();
@@ -52,7 +49,7 @@ public class ECMS_SE_PublicActivity extends PlatformBase {
 		siteExp = new SitesExplorer(driver,this.plfVersion);
 		navToolBar = new NavigationToolbar(driver,this.plfVersion);
 		
-		magAcc.signIn(DATA_USER, DATA_PASS);
+		magAcc.signIn(DATA_USER1, DATA_PASS);
 	}
 
 	@AfterMethod
@@ -115,9 +112,10 @@ public class ECMS_SE_PublicActivity extends PlatformBase {
 	
 	/**CaseId: 74820 -> Check intranet homepage after adding FreeLayout Web Content
 	 * ERROR: Refer ECMS-5342: Content summary in content activity display wrong
-	 */
+	 * 25/3/2014: refer INTEG-231: content displays wrong
+	 */ 
 	@Test(groups="error")
-	public void test02_CheckIntranetHomePage_afterAddingWebContent(){
+	public void test02_CheckIntranetHomePage_AfterAddingWebContent(){
 		String name = "Public_activity_web_content_02";
 		String sum = "line1/line2/line3/line4/line5";
 		By elementWeb = By.linkText(name);
@@ -324,7 +322,7 @@ public class ECMS_SE_PublicActivity extends PlatformBase {
 		info("Add a category for uploaded file");
 		navToolBar.goToSiteExplorer();
 		ecms.goToNode(elementUploadFile);
-		actBar.addCategoryForNode("powers", false, "", category1);
+		actBar.addCategoryForNode("intranet", false, "", category1);
 		
 		info("Check activity after adding a category");
 		navTool.goToHomePage();
@@ -332,8 +330,8 @@ public class ECMS_SE_PublicActivity extends PlatformBase {
 		
 		info("Add 2 category for uploaded file");
 		navToolBar.goToSiteExplorer();
-		actBar.addCategoryForNode("powers", false, "", category2);
-		actBar.addCategoryForNode("powers", false, "", category3);
+		actBar.addCategoryForNode("intranet", false, "", category2);
+		actBar.addCategoryForNode("intranet", false, "", category3);
 		
 		info("Check activity after adding 2 categories");
 		navTool.goToHomePage();
@@ -403,7 +401,7 @@ public class ECMS_SE_PublicActivity extends PlatformBase {
 		
 		info("Click Edit icon in activity");
 		activity.goToEditFromContentActivity(name);
-		assert getValue(temp.ELEMENT_WEBCONTENT_NAME_TEXTBOX).equalsIgnoreCase(name);
+		assert getValue(temp.ELEMENT_WEBCONTENT_NAME_TEXTBOX).equalsIgnoreCase(name.replaceAll("_", "").toLowerCase());
 		activity.backToHomePageFromEditContentScreen();
 		
 		navTool.goToSiteExplorer();

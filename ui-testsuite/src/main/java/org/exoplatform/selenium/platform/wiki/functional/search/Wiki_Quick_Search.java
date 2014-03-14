@@ -22,7 +22,8 @@ public class Wiki_Quick_Search extends BasicAction {
 		initSeleniumTest();
 		driver.get(baseUrl);
 		magAc = new ManageAccount(driver);
-		magAc.signIn(DATA_USER1,DATA_PASS);;
+
+		magAc.signIn(DATA_USER1, DATA_PASS);
 	}
 	
 	//Qmetry ID: 79796
@@ -73,7 +74,7 @@ public class Wiki_Quick_Search extends BasicAction {
 	@Test
 	public void test03_ViewContentOfSearchResultWhenUserDoesNotHavePermissionToViewPage() {
 
-		String[] user1= {"james"};
+		String[] user1= {DATA_USER3};
 
 		String PAGE_NAME1 = "Wiki_Quick_Search_03";
 
@@ -87,11 +88,11 @@ public class Wiki_Quick_Search extends BasicAction {
 
 		addPagePermission(0,user1);
 
-		editPagePermission("james", false,false, false, 2);
+		editPagePermission(DATA_USER3, false,false, false, 2);
 
 		magAc.signOut();
 
-		magAc.signIn("james", "gtn");
+		magAc.signIn(DATA_USER3, DATA_PASS);
 
 		goToWiki();
 
@@ -102,7 +103,7 @@ public class Wiki_Quick_Search extends BasicAction {
 
 		magAc.signOut();
 
-		magAc.signIn(DATA_USER1,DATA_PASS);;
+		magAc.signIn(DATA_USER1, DATA_PASS);
 
 		goToWiki();
 

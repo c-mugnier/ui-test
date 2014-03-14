@@ -106,7 +106,7 @@ public class Calendar_Event extends CalendarBase {
 	 * CaseId 99491: delete event
 	 */
 	@Test
-	public void test02_AddEditDeleteEventInSharedCal(){
+	public void test02_addNewEventinSharedCal() {
 		String event = "event_99378";
 		String newEvent = "Event_99378 update";
 		String note = "update event";
@@ -193,8 +193,9 @@ public class Calendar_Event extends CalendarBase {
 		String EVENT_03 = "event_99379";
 		String CAL_03 = "calendar_99379";
 		String EVENT_CATEGORY = "All";
-		String USER_GROUP = "root";
-		String USER_GROUP_PASS = "gtn";
+
+		String USER_GROUP = USER_ROOT;
+		String USER_GROUP_PASS = PASS_ROOT;
 		String CAL_GROUP = "/platform/administrators";
 		String newEvent = "event_99379_update";
 		String note = "Update new event";
@@ -227,6 +228,7 @@ public class Calendar_Event extends CalendarBase {
 		deleteCalendar(CAL_03,true);
 		
 	}
+	
 //	/**
 //	 * Add new event in Group Calendar
 //	 * CaseID 68657
@@ -312,7 +314,6 @@ public class Calendar_Event extends CalendarBase {
 //		deleteEventTask(EVENT05, selectDayOption.ONEDAY);
 //	}
 
-
 	/**
 	 * Drag & Drop event
 	 * CaseID 69287
@@ -336,7 +337,7 @@ public class Calendar_Event extends CalendarBase {
 		Utils.pause(5000);
 		deleteEventTask(EVENT06, selectDayOption.ONEDAY);
 	}
-//
+
 //	/**
 //	 * Edit event in Group Calendar
 //	 * CaseID 69288

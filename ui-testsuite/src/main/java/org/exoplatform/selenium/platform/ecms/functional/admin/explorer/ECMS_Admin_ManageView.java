@@ -42,7 +42,7 @@ public class ECMS_Admin_ManageView extends PlatformBase{
 	EcmsBase ecms;
 	ECMainFunction ecMain;
 	ManageView magView;
-	
+
 	@BeforeMethod
 	public void beforeMethods(){
 		initSeleniumTest();

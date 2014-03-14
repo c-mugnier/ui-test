@@ -30,7 +30,8 @@ public class Wiki_Information extends Version {
 		magAc = new ManageAccount(driver);
 		but = new Button(driver);
 		magMem = new ManageMember(driver);
-		magAc.signIn(DATA_USER1, DATA_PASS);
+		
+		magAc.signIn(DATA_USER1, DATA_PASS); 
 		goToWiki();
 	}
 
@@ -42,7 +43,8 @@ public class Wiki_Information extends Version {
 	}
 
 
-	/**CaseId: 109192 -> View Page General information
+	/**
+	 * CaseId: 109192 -> View Page General information
 	 */
 	@Test
 	public void test01_ViewPageGeneralInformation(){
@@ -181,11 +183,11 @@ public class Wiki_Information extends Version {
 	 */
 	@Test
 	public void test06_AddRelation_NoSpace(){
-		String title = "Wiki_sniff_infor_page_title_06";
-		String content = "Wiki_sniff_infor_page_content_06";
+		String title = "wikititle70342";
+		String content = "wikicontent70342";
 
 		magAc.signOut();
-		magAc.signIn("fqa", "gtngtn");
+		magAc.signIn(DATA_USER1, DATA_PASS);
 		goToWiki();
 		addBlankWikiPage(title, content, 0);
 		goToAddRelation();

@@ -40,7 +40,8 @@ public class Forum_Setting extends ForumBase {
 		button = new Button(driver, this.plfVersion);
 		navTool = new NavigationToolbar(driver);
 		pageE = new PageEditor(driver);
-		magAc.signIn(DATA_USER1,DATA_PASS);;
+
+		magAc.signIn(DATA_USER1, DATA_PASS);
 		goToForums();
 	}
 
@@ -79,9 +80,9 @@ public class Forum_Setting extends ForumBase {
 	}
 	
 	/**CaseId: 68940 -> User Management
-	 * 
+	 * FORUM-849 - Not show post on User management
 	 */
-	@Test
+	@Test(groups="error")
 	public void test02_UserManagement(){
 		String catName = "Category User Management 02";
 		String description = "Add new category in forum";
@@ -96,18 +97,22 @@ public class Forum_Setting extends ForumBase {
 		magAc.signOut();
 		
 		info("Create topic and post with user demo");
-		magAc.signIn("demo", "gtn");
+		magAc.signIn(DATA_USER4, DATA_PASS);
 		goToForums();
 		click(By.linkText(forumName));
 		magtopic.quickStartTopic(title, message);
 		click(By.linkText(title));
 		post.postReply(postname, messagePost, null, null);
 		magAc.signOut();
-		magAc.signIn(DATA_USER1,DATA_PASS);;
+
+		magAc.signIn(DATA_USER1, DATA_PASS);
 		
 		goToForums();
-		goToUserManagement("demo");
-		settingUserManagementProfile("Jack Miller Update", "User", catName, catName +"/"+forumName, "Thanks. Jack Miller", true, true, true);
+//		goToUserManagement("demo");
+//		settingUserManagementProfile("Jack Miller Update", "User", catName, catName +"/"+forumName, "Thanks. Jack Miller", true, true, true);
+		goToUserManagement(DATA_USER4);
+		settingUserManagementProfile("Jack Miller Update", "User", catName, forumName, "Thanks. Jack Miller", true, true, true);
+
 		forumsSettings("+7.00", "dd-MM-yyyy", "EEEE,=MMMM dd, yyyy", "24-hour", "5", "15", "false");
 		banUser(true, null, "abc");
 		click(ELEMENT_USER_MANAGEMENT_TOPIC_TAB);
@@ -120,18 +125,18 @@ public class Forum_Setting extends ForumBase {
 		magAc.signOut();
 		
 		info("Check ban user demo");
-		magAc.signIn("demo", "gtn");
+		magAc.signIn(DATA_USER4, DATA_PASS);
 		goToForums();
 		click(By.linkText(forumName));
 		waitForAndGetElement(ELEMENT_START_TOPIC_DISABLE);
 		magAc.signOut();
 		
 		info("Reset data");
-		magAc.signIn(DATA_USER1,DATA_PASS);;
+		magAc.signIn(DATA_USER1, DATA_PASS);
 		goToForums();
 		click(By.linkText(catName));
 		cat.deleteCategoryInForum(catName);
-		goToUserManagement("demo");
+		goToUserManagement(DATA_USER4);
 		settingUserManagementProfile("Jack Miller", "User", null, null, "", true, false, true);
 		forumsSettings("0.00", "MM/dd/yyyy", "EEE,=MMMM dd, yyyy", "12-hour", "10", "10", "false");
 		banUser(false, null, null);
