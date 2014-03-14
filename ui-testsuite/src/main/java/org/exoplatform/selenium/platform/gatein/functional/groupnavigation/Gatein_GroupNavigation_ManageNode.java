@@ -45,7 +45,8 @@ public class Gatein_GroupNavigation_ManageNode extends GroupNavigation {
 		magAlert = new ManageAlert(driver);
 		pageEditor = new PageEditor(driver);
 		pageMag = new PageManagement(driver);
-		magAc.signIn(DATA_USER1,DATA_PASS);;
+
+		magAc.signIn(DATA_USER1, DATA_PASS);
 	}
 
 	@AfterMethod

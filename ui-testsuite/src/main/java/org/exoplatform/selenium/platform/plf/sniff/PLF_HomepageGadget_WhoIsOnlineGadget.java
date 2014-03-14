@@ -20,7 +20,6 @@ import org.exoplatform.selenium.platform.social.PeopleProfile;
  * @author havtt
  * @date 01-Nov-2013
  */
-
 public class PLF_HomepageGadget_WhoIsOnlineGadget extends Activity {
 
 	ManageAccount acc;
@@ -30,10 +29,10 @@ public class PLF_HomepageGadget_WhoIsOnlineGadget extends Activity {
 	PeopleProfile peopleP;
 	HomePageActivity homeAct;
 	
-	String User1 = "john";
-	String User2 = "mary";
-	String Pass1 = "gtn";
-	String fullNameUser2="Mary Williams";
+	String User1 = DATA_USER1; //"john";
+	String User2 = DATA_USER2; //"mary";
+	//String Pass1 = "gtn";
+	String fullNameUser2 = "Mary Williams";
 	String fullNameUser1 = "John Smith";
 	
 	@BeforeMethod
@@ -46,7 +45,7 @@ public class PLF_HomepageGadget_WhoIsOnlineGadget extends Activity {
 		navToolBar = new NavigationToolbar(driver);
 		peopleP = new PeopleProfile(driver);
 		homeAct = new HomePageActivity(driver);
-		acc.signIn(User1, Pass1);
+		acc.signIn(User1, DATA_PASS);
 	}
 
 	@AfterMethod
@@ -66,7 +65,7 @@ public class PLF_HomepageGadget_WhoIsOnlineGadget extends Activity {
 		navToolBar.goToHomePage();
 				
 		info("Switch to other browser to login by user acc 2");
-		loginWithAnotherAccOnThesameBrowser(User2, Pass1);
+		loginWithAnotherAccOnThesameBrowser(User2, DATA_PASS);
 	
 		info("Confirm if WhoisOnline gadget dislays or not with user1");
 		hg=new HomePageGadget(newDriver);
@@ -93,7 +92,7 @@ public class PLF_HomepageGadget_WhoIsOnlineGadget extends Activity {
 		addActivity(true, activity, false, null);
 		
 		info("Switch to other browser to login by user acc 2");
-		loginWithAnotherAccOnThesameBrowser(User2, Pass1);
+		loginWithAnotherAccOnThesameBrowser(User2, DATA_PASS);
 		
 		info("Confirm if WhoisOnline gadget dislays or not with user1");
 		hg=new HomePageGadget(newDriver);
@@ -114,7 +113,7 @@ public class PLF_HomepageGadget_WhoIsOnlineGadget extends Activity {
 //		navToolBar.goToHomePage();
 		
 		info("Switch to other browser to login by user acc 2");
-		loginWithAnotherAccOnThesameBrowser(User2, Pass1);
+		loginWithAnotherAccOnThesameBrowser(User2, DATA_PASS);
 		hg=new HomePageGadget(newDriver);
 		peopleC = new PeopleConnection(newDriver);
 		acc = new ManageAccount(newDriver);
@@ -128,7 +127,7 @@ public class PLF_HomepageGadget_WhoIsOnlineGadget extends Activity {
 		acc.signOut();
 
 		info("Check if user 1 received connect invitation from user 2 or not");
-		acc.signIn(User1, Pass1);
+		acc.signIn(User1, DATA_PASS);
 //		Utils.pause(500);
 //		newDriver.findElement(By.xpath(hg.ELEMENT_SHOW_CONNECTIONS_REQUEST_USER.replace("${nameinvitation}","Root Root")));
 		waitForAndGetElement(hg.ELEMENT_SHOW_CONNECTIONS_REQUEST_USER.replace("${nameinvitation}",fullNameUser2), DEFAULT_TIMEOUT, 1, 2, newDriver);
@@ -151,7 +150,7 @@ public class PLF_HomepageGadget_WhoIsOnlineGadget extends Activity {
 		navToolBar.goToHomePage();
 		
 		info("Switch to other browser to login by user acc 2");
-		loginWithAnotherAccOnThesameBrowser(User2, Pass1);
+		loginWithAnotherAccOnThesameBrowser(User2, DATA_PASS);
 		
 		info("User 2 connect with user 1 from Who's Online gadget");
 		hg=new HomePageGadget(newDriver);

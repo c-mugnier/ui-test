@@ -116,8 +116,7 @@ public class Forum_Answers_Questions extends AnswerBase {
 		info("Normal user cannot view this question");
 		
 		viewQuestionWithDemoUser(categoryName,questionName,false);
-		
-		magAc.signIn(DATA_USER1,DATA_PASS);;
+		magAc.signIn(DATA_USER1, DATA_PASS);
 		
 		goToAnswer();
 
@@ -135,8 +134,7 @@ public class Forum_Answers_Questions extends AnswerBase {
 		viewQuestionWithDemoUser(categoryName,questionName,true);
 		
 		info("Clear data");
-		
-		magAc.signIn(DATA_USER1,DATA_PASS);;
+		magAc.signIn(DATA_USER1, DATA_PASS);
 		
 		goToAnswer();
 				
@@ -166,9 +164,7 @@ public class Forum_Answers_Questions extends AnswerBase {
 		info("Normal user cannot view this question");
 		
 		viewQuestionWithDemoUser(categoryName,questionName,false);
-		
-		magAc.signIn(DATA_USER1,DATA_PASS);;
-		
+		magAc.signIn(DATA_USER1, DATA_PASS);		
 		goToAnswer();
 
 		magQuest.goToManageQuestions();
@@ -185,8 +181,7 @@ public class Forum_Answers_Questions extends AnswerBase {
 		viewQuestionWithDemoUser(categoryName,questionName,true);
 		
 		info("Clear data");
-			
-		magAc.signIn(DATA_USER1,DATA_PASS);;
+		magAc.signIn(DATA_USER1, DATA_PASS);
 		
 		goToAnswer();
 				
@@ -204,7 +199,7 @@ public class Forum_Answers_Questions extends AnswerBase {
 		String questionContent = "Content of question 5";
 		String categoryName2 = "Category6";
 		String description2 = "Description for category6";
-		String[] userGroup1 = {"demo"};
+		String[] userGroup1 = {DATA_USER4};
 		
 		info("Add category and question");
 		
@@ -307,7 +302,7 @@ public class Forum_Answers_Questions extends AnswerBase {
 	}
 	
 	public void viewQuestionWithDemoUser(String categoryName, String questionName, boolean view){
-		magAc.signIn("demo", "gtn");
+		magAc.signIn(DATA_USER4, DATA_PASS);
 		goToAnswer();
 		magCat.openCategoryInAnswer(categoryName);
 		if (view){

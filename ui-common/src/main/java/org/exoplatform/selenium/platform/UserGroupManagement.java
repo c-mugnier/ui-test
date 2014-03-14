@@ -16,36 +16,37 @@ import org.testng.Assert;
 
 public class UserGroupManagement extends PlatformBase {
 
+	Dialog dialog;
+	Button button;
+	NavigationToolbar naviTool;
+
+	//Constructor
 	public UserGroupManagement(WebDriver dr,String...plfVersion){
 		this.plfVersion = plfVersion.length>0?plfVersion[0]:"4.0";
 		driver = dr;
 		naviTool = new NavigationToolbar(driver,this.plfVersion);
-
 	}
-	Dialog dialog;
-	Button button;
-
-	NavigationToolbar naviTool;
-
-	public  final String MESSAGE_DUPLICATE_USERS = "User \"${username}\" has already the same membership ";
-	public  final String MESSAGE_DUPLICATE_GROUPS = "in the group \"${groupName}\", please select another one.";
-	public  final String ELEMENT_USER_INGROUP_DELETE_ICON = "//*[@id='UIGridUser']//span[text()='${userName}']/parent::td/parent::tr/td[@class='center actionContainer']//i[@class='uiIconDeleteUser uiIconLightGray']";
+	
+	public final String MESSAGE_DUPLICATE_USERS = "User \"${username}\" has already the same membership ";
+	public final String MESSAGE_DUPLICATE_GROUPS = "in the group \"${groupName}\", please select another one.";
+	public final String ELEMENT_USER_INGROUP_DELETE_ICON = "//*[@id='UIGridUser']//span[text()='${userName}']/parent::td/parent::tr/td[@class='center actionContainer']//i[@class='uiIconDeleteUser uiIconLightGray']";
 	public final String ELEMENT_USER_MEMBERSHIP_TAB_DELETE_ICON = "//*[@class='uiIconDeleteMembership uiIconLightGray']";
 	public final String ELEMENT_USER_MEMBERSHIP_TAB_DELETE_ICON_NO = "//*[@id='MembershipGrid']//tbody/tr[${No}]//*[@class='uiIconDeleteMembership uiIconLightGray']";
-	public String ELEMENT_GROUP_MANAGEMENT_TAB_USER_EDIT_ICON = "//*[@id='UIGridUser']//span[text()='${userName}']/parent::td/parent::tr/td[@class='center actionContainer']//i[@class='uiIconEdit uiIconLightGray']";
-	public String ELEMENT_GROUP_MANAGEMENT_TAB_MEMBERSHIP_COMBO_BOX_CHOICE = "//*[@id='UIGroupEditMembershipForm']//select[@name='membership']/option[text()='${membership}']";
-	public String ELEMENT_GROUP_MANAGEMENT_TAB_MEMBERSHIP_COMBO_BOX = "//*[@id='UIGroupEditMembershipForm']//select[@name='membership']";
-	public String ELEMENT_GROUP_MANAGEMENT_TAB_MEMBERSHIP_SAVE_BUTTON = "//*[@id='UIGroupEditMembershipForm']//button[text()='Save']";
-	public String ELEMENT_GROUP_MANAGEMENT_TAB_MEMBERSHIP = "//*[@id='UIGridUser']//span[text()='${username}']/parent::td/parent::tr/td[4]/span[text()='${membership}']";
-
+	public final String ELEMENT_GROUP_MANAGEMENT_TAB_USER_EDIT_ICON = "//*[@id='UIGridUser']//span[text()='${userName}']/parent::td/parent::tr/td[@class='center actionContainer']//i[@class='uiIconEdit uiIconLightGray']";
+	public final String ELEMENT_GROUP_MANAGEMENT_TAB_MEMBERSHIP_COMBO_BOX_CHOICE = "//*[@id='UIGroupEditMembershipForm']//select[@name='membership']/option[text()='${membership}']";
+	public final String ELEMENT_GROUP_MANAGEMENT_TAB_MEMBERSHIP_COMBO_BOX = "//*[@id='UIGroupEditMembershipForm']//select[@name='membership']";
+	public final String ELEMENT_GROUP_MANAGEMENT_TAB_MEMBERSHIP_SAVE_BUTTON = "//*[@id='UIGroupEditMembershipForm']//button[text()='Save']";
+	public final String ELEMENT_GROUP_MANAGEMENT_TAB_MEMBERSHIP = "//*[@id='UIGridUser']//span[text()='${username}']/parent::td/parent::tr/td[4]/span[text()='${membership}']";
 	public final String ELEMENT_MEMBERSHIP_MANAGEMENT_TAB_FAIL_DEL_MSG = "//span[contains(text(),'You cannot delete this membership because it is mandatory.')]";
+	
 	//User Management -> Edit User form
-	public  final By ELEMENT_USER_MEMBERSHIP_TAB = By.xpath("//*[text()='User Membership']");
+	public final By ELEMENT_USER_MEMBERSHIP_TAB = By.xpath("//*[text()='User Membership']");
+	public final By ELEMENT_SELECT_USER_POPUP = By.xpath("//span[@class='PopupTitle popupTitle' and text()='Select User']");
+	public final String ELEMENT_GROUP_PERMISSION = "//a[@title='${groupName}']";
 
-	/*
+	/**
 	 *  Choose TAB actions
-	 * */
-
+	 */
 	public void chooseUserTab(){
 		info("-- Choose User tab--");
 		click(ELEMENT_USER_MANAGEMENT);
@@ -65,10 +66,10 @@ public class UserGroupManagement extends PlatformBase {
 		waitForAndGetElement(ELEMENT_MEMBERSHIP_MANAGEMENT_GRID);
 	}
 
-	/*
+	/**
 	 * User Management
-	 * */
-
+	 * 
+	 */
 	public void deleteUser(String username) {
 		dialog = new Dialog(driver);
 		alert = new ManageAlert(driver);
@@ -192,6 +193,7 @@ public class UserGroupManagement extends PlatformBase {
 			}
 			waitForTextPresent("Select User");
 			for (String user : users) {
+				searchUserInGroupManagement(user,"User Name",true);
 				check("//input[@name='" + user + "']", 2);
 			}
 			//click(ELEMENT_GROUP_SEARCH_POPUP_ADD_ICON);

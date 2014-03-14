@@ -42,7 +42,7 @@ public class PLF_HomepageActivityStream_Refresh extends Activity{
 		app = new ManageApplications(driver);
 		mngTopic = new ForumManageTopic(driver);
 		mngCat = new ForumManageCategory(driver);
-		acc.signIn("john", DATA_PASS);
+		acc.signIn(DATA_USER1, DATA_PASS);
 	}
 
 	@AfterMethod
@@ -208,7 +208,7 @@ public class PLF_HomepageActivityStream_Refresh extends Activity{
 
 		 *Expected Outcome: 
 			Add comment for an activity successfully*/
-		loginWithAnotherAccOnThesameBrowser("mary", DATA_PASS);
+		loginWithAnotherAccOnThesameBrowser(DATA_USER2, DATA_PASS);
 		addCommentNewDriver(act1, comment01);
 		
 		/*Step number: 4
@@ -310,7 +310,7 @@ public class PLF_HomepageActivityStream_Refresh extends Activity{
 
 		 *Expected Outcome: 
 			Add comment for an activity successfully*/
-		loginWithAnotherAccOnThesameBrowser("mary", DATA_PASS);
+		loginWithAnotherAccOnThesameBrowser(DATA_USER2, DATA_PASS);
 		addCommentNewDriver(titleTop, comment01);
 		
 		/*Step number: 5

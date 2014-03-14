@@ -29,61 +29,68 @@
 
 	<profiles>
 		<profile>
+			<id>platform-username-email</id>
+			<properties>
+				<testSuite>platform-username-email.xml</testSuite>
+			</properties>
+		</profile>
+
+		<profile>
 			<id>ecms-se</id>
 			<properties>
 				<testSuite>ecms-se.xml</testSuite>
 			</properties>
 		</profile>
-		
+
 		<profile>
 			<id>ecms-se-activities</id>
 			<properties>
 				<testSuite>ecms-se-activities.xml</testSuite>
 			</properties>
 		</profile>
-		
+
 		<profile>
 			<id>ecms-se-admin</id>
 			<properties>
 				<testSuite>ecms-se-admin.xml</testSuite>
 			</properties>
 		</profile>
-		
+
 		<profile>
 			<id>ecms-se-basicaction</id>
 			<properties>
 				<testSuite>ecms-se-basicaction.xml</testSuite>
 			</properties>
 		</profile>
-		
+
 		<profile>
 			<id>ecms-se-createnode</id>
 			<properties>
 				<testSuite>ecms-se-createnode.xml</testSuite>
 			</properties>
 		</profile>
-		
+
 		<profile>
 			<id>ecms-se-others</id>
 			<properties>
 				<testSuite>ecms-se-others.xml</testSuite>
 			</properties>
 		</profile>
-		
+
 		<profile>
 			<id>ecms-admin</id>
 			<properties>
 				<testSuite>ecms-admin.xml</testSuite>
 			</properties>
 		</profile>
-		
+
 		<profile>
 			<id>ecms-sniff</id>
 			<properties>
 				<testSuite>ecms-sniff.xml</testSuite>
 			</properties>
 		</profile>
-		
+
 		<profile>
 			<id>exogtn</id>
 			<properties>
@@ -126,7 +133,7 @@
 				<testSuite>social.xml</testSuite>
 			</properties>
 		</profile>
-		
+
 		<profile>
 			<id>social-sniff</id>
 			<properties>

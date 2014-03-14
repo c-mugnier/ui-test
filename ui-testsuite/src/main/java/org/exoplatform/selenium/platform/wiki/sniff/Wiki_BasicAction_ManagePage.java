@@ -35,7 +35,8 @@ public class Wiki_BasicAction_ManagePage extends ManageDraft{
 		but = new Button(driver);
 		naTool = new NavigationToolbar(driver);
 		activity = new HomePageActivity(driver);
-		magAc.signIn(DATA_USER1,DATA_PASS);
+
+		magAc.signIn(DATA_USER1, DATA_PASS);
 		goToWiki();
 	}
 

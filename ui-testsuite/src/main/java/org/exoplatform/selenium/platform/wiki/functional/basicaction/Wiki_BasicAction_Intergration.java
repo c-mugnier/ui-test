@@ -24,7 +24,8 @@ public class Wiki_BasicAction_Intergration extends BasicAction {
 		driver.get(baseUrl);
 		magAcc = new ManageAccount(driver);
 		magMember = new ManageMember(driver);
-		magAcc.signIn(DATA_USER1,DATA_PASS);;
+
+		magAcc.signIn(DATA_USER1, DATA_PASS);
 	}
 
 	/**

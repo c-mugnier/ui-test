@@ -30,8 +30,8 @@ public class Gatein_Manage_Portal extends PortalManagement{
 		magAc = new ManageAccount(driver);
 		navTool = new NavigationToolbar(driver);
 		user = new UserGroupManagement(driver);
-		
-		magAc.signIn(DATA_USER1,DATA_PASS);;
+
+		magAc.signIn(DATA_USER1, DATA_PASS);
 	}
 
 	@AfterMethod

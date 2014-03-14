@@ -34,14 +34,15 @@ public class ECMS_SE_Publication extends PlatformBase{
 		initSeleniumTest();
 		driver.get(baseUrl);
 		navToolBar = new NavigationToolbar(driver);
-		magAc = new ManageAccount(driver);
-		magAc.signIn(DATA_USER1,DATA_PASS);; 
+		magAc = new ManageAccount(driver); 
 		actBar = new ActionBar(driver);
 		conTemp =  new ContentTemplate(driver);
 		ecms = new EcmsBase(driver);
 		conMenu = new ContextMenu(driver);
 		button= new Button(driver);
 		navToolBar.goToSiteExplorer();
+		
+		magAc.signIn(DATA_USER1, DATA_PASS);
 	}
 
 	@AfterMethod

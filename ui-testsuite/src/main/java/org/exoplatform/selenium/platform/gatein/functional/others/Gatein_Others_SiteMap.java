@@ -41,7 +41,8 @@ public class Gatein_Others_SiteMap extends DashBoard {
 		but = new Button(driver);
 		app = new ManageApplications(driver);
 		navMag = new NavigationManagement(driver);
-		magAc.signIn(DATA_USER1,DATA_PASS);;
+
+		magAc.signIn(DATA_USER1, DATA_PASS);
 	}
 
 	@AfterMethod

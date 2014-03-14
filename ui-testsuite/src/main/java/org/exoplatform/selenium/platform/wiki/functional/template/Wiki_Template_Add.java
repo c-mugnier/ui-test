@@ -25,7 +25,8 @@ public class Wiki_Template_Add extends Template{
 		driver.get(baseUrl);
 		magAc = new ManageAccount(driver);
 		button = new Button(driver);
-		magAc.signIn(DATA_USER1, DATA_PASS);
+
+		magAc.signIn(DATA_USER1, DATA_PASS); 
 		goToWiki();
 	}
 

@@ -42,7 +42,7 @@ public class Wiki_BasicAction_MoveAPage extends RichTextMode {
 		driver.quit();
 	}
 	
-	String[] user1= {"james"};
+	String[] user1= {DATA_USER3};
 	/**
 	 *Case ID:69785.
 	 *Test Case Name: Move a page when user does not have edit permission on destination page.
@@ -62,13 +62,13 @@ public class Wiki_BasicAction_MoveAPage extends RichTextMode {
 		goToWiki();
 		addBlankWikiPage(PAGE_NAME1, PAGE_NAME1, 0);
 		addPagePermission(0,user1);
-		editPagePermission("james", true, true, false, 2);
+		editPagePermission(DATA_USER3, true, true, false, 2);
 		deletePagePermission("any");
 		click(ELEMENT_WIKI_HOME);
 		addBlankWikiPage(PAGE_NAME2, PAGE_NAME2, 0);
 		editPagePermission("any", true, false, false, 2);
 		magAcc.signOut();
-		magAcc.signIn("james", "gtn");
+		magAcc.signIn(DATA_USER3, "gtn");
 		goToWiki();
 		click(ELEMENT_PAGE1);
 		movePage(PAGE_NAME1,PAGE_NAME2);
@@ -105,7 +105,7 @@ public class Wiki_BasicAction_MoveAPage extends RichTextMode {
 		addPagePermission(0,user1);
 		deletePagePermission("any");
 		magAcc.signOut();
-		magAcc.signIn("james", "gtn");
+		magAcc.signIn(DATA_USER3, "gtn");
 		goToWiki();
 		click(ELEMENT_PAGE1);
 		//mouseOver(ELEMENT_MORE_LINK, true);
@@ -137,15 +137,15 @@ public class Wiki_BasicAction_MoveAPage extends RichTextMode {
 		//click(ELEMENT_PAGE1);
 		deletePagePermission("any");
 		addPagePermission(0, user1);
-		editPagePermission("james", true, true, false, 2);
+		editPagePermission(DATA_USER3, true, true, false, 2);
 		click(ELEMENT_WIKI_HOME);
 		addBlankWikiPage(PAGE_NAME2, PAGE_NAME2, 0);
 		//click(ELEMENT_PAGE2);
 		deletePagePermission("any");
 		addPagePermission(0, user1);
-		editPagePermission("james", true, true, false, 2);
+		editPagePermission(DATA_USER3, true, true, false, 2);
 		magAcc.signOut();
-		magAcc.signIn("james", "gtn");
+		magAcc.signIn(DATA_USER3, DATA_PASS);
 		goToWiki();
 		click(ELEMENT_PAGE1);		
 		movePage(PAGE_NAME1, PAGE_NAME2);

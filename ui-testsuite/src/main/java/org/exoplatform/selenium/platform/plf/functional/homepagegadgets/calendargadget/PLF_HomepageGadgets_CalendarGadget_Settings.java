@@ -35,14 +35,13 @@ public class PLF_HomepageGadgets_CalendarGadget_Settings extends CalendarBase{
 		initSeleniumTest();
 	    hpActivity = new HomePageActivity(driver, this.plfVersion);
 		spaceMag = new SpaceManagement(driver, this.plfVersion);
-
 		naviToolbar = new NavigationToolbar(driver, this.plfVersion);
 		magAc = new ManageAccount(driver, this.plfVersion);
 		brandMag = new BrandingManagement(driver, this.plfVersion);
 		button = new Button(driver, this.plfVersion);
 		event = new Event(driver);
-		magAc.signIn(DATA_USER1,DATA_PASS);;
-			    
+		
+		magAc.signIn(DATA_USER1, DATA_PASS);	    
 	}
 
 	@AfterMethod

@@ -41,7 +41,7 @@ public class Wiki_SpaceSwitcher extends WikiBase{
 		nav = new NavigationToolbar(driver, this.plfVersion);
 		mApplication = new ApplicationManagement(driver);
 		sb = new SocialBase();
-		acc.signIn("john", "gtn");		
+		acc.signIn(DATA_USER1, DATA_PASS);		
 	}
 
 	@AfterMethod

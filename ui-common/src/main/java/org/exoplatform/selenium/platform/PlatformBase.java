@@ -21,9 +21,13 @@ import static org.exoplatform.selenium.TestLogger.info;
 
 public class PlatformBase extends TestBase {
 
-	public final String DATA_USER1 = "john";
-	public final String DATA_PASS = "gtn";
-	public final String DATA_USER2 = "mary";
+	public final String USER_ROOT = "root@acme.com";
+	public final String PASS_ROOT = "gtn";
+	public final String DATA_USER1 = "john.smith@acme.com";
+	public final String DATA_USER2 = "mary.williams@acme.com";
+	public final String DATA_USER3 = "james.davis@acme.com";
+	public final String DATA_USER4 = "jack.demo@acme.com";
+	public final String DATA_PASS = "gtngtn";
 	public ManageAlert alert = new ManageAlert(driver);
 	public Button button = new Button(driver);
 	public Dialog dialog = new Dialog(driver);
@@ -421,7 +425,8 @@ public class PlatformBase extends TestBase {
 	public final By ELEMENT_CHECKBOX_EXTENDED_LABEL_MODE = By.id("switchmode");
 	public final String ELEMENT_LINK_EDITOR_PAGE_LAYOUT="//a[@class='ItemIcon EditPageIcon' and text()='Layout']";
 
-	public final By ELEMENT_UP_LEVEL=By.xpath("//a[@title='Up Level']");
+	public final By ELEMENT_UP_LEVEL = By.xpath("//a[@title='Up Level']");
+	public final By ELEMENT_UP_LEVEL_AUX = By.xpath("//a[@data-original-title='Up Level']");
 	public final String ELEMENT_SELECT_LANGUAGE = "//select[@name='languages']";
 	public final String ELEMENT_INPUT_PAGE_DISPLAY_NAME = "//input[@id='pageDisplayName']";
 	public final String ELEMENT_PAGE_EDITOR_NEXT_STEP = "//button[text()='Next']";

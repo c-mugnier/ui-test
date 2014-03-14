@@ -25,7 +25,8 @@ public class Wiki_Template_Delete extends Template{
 		driver.get(baseUrl);
 		magAc = new ManageAccount(driver);
 		magAlert = new ManageAlert(driver);
-		magAc.signIn(DATA_USER1, DATA_PASS);
+
+		magAc.signIn(DATA_USER1, DATA_PASS); 
 		goToWiki();
 	}
 

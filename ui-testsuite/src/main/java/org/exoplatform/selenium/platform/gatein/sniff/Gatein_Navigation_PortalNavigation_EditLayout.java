@@ -39,8 +39,8 @@ public class Gatein_Navigation_PortalNavigation_EditLayout extends PortalManagem
 		pageMag = new PageManagement(driver);
 		pageE = new PageEditor(driver);
 		but = new Button(driver);
-		
-		magAc.signIn(DATA_USER1,DATA_PASS);;
+
+		magAc.signIn(DATA_USER1, DATA_PASS);
 	}
 
 	@AfterMethod

@@ -22,7 +22,8 @@ public class Wiki_SpacePermission_Others extends BasicAction {
 		initSeleniumTest();
 		driver.get(baseUrl);
 		magAc = new ManageAccount(driver);
-		magAc.signIn(DATA_USER1,DATA_PASS);;
+
+		magAc.signIn(DATA_USER1, DATA_PASS);
 	}
 	
 	/**
@@ -37,7 +38,7 @@ public class Wiki_SpacePermission_Others extends BasicAction {
 
 		String PAGE_NAME1 = "Check When user does not admin page permission";
 
-		String[] user2= {"james"};
+		String[] user2= {DATA_USER3};
 
 		By ELEMENT_PAGE1 = By.linkText(PAGE_NAME1);
 
@@ -45,7 +46,7 @@ public class Wiki_SpacePermission_Others extends BasicAction {
 
 		addSpacePermission(0, user2);
 
-		editSpacePermission("james", true, true, false, false, 2);
+		editSpacePermission(DATA_USER3, true, true, false, false, 2);
 
 		click(ELEMENT_WIKI_HOME);
 
@@ -69,7 +70,7 @@ public class Wiki_SpacePermission_Others extends BasicAction {
 
 		deleteCurrentWikiPage();
 
-		deleteSpacePermission("james");
+		deleteSpacePermission(DATA_USER3);
 	}
 	
 	/**
@@ -84,7 +85,7 @@ public class Wiki_SpacePermission_Others extends BasicAction {
 
 		String PAGE_NAME1 = "Check When user does not space page permission";
 
-		String[] user2= {"james"};
+		String[] user2= {DATA_USER3};
 
 		By ELEMENT_PAGE1 = By.linkText(PAGE_NAME1);
 
@@ -92,7 +93,7 @@ public class Wiki_SpacePermission_Others extends BasicAction {
 
 		addSpacePermission(0, user2);
 
-		editSpacePermission("james", true, true, true, false, 2);
+		editSpacePermission(DATA_USER3, true, true, true, false, 2);
 
 		click(ELEMENT_WIKI_HOME);
 
@@ -113,7 +114,7 @@ public class Wiki_SpacePermission_Others extends BasicAction {
 
 		deleteCurrentWikiPage();
 
-		deleteSpacePermission("james");
+		deleteSpacePermission(DATA_USER3);
 	}
 
 	/**
@@ -128,7 +129,7 @@ public class Wiki_SpacePermission_Others extends BasicAction {
 
 		String PAGE_NAME1 = "Check When user does not space permission to edit page";
 
-		String[] user2= {"james"};
+		String[] user2= {DATA_USER3};
 
 		By ELEMENT_PAGE1 = By.linkText(PAGE_NAME1);
 
@@ -148,10 +149,10 @@ public class Wiki_SpacePermission_Others extends BasicAction {
 
 		addBlankWikiPage(PAGE_NAME1, PAGE_NAME1, 0);
 		
-		verifyPermissions(pageOrSpace2, type, "james", 2);
+		verifyPermissions(pageOrSpace2, type, DATA_USER3, 2);
 		click(ELEMENT_WIKI_HOME_LINK);
 		click(ELEMENT_PAGE1);
-		verifyPermissions(pageOrSpace1, type, "james", 2);
+		verifyPermissions(pageOrSpace1, type, DATA_USER3, 2);
 
 		magAc.userSignIn(ManageAccount.userType.AUTHOR);
 		
@@ -174,7 +175,7 @@ public class Wiki_SpacePermission_Others extends BasicAction {
 
 		editSpacePermission("any", true, true, false, false, 2);
 
-		deleteSpacePermission("james");
+		deleteSpacePermission(DATA_USER3);
 	}
 	
 	/** 

@@ -24,6 +24,9 @@ public class Wiki_BasicAction_Edit extends ManageDraft {
 	ManageAlert mAlert; 
 	RichTextMode rText;
 	
+	public String admin = DATA_USER1;
+	public String pass = DATA_PASS;
+
 	@BeforeMethod
 	public void setUpBeforeTest(){
 		initSeleniumTest();
@@ -193,7 +196,7 @@ public class Wiki_BasicAction_Edit extends ManageDraft {
 		String content = "Content case 70784";
 		String contentUpdateA = "Update content 70784";
 		String contentUpdateB = "UserB update";
-		String user = "demo";
+		String user = DATA_USER4;
 		String userGroup[] = {user};
 		/*
 		- Connect with the User A
@@ -469,7 +472,7 @@ public class Wiki_BasicAction_Edit extends ManageDraft {
 		String title = "Case 70793";
 		String content = "Content 70793";
 		String contentUpdate = "Update case 70793";
-		String user = "demo";
+		String user = DATA_USER4;
 		String []userGroup = {user};
 		String fullName = "John Smith";
 		
@@ -764,7 +767,7 @@ public class Wiki_BasicAction_Edit extends ManageDraft {
 		String title = "Case 107030";
 		String content = "Content 107030";
 		String titleUpdate = "Update case 107030";
-		String user = "demo";
+		String user = DATA_USER4;
 		String fullName = "John Smith";
 		String userGroup[] = {user};
 		/*
@@ -805,7 +808,7 @@ public class Wiki_BasicAction_Edit extends ManageDraft {
 		 *Expected Outcome: 
 		- Show message alert "This page is currently being edited by"user 1"."
 		- Edit successfully 		*/
-		loginWithAnotherAccOnThesameBrowser("demo", "gtn");
+		loginWithAnotherAccOnThesameBrowser(DATA_USER4, DATA_PASS);
 		if(waitForAndGetElement(ELEMENT_WIKI_LINK, 5000,0,0,newDriver)!=null)
 			waitForAndGetElement(ELEMENT_WIKI_LINK, 5000,1,0,newDriver).click();
 		else
