@@ -27,11 +27,11 @@ public class Wiki_Information extends Version {
 	public void setUpBeforeTest(){
 		initSeleniumTest();
 		driver.get(baseUrl);
-		magAc = new ManageAccount(driver);
+		magAc = new ManageAccount(driver,this.plfVersion);
 		but = new Button(driver);
 		magMem = new ManageMember(driver);
-
-		magAc.signIn("john", "gtn"); 
+		
+		magAc.signIn("john", DATA_PASS); 
 		goToWiki();
 	}
 
@@ -176,16 +176,13 @@ public class Wiki_Information extends Version {
 	}
 
 	/**CaseId: 70342 -> Add relation in the case there is no space
-	 * 
+	 * This case must run firstly => wiki must run before social
 	 */
-	@Test
+	@Test(priority=0)
 	public void test06_AddRelation_NoSpace(){
 		String title = "Wiki_sniff_infor_page_title_06";
 		String content = "Wiki_sniff_infor_page_content_06";
 
-		magAc.signOut();
-		magAc.signIn("fqa", "gtngtn");
-		goToWiki();
 		addBlankWikiPage(title, content, 0);
 		goToAddRelation();
 		click(ELEMENT_SELECT_SPACE);

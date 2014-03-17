@@ -124,12 +124,13 @@ public class AnswerManageAnwser extends AnswerBase {
 				selectOption(ELEMENT_ANSWER_LANGUAGE, language);
 		}
 		if (answerContent != null){
-			if(this.plfVersion.equalsIgnoreCase("4.1"))
-				inputDataToFrame(ELEMENT_ANSWER_MESSAGE_FRAME_CKEDITOR, answerContent, true,false);
-			else//(this.plfVersion.equalsIgnoreCase("4.0"))
+			if(this.plfVersion.equalsIgnoreCase("4.0")){
 				inputDataToFrameInFrame(ELEMENT_ANSWER_CONTENTFRAME_1, ELEMENT_ANSWER_CONTENTFRAME_2, answerContent,true,false);
-			switchToParentWindow();	
 
+			}else//(this.plfVersion.equalsIgnoreCase("4.0"))
+
+				inputDataToFrame(ELEMENT_ANSWER_MESSAGE_FRAME_CKEDITOR, answerContent, true,false);
+			switchToParentWindow();	
 		}
 		if (waitForAndGetElement(ELEMENT_APPROVED_ANSWER, 5000, 0, 2) != null){
 			if (approved){

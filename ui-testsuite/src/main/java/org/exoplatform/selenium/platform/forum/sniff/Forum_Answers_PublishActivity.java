@@ -33,14 +33,14 @@ public class Forum_Answers_PublishActivity extends AnswerBase{
 	public void setUpBeforeTest(){
 		initSeleniumTest();
 		driver.get(baseUrl);
-		Acc = new ManageAccount(driver);
+		Acc = new ManageAccount(driver,this.plfVersion);
 		mCat = new AnswerManageCategory(driver);
 		mQuest = new AnswerManageQuestion(driver, this.plfVersion);
 		mAns = new AnswerManageAnwser(driver, this.plfVersion);
 		mCom = new AnswerManageComment(driver, this.plfVersion);
 		HPAct = new HomePageActivity(driver, this.plfVersion);
 		navTool = new NavigationToolbar(driver);
-		Acc.signIn(DATA_USER1, DATA_PASS);
+		Acc.signIn(DATA_USER_JOHN, DATA_PASS);
 		button = new Button(driver);
 
 		goToAnswer();

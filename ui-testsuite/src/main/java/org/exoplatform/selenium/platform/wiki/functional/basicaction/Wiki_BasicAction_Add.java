@@ -22,6 +22,7 @@ import org.exoplatform.selenium.Button;
 import org.exoplatform.selenium.Dialog;
 import org.exoplatform.selenium.Utils;
 import org.exoplatform.selenium.platform.ManageAccount;
+import org.exoplatform.selenium.platform.social.ManageMember;
 import org.exoplatform.selenium.platform.wiki.Template;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
@@ -40,6 +41,7 @@ public class Wiki_BasicAction_Add extends Template{
 	ManageAccount magAcc;
 	Dialog dialog;
 	Button button;	
+	ManageMember mMember;
 
 	@BeforeMethod
 	public void beforeMethod(){
@@ -47,9 +49,11 @@ public class Wiki_BasicAction_Add extends Template{
 		driver.get(baseUrl);
 		driver.manage().window().maximize();
 		magAcc = new ManageAccount(driver);
-		dialog = new Dialog(driver);
-		button = new Button(driver);
-		magAcc.signIn("john", "gtn");
+
+		dialog = new Dialog(driver);	
+		button = new Button(driver, this.plfVersion);	
+		mMember = new ManageMember(driver, this.plfVersion);	
+		magAcc.signIn("john", DATA_PASS);
 	}
 
 	@AfterMethod
@@ -202,13 +206,13 @@ public class Wiki_BasicAction_Add extends Template{
 
 		//Verify that James can't add new page
 		magAcc.signOut();
-		magAcc.signIn("james","gtn");
+		magAcc.signIn("james",DATA_PASS);
 		goToWiki();
 		waitForElementNotPresent(ELEMENT_ADD_PAGE_LINK);
 
 		//Reset data
 		magAcc.signOut();
-		magAcc.signIn("john","gtn");
+		magAcc.signIn("john",DATA_PASS);
 		goToWiki();
 		deleteSpacePermission(userGroup[0]);
 		addSpacePermission(0, userGroupR);

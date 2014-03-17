@@ -35,7 +35,7 @@ public class Forum_Forum_PublishActivity_PollActivity extends ForumBase{
 	public void setUpBeforeTest(){
 		initSeleniumTest();
 		driver.get(baseUrl);
-		magAc = new ManageAccount(driver);
+		magAc = new ManageAccount(driver,this.plfVersion);
 		mngFru = new ForumManageForum(driver);
 		mngCat = new ForumManageCategory(driver);
 		mngPost = new ForumManagePost(driver);
@@ -44,7 +44,7 @@ public class Forum_Forum_PublishActivity_PollActivity extends ForumBase{
 		mngPoll = new ForumManagePoll(driver);
 		navTool = new NavigationToolbar(driver);
 		
-		magAc.signIn(DATA_USER1, DATA_PASS);
+		magAc.signIn(DATA_USER_JOHN, DATA_PASS);
 		goToForums();
 	}
 

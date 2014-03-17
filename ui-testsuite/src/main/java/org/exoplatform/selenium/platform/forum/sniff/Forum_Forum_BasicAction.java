@@ -27,12 +27,12 @@ public class Forum_Forum_BasicAction extends ForumBase{
 	@BeforeMethod
 	public void setUpBeforeTest(){
 		initSeleniumTest();
-		magAc = new ManageAccount(driver);
+		magAc = new ManageAccount(driver,this.plfVersion);
 		mngCat = new ForumManageCategory(driver, this.plfVersion);
 		mngFru = new ForumManageForum(driver, this.plfVersion);
 		mngTopic = new ForumManageTopic(driver);
 
-		magAc.signIn(DATA_USER1, DATA_PASS);
+		magAc.signIn(DATA_USER_JOHN, DATA_PASS);
 		goToForums();
 	}
 

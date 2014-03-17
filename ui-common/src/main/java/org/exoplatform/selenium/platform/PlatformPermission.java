@@ -63,7 +63,6 @@ public class PlatformPermission extends PlatformBase {
 			for (int i = 0; i < temp.length; i ++){
 				By ELEMENT_USER = By.xpath(ELEMENT_USER_CHECKBOX.replace("${user}", temp[i]));
 				By ELEMENT_FIRST = By.xpath("//*[@id='UIListUsers']/tbody/tr[1]//*[text()='" + temp[i] + "']");
-				By ELEMENT_SECOND = By.xpath("//*[@id='UIListUsers']/tbody/tr[2]");
 				if (type.length > i){
 					type(ELEMENT_SEARCH_USER_INPUT, temp[i], true);
 					switch (type[i]){
@@ -84,7 +83,6 @@ public class PlatformPermission extends PlatformBase {
 					}
 					click(ELEMENT_QUICK_SEARCH_BUTTON);
 					waitForAndGetElement(ELEMENT_FIRST);
-					waitForElementNotPresent(ELEMENT_SECOND);
 				}
 				check(ELEMENT_USER, 2);
 			}

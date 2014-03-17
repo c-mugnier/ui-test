@@ -31,13 +31,13 @@ public class Forum_Forum_Topic_OtherAction extends ForumBase{
 	@BeforeMethod
 	public void setUpBeforeTest(){
 		initSeleniumTest();
-		magAc = new ManageAccount(driver);
+		magAc = new ManageAccount(driver,this.plfVersion);
 		mngCat = new ForumManageCategory(driver);
 		mngFru = new ForumManageForum(driver);
 		mngPost = new ForumManagePost(driver, this.plfVersion);
 		mngTopic = new ForumManageTopic(driver);
 
-		magAc.signIn(DATA_USER1, DATA_PASS);
+		magAc.signIn(DATA_USER_JOHN, DATA_PASS);
 		goToForums();
 	}
 

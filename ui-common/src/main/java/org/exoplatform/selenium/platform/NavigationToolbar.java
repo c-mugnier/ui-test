@@ -27,7 +27,7 @@ public class NavigationToolbar extends PlatformBase {
 
 	public NavigationToolbar(WebDriver dr, String...plfVersion){
 		driver = dr;
-		this.plfVersion = plfVersion.length>0?plfVersion[0]:"4.0";
+		this.plfVersion = plfVersion.length>0?plfVersion[0]:"4.1";
 		brandMag = new BrandingManagement(driver);
 		button = new Button(driver);
 		peoCon = new PeopleConnection(driver);

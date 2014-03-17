@@ -33,7 +33,7 @@ public class Forum_Forum_PublishActivity_TopicActivity extends ForumBase{
 	public void setUpBeforeTest(){
 		initSeleniumTest();
 		driver.get(baseUrl);
-		magAc = new ManageAccount(driver);
+		magAc = new ManageAccount(driver,this.plfVersion);
 		mngFru = new ForumManageForum(driver,this.plfVersion);
 		mngCat = new ForumManageCategory(driver);
 		mngPost = new ForumManagePost(driver,this.plfVersion);
@@ -41,7 +41,7 @@ public class Forum_Forum_PublishActivity_TopicActivity extends ForumBase{
 		hpgAct = new HomePageActivity(driver);
 		navTool = new NavigationToolbar(driver);
 		
-		magAc.signIn(DATA_USER1, DATA_PASS);
+		magAc.signIn(DATA_USER_JOHN, DATA_PASS);
 		goToForums();
 	}
 

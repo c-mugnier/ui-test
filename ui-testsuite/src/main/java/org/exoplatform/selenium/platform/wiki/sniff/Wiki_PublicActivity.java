@@ -27,7 +27,8 @@ public class Wiki_PublicActivity extends BasicAction {
 		magAc = new ManageAccount(driver,this.plfVersion);
 		naTool = new NavigationToolbar(driver,this.plfVersion);
 		activity = new HomePageActivity(driver,this.plfVersion);
-		magAc.signIn("john", "gtn");
+
+		magAc.signIn("john", DATA_PASS);
 		goToWiki();
 	}
 
@@ -149,7 +150,10 @@ public class Wiki_PublicActivity extends BasicAction {
 		movePage(title2, title1);
 
 		naTool.goToHomePage();
-		activity.checkCommentAfterMoveWikiPage(title2, "Wiki Home > " + title1 + " > " + title2);
+		if(this.plfVersion.equalsIgnoreCase("com"))
+			activity.checkCommentAfterMoveWikiPage(title2, "eXo Community Wiki > " + title1 + " > " + title2);
+		else
+			activity.checkCommentAfterMoveWikiPage(title2, "Wiki Home > " + title1 + " > " + title2);
 
 		click(By.linkText(title2));
 		click(By.linkText(title1));
@@ -171,7 +175,10 @@ public class Wiki_PublicActivity extends BasicAction {
 		activity.checkActivityInfoOfWiki(title, content, "1");
 
 		click(By.linkText(title));
-		waitForTextPresent("Wiki Home");
+		if(this.plfVersion.equalsIgnoreCase("com"))
+			waitForTextPresent("eXo Community Wiki");
+		else
+			waitForTextPresent("Wiki Home");
 		deleteCurrentWikiPage();
 	}
 

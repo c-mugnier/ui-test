@@ -30,7 +30,7 @@ public class Calendar_Event extends CalendarBase {
 		acc = new ManageAccount(driver);
 		evt = new Event(driver);
 		tsk = new Task(driver);
-		acc.signIn(DATA_USER1, DATA_PASS);
+		acc.signIn(DATA_USER_JOHN, DATA_PASS);
 	}
 
 	@AfterMethod
@@ -46,7 +46,7 @@ public class Calendar_Event extends CalendarBase {
 	 */
 	@Test
 	public void test01_addNewEventinPersonalCal() {
-		String EVENT_01 = "EVENT_01";
+		String EVENT_01 = "EVENT_68651";
 
 		info("Go to Intranet Calendar");
 		goToCalendarPage();
@@ -56,7 +56,8 @@ public class Calendar_Event extends CalendarBase {
 		evt.addQuickEvent(EVENT_01, EVENT_01,getDate(0,"MM/dd/yyyy"), getDate(0,"MM/dd/yyyy"), false);
 
 		info("Confirm added event displays in the calendar");
-		waitForAndGetElement(By.xpath(ELEMENT_EVENT_TASK_ONE_DAY.replace("${taskName}", EVENT_01)));
+		if(isElementNotPresent(By.xpath(ELEMENT_EVENT_TASK_ONE_DAY.replace("${taskName}", EVENT_01))))
+			waitForAndGetElement(By.xpath(ELEMENT_EVENT_TASK_ONE_DAY_1.replace("${taskName}", EVENT_01)));
 
 		info("restore data");
 		deleteEventTask(EVENT_01, selectDayOption.ONEDAY);
@@ -113,7 +114,7 @@ public class Calendar_Event extends CalendarBase {
 		String EVENT_CATEGORY = "All";
 		String USER_GROUP = "root";
 		String USER_GROUP_PASS = "gtngtn";
-		String CAL_GROUP = "/platform/administrators";
+		String CAL_GROUP = "/organization/management/executive-board";
 
 		info("==Go to Intranet Calendar==");
 		goToCalendarPage();
@@ -209,6 +210,7 @@ public class Calendar_Event extends CalendarBase {
 
 		info("Restore data");
 		Utils.pause(5000);
+		driver.navigate().refresh();
 		deleteEventTask(EVENT06, selectDayOption.ONEDAY);
 	}
 
@@ -221,7 +223,7 @@ public class Calendar_Event extends CalendarBase {
 	public void test07_editEventinGroupCal() {
 		String EVENT07 = "EVENT_07";
 		String CAL_07 = "CAL_07";
-		String CAL_GROUP = "/platform/web-contributors";
+		String CAL_GROUP = "/organization/management/executive-board";
 		String TITLE = "EVENT_07_edited";
 		String DESCRIPTION = "EVENT_07_description_edited";
 		String EVENT_CATEGORY = "All";
@@ -267,7 +269,7 @@ public class Calendar_Event extends CalendarBase {
 	public void test08_deleteEventinGroupCal() {
 		String EVENT08 = "EVENT_08";
 		String CAL_08 = "CAL_08";
-		String CAL_GROUP = "/platform/web-contributors";
+		String CAL_GROUP = "/organization/management/executive-board";
 		String EVENT_CATEGORY = "All";
 		String USER_GROUP = "root";
 		String USER_GROUP_PASS = "gtngtn";

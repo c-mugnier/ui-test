@@ -26,12 +26,12 @@ public class Wiki_Search extends Template {
 	public void setUpBeforeTest(){
 		initSeleniumTest();
 		driver.get(baseUrl);
-		magAc = new ManageAccount(driver);
+		magAc = new ManageAccount(driver,this.plfVersion);
 		naTool = new NavigationToolbar(driver);
 		activity = new HomePageActivity(driver);
 		magMem = new ManageMember(driver);
 		
-		magAc.signIn("john", "gtn");
+		magAc.signIn("john", DATA_PASS);
 		goToWiki();
 	}
 	
@@ -80,7 +80,7 @@ public class Wiki_Search extends Template {
 		goToWiki();
 		advancedSearch("Wiki_search_title_02", spaceName);
 		assert getText(ELEMENT_SEARCH_RESULT) != "0";
-		waitForAndGetElement(ELEMENT_PAGE_RESULT.replace("${title}", title));
+		waitForAndGetElement("//a[contains(text(),'"+title+"')]");
 		
 		magMem.goToAllSpaces();
 		magMem.deleteSpace(spaceName, 180000);

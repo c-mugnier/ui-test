@@ -83,7 +83,7 @@ public class ForumManageForum extends ForumBase {
 	public final String MESSAGE_CENSOR = "This post may contain offensive content. It will be displayed after moderation.";
 	public final String CENSORED_TITLE = "${title} (Censored)";
 
-	
+
 	/*-------------------------------------Common function--------------------------------*/
 	/** function: go to add forum
 	 * @author lientm
@@ -222,7 +222,7 @@ public class ForumManageForum extends ForumBase {
 		info("Create forum successfully");
 	}
 
-	
+
 	/** function: delete a forum
 	 * @author lientm
 	 * @param title: title of forum that needs to delete
@@ -230,24 +230,24 @@ public class ForumManageForum extends ForumBase {
 	public void deleteForum(String title){
 		click(ELEMENT_MORE_ACTION);
 		info("Delete forum");
-		if(plfVersion =="4.1"){
-			if (isElementPresent(ELEMENT_DELETE_FORUM41)){
-			click(ELEMENT_DELETE_FORUM41);
-			alert.acceptAlert();
-			}else{
-			click(ELEMENT_DELETE_FORUM411);
-			
-			click(ELEMENT_OK_DELETE);
-			}
-		}
-		else{// if (plfVersion =="4.0"){
+		if(plfVersion =="4.0"){
 			click(ELEMENT_DELETE_FORUM);
 			click(ELEMENT_OK_DELETE);
+		}
+		else{
+			if (isElementPresent(ELEMENT_DELETE_FORUM41)){
+				click(ELEMENT_DELETE_FORUM41);
+				alert.acceptAlert();
+			}else{
+				click(ELEMENT_DELETE_FORUM411);
+
+				click(ELEMENT_OK_DELETE);
+			}
 		}		
-		
+
 		//click(ELEMENT_OK_DELETE);
 		//		waitForTextNotPresent(title);
-		
+
 		waitForElementNotPresent(By.linkText(title));
 		info("Delete forum successfully");
 	}
@@ -415,7 +415,7 @@ public class ForumManageForum extends ForumBase {
 		topic = new ForumManageTopic(driver);
 		account.signOut();
 		account.signIn(user, password);
-		
+
 		goToForums();
 		click(By.linkText(category));
 		click(By.linkText(forum));
@@ -442,5 +442,5 @@ public class ForumManageForum extends ForumBase {
 		click(ELEMENT_MODERATOR_TAB);
 		waitForTextPresent(email);
 	}
-	
+
 }

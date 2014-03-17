@@ -240,6 +240,7 @@ public class ManageMember extends SpaceManagement {
 		info("-- Joining the open space: " + spaceName);
 		int iTimeout = params.length > 0 ? params[0] : DEFAULT_TIMEOUT;
 		goToAllSpaces();
+		spSeach.searchSpaceByName(spaceName,false);
 		doAction("Join", spaceName);
 		waitForAndGetElement(By.xpath("//*[@class='spaceTitle']/text()['(Member)']/../a[text()='"+ spaceName +"']"), iTimeout);
 		Utils.pause(1000);

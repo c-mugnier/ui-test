@@ -80,7 +80,7 @@ public class WikiBase extends PlatformBase{
 	//Wiki Home
 	public final By ELEMENT_WIKI_HOME_LINK=By.xpath("//a[text()='Wiki Home']");
 	public final By ELEMENT_WIKI_HOME_PAGE=By.xpath("//*[@id='titleInfo' and text()='Wiki Home']");
-	public final By ELEMENT_TITLE_WIKI_HOME_LINK = By.xpath("//*[@class='titleWikiBox']/*[contains(text(), 'Wiki Home')]");
+	public final By ELEMENT_TITLE_WIKI_HOME_LINK = By.xpath("//*[@class='titleWikiBox']//a[contains(@href,'/portal/intranet/wiki/WikiHome')]");
 	public final String ELEMENT_NODE_WIKI_PAGE = "//*[@class='node']//*[contains(text(), '{$node}')]";
 
 	//Space Switcher
@@ -142,7 +142,7 @@ public class WikiBase extends PlatformBase{
 	public final By ELEMENT_CANCEL_BUTTON_MOVE_PAGE = By.xpath("//*[contains(@class, 'uiWikiMovePageForm')]//button[contains(text(), 'Cancel')]");
 	public final By ELEMENT_MOVE_PAGE_POPUP = By.xpath("//*[contains(@class, 'popupTitle') and text()='Move Page']");
 	public final By ELEMENT_SELECT_SPACE_DESTINATION = By.xpath("//*[contains(text(), 'Select the destination:')]/..//*[@class='btn dropdown-toggle']");
-	public final String ELEMENT_SPACE_NAME_SELECTED = "//*[@id='UISpaceSwitcher_/spaces/${space}']/a";
+	public final String ELEMENT_SPACE_NAME_SELECTED = "//li[@class='spaceList']//a[contains(.,'${space}')]";
 	public final By ELEMENT_PORTAL_NAME_SELECTED = By.id("UISpaceSwitcher_/portal/intranet");
 	public final String MESSAGE_MOVE_PAGE_DUPLICATE_TITLE = "Another page with the same title already exists in the selected space.";
 	public final By ELEMENT_RENAME_LINK_WHEN_MOVE_PAGE = By.linkText("Rename");
@@ -306,7 +306,7 @@ public final String ELEMENT_VERIFY_HIERARCHY = "//div[text()='${page}']/..//*//*
 			click(ELEMENT_WIKI_LINK);
 		else
 			click(ELEMENT_WIKI_LINK_PLF41);
-		waitForAndGetElement(ELEMENT_TITLE_WIKI_HOME_LINK);	
+		waitForAndGetElement(ELEMENT_QUICK_SEARCH);	
 	}
 
 	/**
@@ -369,7 +369,7 @@ public final String ELEMENT_VERIFY_HIERARCHY = "//div[text()='${page}']/..//*//*
 		ManageAccount.userType usr = (ManageAccount.userType) (user.length > 0 ? user[0] : null);
 
 		if (usr != null){
-			if (isElementNotPresent(ELEMENT_INPUT_USERNAME)){
+			if (waitForAndGetElement(ELEMENT_ACCOUNT_NAME_LINK,3000,0) != null){
 				magAcc.signOut();
 			}else{
 				info("-- User.logIn: " + user);
@@ -456,7 +456,7 @@ public final String ELEMENT_VERIFY_HIERARCHY = "//div[text()='${page}']/..//*//*
 			if (space == "Intranet"){
 				click(ELEMENT_PORTAL_NAME_SELECTED);
 			}else {
-				click(ELEMENT_SPACE_NAME_SELECTED.replace("${space}", space.toLowerCase()));
+				click(ELEMENT_SPACE_NAME_SELECTED.replace("${space}", space));
 			}
 		}
 		info("CURRENT_LOCATION");

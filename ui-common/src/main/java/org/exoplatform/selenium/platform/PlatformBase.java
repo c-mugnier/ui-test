@@ -21,16 +21,21 @@ import static org.exoplatform.selenium.TestLogger.info;
 
 public class PlatformBase extends TestBase {
 
-	public final String DATA_USER1 = "john";
-	public final String DATA_PASS = "gtn";
-	public final String DATA_USER2 = "mary";
+
+	public final String DATA_USER_JOHN = "john";
+	public final String DATA_PASS = "gtngtn";
+	public final String DATA_USER_MARY = "mary";
+
+
 	public ManageAlert alert = new ManageAlert(driver);
 	public Button button = new Button(driver);
 	public Dialog dialog = new Dialog(driver);
 
 	/****************Common Elements*******************/
+	
+	
 	public final String ELEMENT_CONTAINS_TEXT = "//*[contains(text(),'${text}')]"; 
-
+	
 	/*
 	 * Default Page - http://localhost:8080/portal/default/
 	 * */
@@ -42,6 +47,7 @@ public class PlatformBase extends TestBase {
 	public final String ELEMENT_SIGN_IN_LINK = "//b[contains(text(),'Sign in')]";
 	public final By ELEMENT_REFRESH = By.xpath("//div[@class='activityStreamStatus pull-left']");
 
+	
 	/*
 	 * Log in Form - Sign-out 
 	 */
@@ -64,6 +70,7 @@ public class PlatformBase extends TestBase {
 	public final String ELEMENT_SPACE_NAVIGATION_SPACE_ITEM_INDEX = "//*[@class='spaceNavigation']/li[${index}]/a[contains(text(),'${spaceName}')]";
 	public final String ELEMENT_SPACE_NAVIGATION_SPACE_ITEM_INDEX_PLF41 = "//*[@class='spaceNavigation']/li[${index}]/a[@class='spaceIcon avatarMini']/*[@data-original-title = '${spaceName}']";
 	public final By ELEMENT_LEFT_NAVIGATION_SEARCH_SPACE=By.xpath("//*[@id='UISpaceNavigationPortlet']//*[@value='Search Spaces']");
+	public final By ELEMENT_COMMUNITY_BRAND = By.xpath("//h5[@class='title' and contains(text(),'Community')]");
 
 	/*
 	 * Navigation Bar
@@ -187,7 +194,7 @@ public class PlatformBase extends TestBase {
 	public final By ELEMENT_EDIT_BASIC_INFORMATION = By.xpath("//*[@id='UIBasicInfoSection']//*[@class='uiIconEdit']");
 	public final By ELEMENT_FIRST_NAME_TEXTBOX_EDIT = By.id("firstName");
 	public final By ELEMENT_LAST_NAME_TEXTBOX_EDIT = By.id("lastName");
-	public final By ELEMENT_EMAIL_TEXTBOX_EDIT = By.id("email");
+	public final By ELEMENT_EMAIL_TEXTBOX_EDIT = By.xpath("//form[@id='UIBasicInfoSection']//*[@id='email']");
 	public final By ELEMENT_EDIT_BASIC_INFO_SAVE_BUTTON = By.xpath("//*[@id='UIBasicInfoSection']//button[contains(text(), 'Save')]");
 
 	//User-> Setting
@@ -212,6 +219,8 @@ public class PlatformBase extends TestBase {
 	public final By ELEMENT_INPUT_DISPLAY_NAME = By.id("displayName");
 	public final By ELEMENT_INPUT_EMAIL = By.id("email");
 	public final By ELEMENT_CHANGE_PASSWORD = By.id("changePassword");
+	public final By ELEMENT_INPUT_EMAIL_UPDATE = By.xpath("//*[@class='UIFormInputSet']//*[@id='email']");
+	public final By ELEMENT_INPUT_EMAIL_ADD = By.xpath("//*[@id='AccountInputSet']//*[@id='email']");
 
 	//User Profile
 	public final By ELEMENT_USER_PROFILE_TAB = By.xpath("//*[text()='User Profile' and @data-toggle='tab']");
@@ -299,13 +308,16 @@ public class PlatformBase extends TestBase {
 	public final By ELEMENT_TAB_MEMBERSHIP_MANAGEMENT = By.xpath("//*[contains(@class, 'uiIconMembership')]/parent::a");
 	public final String ELEMENT_MEMBERSHIP_EDIT_ICON = "//*[text()='${membership}']/../..//*[@data-original-title='Edit Membership']";
 	public final String ELEMENT_MEMBERSHIP_DELETE_ICON = "//*[text()='${membership}']/../..//*[@data-original-title='Delete Membership']";
-	public final String ELEMENT_NEXT_PAGE_ICON = "//a[@title='Next Page']";
+	public final String ELEMENT_NEXT_PAGE_ICON = "//a[@data-original-title='Next Page']";
 	public final By ELEMENT_INPUT_NAME = By.id("name");
 	public final By ELEMENT_MEMBERSHIP_MANAGEMENT_GRID = By.xpath("//*[@class='UIListMembershipType']");
 	/*
 	 * Manage Account
 	 * */
+
+	public final By ELEMENT_COMMUNITY_SIGN_IN_BUTTON = By.xpath("//*[@type='submit']");
 	public final By ELEMENT_SIGN_IN_BUTTON = By.xpath("//*[@class='loginButton']/*");
+
 	public final By ELEMENT_ACME_SIGN_IN_BUTTON = By.name("signIn");
 	public final String ELEMENT_SELECT_SEARCH_OPTION = "//select[@name='searchOption']";
 	public final String ELEMENT_SEARCH_ICON_REGISTER = "//img[@class='SearchIcon']";
@@ -389,7 +401,7 @@ public class PlatformBase extends TestBase {
 	public final By ELEMENT_CHECKBOX_EXTENDED_LABEL_MODE = By.id("switchmode");
 	public final String ELEMENT_LINK_EDITOR_PAGE_LAYOUT="//a[@class='ItemIcon EditPageIcon' and text()='Layout']";
 
-	public final By ELEMENT_UP_LEVEL=By.xpath("//a[@title='Up Level']");
+	public final By ELEMENT_UP_LEVEL=By.xpath("//a[@data-original-title='Up Level']");
 	public final String ELEMENT_SELECT_LANGUAGE = "//select[@name='languages']";
 	public final String ELEMENT_INPUT_PAGE_DISPLAY_NAME = "//input[@id='pageDisplayName']";
 	public final String ELEMENT_PAGE_EDITOR_NEXT_STEP = "//button[text()='Next']";

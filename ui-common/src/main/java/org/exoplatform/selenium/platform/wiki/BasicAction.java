@@ -378,7 +378,7 @@ public class BasicAction extends Permission{
 			if (space == "Intranet"){
 				click(ELEMENT_PORTAL_NAME_SELECTED);
 			}else {
-				click(ELEMENT_SPACE_NAME_SELECTED.replace("${space}", space.toLowerCase()));
+				click(ELEMENT_SPACE_NAME_SELECTED.replace("${space}", space));
 			}
 		}
 		click(By.xpath(ELEMENT_SELECTED_PAGE.replace("${relatedPage}", pageName)));

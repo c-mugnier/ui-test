@@ -367,7 +367,7 @@ public class HomePageActivity extends PlatformBase{
 	public void checkCategoryAfterAddingToContent(String name, String category){
 		if(this.plfVersion.equalsIgnoreCase("4.0"))
 			waitForAndGetElement(ELEMENT_FILE_COMMENT_ADD_CATEGORY.replace("@{fileName}", name).replace("${category}", category));
-		else if(this.plfVersion.equalsIgnoreCase("4.1"))
+		else 
 			waitForAndGetElement(ELEMENT_FILE_COMMENT_ADD_CATEGORY_41.replace("@{fileName}", name).replace("${category}", category));
 	}
 

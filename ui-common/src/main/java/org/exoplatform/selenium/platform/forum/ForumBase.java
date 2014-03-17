@@ -58,7 +58,7 @@ public class ForumBase extends PlatformBase {
 	public final By ELEMENT_USER_MANAGEMENT = By.xpath("//*[@id='ManageModerator']//*[@class='uiIconUser uiIconLightGray']");
 	public final By ELEMENT_MORE_BUTTON = By.xpath("//li[@class='dropdown moreItem pull-right']");
 	public final By ELEMENT_PENDING = By.id("PendingJob");
-	
+
 	public String ELEMENT_FORUM_BREADCUMB = "//*[@id='UIBreadcumbs']/div[@class='pull-left']//a[@class='Selected' and contains(text(),'${forumName}')]";
 	public String ELEMENT_LATEST_TOPIC = "//a[contains(text(),'${forum}')]/ancestor::tr[@class='oncontextmenu']//a[contains(text(),'${topic}')]";
 	public String ELEMENT_FORUM_ON_HOMEPAGE = "//a[contains(text(),'${category}')]/ancestor::div[@id='UICategories']//tr[@class='oncontextmenu']//a[contains(text(),'${forum}')]";
@@ -84,7 +84,7 @@ public class ForumBase extends PlatformBase {
 
 	//-----------------Watch/Unwatch screen-------------------------------------------
 	public final String MESSAGE_WATCH = "You are now watching this item.";
-	
+
 	public final String MESSAGE_UNWATCH = "You are no longer watching this item.";	
 	public static String REGISTER_MAIL_CONTENT = "Hi, you received this email because you registered for the Forum and Topic Watching notification.";
 
@@ -131,7 +131,7 @@ public class ForumBase extends PlatformBase {
 	public final By ELEMENT_CENSOR_POPUP = By.xpath("//span[@class='PopupTitle popupTitle' and text()='Censor Keywords']");
 	public final By ELEMENT_CENSOR_POPUP_PLF4_1 = By.xpath("//span[@class='PopupTitle popupTitle' and text()='Censor Keywords']");
 	public final By ELEMENT_CENSORED_KEYWORDS =  By.id("censorKeyword");
-	
+
 	//----------------Set Ban IP form--------------------------------------------
 	public final By ELEMENT_BAN_IP_POPUP = By.xpath("//span[@class='PopupTitle popupTitle' and text()='Banned IPs']");
 	public final By ELEMENT_BAN_IP_FILTER = By.id("searchIpBan");
@@ -238,7 +238,7 @@ public class ForumBase extends PlatformBase {
 	public final By ELEMENT_FEED_CONTENT = By.id("feedContent");
 	public final String ELEMENT_MY_SUBSCRIPTION_OBJECT_WATCH = "//div[@id='UIForumUserSettingForm']//a[contains(text(),'${object}')]" ;
 	public final String ELEMENT_RSS_TOPIC_LINK = "//xhtml:span[text()='${topic}']";
-	
+
 	public final By ELEMENT_MY_SUBSCRIPTION_NEXT_PAGE = By.xpath("//div[@id='ForumUserWatches-tab']//*[@data-original-title='Next Page']");
 	public final By ELEMENT_MY_SUBSCRIPTION_TOTAL_PAGE = By.xpath("//div[@id='ForumUserWatches-tab']//span[@class='pagesTotalNumber']");
 
@@ -274,13 +274,13 @@ public class ForumBase extends PlatformBase {
 	public final By ELEMENT_FORUM_PORTLET_SAVE_BUTTON = By.cssSelector("#UISettingEditModeForm.UIForm div.uiAction button.btn");
 
 	//attach file popup
-//	public final By ELEMENT_POPUP_UPLOAD_FILE = By.xpath("//span[@class='PopupTitle' and text()='Attach File']");
+	//	public final By ELEMENT_POPUP_UPLOAD_FILE = By.xpath("//span[@class='PopupTitle' and text()='Attach File']");
 	public final By ELEMENT_POPUP_UPLOAD_FILE = By.xpath("//span[@class='PopupTitle popupTitle' and text()='Attach File']");
-//	public final By ELEMENT_ATTACH_FILE = By.linkText("Attach Files");
-//	public final By ELEMENT_ATTACH_FILE =By.xpath("//button[@class='btn' and text()='Attach Files']");
+	//	public final By ELEMENT_ATTACH_FILE = By.linkText("Attach Files");
+	//	public final By ELEMENT_ATTACH_FILE =By.xpath("//button[@class='btn' and text()='Attach Files']");
 	public final By ELEMENT_ATTACH_FILE =By.xpath("//*[@id='ThreadContent']/div/div[3]/div/button");
 	public final By ELEMENT_ATTACHMENT_FILE_INPUT = By.name("file");
-//	public final By ELEMENT_ATTACHMENT_SAVE_BUTTON = By.xpath("//*[@id='UIAttachmentForm']//*[text()='Save']");
+	//	public final By ELEMENT_ATTACHMENT_SAVE_BUTTON = By.xpath("//*[@id='UIAttachmentForm']//*[text()='Save']");
 	public final By ELEMENT_ATTACHMENT_SAVE_BUTTON = By.xpath("//button[@class='btn' and text()='Save'");
 
 	//-----------------------User Management--------------------------------------------//
@@ -330,7 +330,7 @@ public class ForumBase extends PlatformBase {
 
 	//Gmail
 	public String ELEMENT_GMAIL_EMAIL = "//span/b[text()='[${category}][${forum}] ${topic}']";
-		
+
 	//Pending job
 	public final By ELEMENT_PENDING_JOB_POPUP = By.xpath("//span[@class='PopupTitle popupTitle' and text()='Waiting for Approval']");
 	public By ELEMENT_APPROVE_PENDING_JOB = By.xpath("//*[text()='Approve']");
@@ -383,7 +383,7 @@ public class ForumBase extends PlatformBase {
 			loopCount = 0;
 		}
 	}
-	
+
 	/** function: Attach file in attach popup
 	 * @author lientm
 	 * @param number: number of upload container that need upload file
@@ -397,9 +397,9 @@ public class ForumBase extends PlatformBase {
 			element.sendKeys(Utils.getAbsoluteFilePath("TestData/" + file[i]));
 			waitForAndGetElement("//*[@class='fileNameLabel' and contains(text(),'" + file[i] + "')]");
 		}
-//		click(ELEMENT_ATTACHMENT_SAVE_BUTTON);
+		//		click(ELEMENT_ATTACHMENT_SAVE_BUTTON);
 		button.save();
-//		waitForElementNotPresent(ELEMENT_ATTACHMENT_SAVE_BUTTON);
+		//		waitForElementNotPresent(ELEMENT_ATTACHMENT_SAVE_BUTTON);
 	}
 
 	public void goToForums(){
@@ -598,7 +598,7 @@ public class ForumBase extends PlatformBase {
 		click(ELEMENT_CENSOR_KEYWORDS);
 		if(this.plfVersion.equalsIgnoreCase("4.0"))
 			waitForAndGetElement(ELEMENT_CENSOR_POPUP);
-		else if(this.plfVersion.equalsIgnoreCase("4.1"))
+		else 
 			waitForAndGetElement(ELEMENT_CENSOR_POPUP_PLF4_1);
 		if (key != null){
 			type(ELEMENT_CENSORED_KEYWORDS, key, true);
@@ -1381,9 +1381,9 @@ public class ForumBase extends PlatformBase {
 			type(ELEMENT_PRIVATE_MESSAGE_TITLE_INPUT,title,true);
 		if(message != null){
 			if(this.plfVersion.equalsIgnoreCase("4.0"))
-			inputDataToFrameInFrame(ELEMENT_PRIVATE_MESSAGE_FRAME1,ELEMENT_POST_MESSAGE_FRAME_2 , message, false);
-		else
-			inputDataToFrame(ELEMENT_PRIVATE_MESSAGE_FRAME_41, message);
+				inputDataToFrameInFrame(ELEMENT_PRIVATE_MESSAGE_FRAME1,ELEMENT_POST_MESSAGE_FRAME_2 , message, false);
+			else
+				inputDataToFrame(ELEMENT_PRIVATE_MESSAGE_FRAME_41, message);
 		}
 		switchToParentWindow();
 		click(ELEMENT_PRIVATE_MESSAGE_SEND_BUTTON);
@@ -1477,7 +1477,7 @@ public class ForumBase extends PlatformBase {
 		click(ELEMENT_PENDING);
 		waitForAndGetElement(ELEMENT_PENDING_JOB_POPUP);
 	}
-	
+
 	/**
 	 * Approve a pending job.
 	 * Created by khanhnt at Dec 11, 2013

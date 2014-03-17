@@ -30,6 +30,7 @@ public class UserGroupManagement extends PlatformBase {
 	public  final String MESSAGE_DUPLICATE_USERS = "User \"${username}\" has already the same membership ";
 	public  final String MESSAGE_DUPLICATE_GROUPS = "in the group \"${groupName}\", please select another one.";
 	public  final String ELEMENT_USER_INGROUP_DELETE_ICON = "//*[@id='UIGridUser']//span[text()='${userName}']/parent::td/parent::tr/td[@class='center actionContainer']//i[@class='uiIconDeleteUser uiIconLightGray']";
+	public final String ELEMENT_USER_GROUP_DELETE_ICON = "//*[@id='UIGridUser']//span[text()='${userName}']/parent::td/parent::tr//span[contains(text(),'${membership}')]/../../td[@class='center actionContainer']//i[@class='uiIconDeleteUser uiIconLightGray']";
 	public final String ELEMENT_USER_MEMBERSHIP_TAB_DELETE_ICON = "//*[@class='uiIconDeleteMembership uiIconLightGray']";
 	public final String ELEMENT_USER_MEMBERSHIP_TAB_DELETE_ICON_NO = "//*[@id='MembershipGrid']//tbody/tr[${No}]//*[@class='uiIconDeleteMembership uiIconLightGray']";
 	public String ELEMENT_GROUP_MANAGEMENT_TAB_USER_EDIT_ICON = "//*[@id='UIGridUser']//span[text()='${userName}']/parent::td/parent::tr/td[@class='center actionContainer']//i[@class='uiIconEdit uiIconLightGray']";
@@ -37,10 +38,19 @@ public class UserGroupManagement extends PlatformBase {
 	public String ELEMENT_GROUP_MANAGEMENT_TAB_MEMBERSHIP_COMBO_BOX = "//*[@id='UIGroupEditMembershipForm']//select[@name='membership']";
 	public String ELEMENT_GROUP_MANAGEMENT_TAB_MEMBERSHIP_SAVE_BUTTON = "//*[@id='UIGroupEditMembershipForm']//button[text()='Save']";
 	public String ELEMENT_GROUP_MANAGEMENT_TAB_MEMBERSHIP = "//*[@id='UIGridUser']//span[text()='${username}']/parent::td/parent::tr/td[4]/span[text()='${membership}']";
+	public By ELEMENT_PAGE_TOTAL_NUMBER = By.className("pagesTotalNumber");
+	public String ELEMENT_FIRST_PAGE = "//div[@class='pagination uiPageIterator clearfix']//a[text()='1']";
+	public String ELEMENT_ACTIVE_FIRST_PAGE = "//div[@class='pagination uiPageIterator clearfix']//li[@class='active']//a[text()='1']";
 
 	public final String ELEMENT_MEMBERSHIP_MANAGEMENT_TAB_FAIL_DEL_MSG = "//span[contains(text(),'You cannot delete this membership because it is mandatory.')]";
 	//User Management -> Edit User form
 	public  final By ELEMENT_USER_MEMBERSHIP_TAB = By.xpath("//*[text()='User Membership']");
+	public final String ELEMENT_GROUP_PERMISSION = "//a[@title='${groupName}']";
+	public final By ELEMENT_USER_CHANGE_PASSWORD = By.id("changePassword");
+	public final By ELEMENT_USER_NEW_PASSWORD = By.id("newPassword");
+	public final By ELEMENT_USER_CONFIRM_PASSWORD = By.id("confirmPassword");
+	public final String MSG_UPDATE_USER_ACCOUNT = "The user profile has been updated.";
+
 
 	/*
 	 *  Choose TAB actions
@@ -109,11 +119,12 @@ public class UserGroupManagement extends PlatformBase {
 		String userEditIcon = ELEMENT_USER_EDIT_ICON.replace("${username}", username);
 
 		info("--Editing user " + username + "--");
+		searchUser(username,"User Name");
 		click(userEditIcon);
 		Utils.pause(1000);
 	}
 
-	public void editUserInfo_AccountTab(String first, String last, String displayName, String email){
+	public void editUserInfo_AccountTab(String first, String last, String displayName, String email, String...newPassword){
 		if (first != null){
 			type(ELEMENT_INPUT_FIRSTNAME, first, true);
 		}
@@ -124,7 +135,16 @@ public class UserGroupManagement extends PlatformBase {
 			type(ELEMENT_INPUT_DISPLAY_NAME, displayName, true);
 		}
 		if (email != null){
-			type(ELEMENT_INPUT_EMAIL, email, true);
+			if(isElementPresent(ELEMENT_INPUT_EMAIL_UPDATE))
+				type(ELEMENT_INPUT_EMAIL_UPDATE, email, true);
+			else
+				type(ELEMENT_INPUT_EMAIL, email, true);
+		}
+
+		if(newPassword.length > 0){
+			check(ELEMENT_USER_CHANGE_PASSWORD,2);
+			type(ELEMENT_USER_NEW_PASSWORD,newPassword[0],true);
+			type(ELEMENT_USER_CONFIRM_PASSWORD,newPassword[0],true);
 		}
 	}
 
@@ -212,6 +232,29 @@ public class UserGroupManagement extends PlatformBase {
 					waitForAndGetElement(addedUser);
 				}
 			}
+		}
+	}
+
+	public boolean checkUserInGroup(String userName, String membership){
+		int numPage =  1;
+		if(waitForAndGetElement(ELEMENT_PAGE_TOTAL_NUMBER,5000,0) != null){
+			numPage =  Integer.parseInt(waitForAndGetElement(ELEMENT_PAGE_TOTAL_NUMBER).getText());
+			for(int i = 0; i < numPage; i++){
+				if(waitForAndGetElement(ELEMENT_USER_GROUP_DELETE_ICON.replace("${membership}", membership).replace("${userName}", userName),5000,0) != null)
+					return true;
+				click(ELEMENT_NEXT_PAGE_ICON);
+			}
+		}
+		if(waitForAndGetElement(ELEMENT_USER_GROUP_DELETE_ICON.replace("${membership}", membership).replace("${userName}", userName),5000,0) != null)
+			return true;
+		else
+			return false;
+	}
+
+	public void goToFirstPage(){
+		if(waitForAndGetElement(ELEMENT_FIRST_PAGE, 3000,0) != null){
+			click(ELEMENT_FIRST_PAGE);
+			waitForAndGetElement(ELEMENT_ACTIVE_FIRST_PAGE);
 		}
 	}
 
@@ -378,37 +421,30 @@ public class UserGroupManagement extends PlatformBase {
 		alert = new ManageAlert(driver);
 		dialog = new Dialog(driver);
 
-		boolean verifyMembership;
-		verifyMembership = isTextPresent(membershipName);
-		if (verifyMembership){
-			waitForTextPresent(membershipName);
-		}
-		else {
-			click(ELEMENT_NEXT_PAGE_ICON);
-		}
+		checkMembership(membershipName);
 		String deleteIcon = ELEMENT_MEMBERSHIP_DELETE_ICON.replace("${membership}", membershipName);
 		info("--Deleting membership--");
 		click(deleteIcon);
 		alert.waitForConfirmation("Are you sure you want to delete this membership?");
-		//		if(!mandatory) {
-		//			waitForAndGetElement(ELEMENT_MEMBERSHIP_MANAGEMENT_TAB_FAIL_DEL_MSG);
-		//			dialog.closeMessageDialog();
-		//			}
-		//		else {
-		//		if (!verifyMembership){
-		//			waitForTextNotPresent(membershipName);
-		//		}
-		//		else if (verify) {
-		//			click(ELEMENT_NEXT_PAGE_ICON);
-		//			waitForTextNotPresent(membershipName);
-		//			}
-		//		}
-		if (verify) {
-			if (verifyMembership)
-				waitForTextNotPresent(membershipName);
-			if(waitForAndGetElement(ELEMENT_NEXT_PAGE_ICON,10000,0) != null)
-			{ click(ELEMENT_NEXT_PAGE_ICON); waitForTextNotPresent(membershipName); }
+
+		assert (!checkMembership(membershipName)) : "Fail to delete membership";
+
+	}
+
+	public boolean checkMembership(String membershipName){
+		int numPage = 1;
+		if(waitForAndGetElement(ELEMENT_PAGE_TOTAL_NUMBER,5000,0) != null){
+			numPage =  Integer.parseInt(waitForAndGetElement(ELEMENT_PAGE_TOTAL_NUMBER).getText());
+			for(int i = 0; i < numPage; i++){
+				if(waitForAndGetElement(ELEMENT_MEMBERSHIP_DELETE_ICON.replace("${membership}", membershipName),10000,0) != null)
+					return true;
+				click(ELEMENT_NEXT_PAGE_ICON);
+			}
 		}
+		if(waitForAndGetElement(ELEMENT_MEMBERSHIP_DELETE_ICON.replace("${membership}", membershipName),10000,0) != null)
+			return true;
+		else
+			return false;
 	}
 
 	//Function to select a group and membership on permission management popup

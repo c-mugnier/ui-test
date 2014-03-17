@@ -27,12 +27,12 @@ public class Forum_Forum_Category extends ForumBase {
 	@BeforeMethod
 	public void setUpBeforeTest(){
 		getDriverAutoSave();
-		magAc = new ManageAccount(driver);
+		magAc = new ManageAccount(driver,this.plfVersion);
 		magCat = new ForumManageCategory(driver, this.plfVersion);
 		magForum = new ForumManageForum(driver, this.plfVersion);
 		magTopic = new ForumManageTopic(driver);
 		
-		magAc.signIn("john", "gtn");
+		magAc.signIn("john", DATA_PASS);
 		goToForums();
 	}
 

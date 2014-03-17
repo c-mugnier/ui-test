@@ -61,10 +61,12 @@ public class AnswerManageComment extends AnswerBase {
 			click(magQuest.ELEMENT_COMMENT_LINK_IN_CONTEXT_MENU);
 		}
 		if (comment != null){
-			if(this.plfVersion.equalsIgnoreCase("4.1"))
-				inputDataToFrame(ELEMENT_COMMENT_CONTENT_FRAME_41, comment, true,false);
-			else//(this.plfVersion.equalsIgnoreCase("4.0"))
+			if(this.plfVersion.equalsIgnoreCase("4.0")){
 				inputDataToFrameInFrame(ELEMENT_COMMENT_CONTENT_FRAME_1, ELEMENT_COMMENT_CONTENT_FRAME_2, comment, true);
+			}
+				
+			else//(this.plfVersion.equalsIgnoreCase("4.0"))
+				inputDataToFrame(ELEMENT_COMMENT_CONTENT_FRAME_41, comment, true,false);
 			switchToParentWindow();	
 		}
 		button.save();
