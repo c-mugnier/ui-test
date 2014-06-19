@@ -62,7 +62,7 @@ public class TestBase {
 	//public final By ELEMENT_MENU_EDIT_LINK = By.xpath("//i[@class='uiIconPLF24x24Edit']");
 	//public final By ELEMENT_MENU_PAGE_LINK = By.linkText("Page");
 	//public final String AJAX_LOADING_MASK = "//div[@id='AjaxLoadingMask']";
-	public final String DEFAULT_BASEURL="http://192.168.3.27:8080/portal";
+	public final String DEFAULT_BASEURL="http://localhost:8080/portal";
 
 	/*======= Welcome Screen (Term and Conditions) =====*/
 	public final By ELEMENT_FIRSTNAME_ACCOUNT = By.name("firstNameAccount");
@@ -142,7 +142,7 @@ public class TestBase {
 		Boolean isCreateAccount = (Boolean)(opParams.length>0 ? opParams[0]:true);
 		driver.get(baseUrl);
 		info("Agreement page");
-		if (waitForAndGetElement(ELEMENT_AGREEMENT_CHECKBOX, 5000, 0, 2) != null) {
+		if (waitForAndGetElement(ELEMENT_AGREEMENT_CHECKBOX, 3000, 0, 2) != null) {
 			info("-- Checking the terms and conditions agreement... --");
 			click(ELEMENT_AGREEMENT_CHECKBOX, 2);
 			click(ELEMENT_CONTINUE_BUTTON);
@@ -153,13 +153,13 @@ public class TestBase {
 				accountSetup();
 			firstTimeLogin = true;
 			info("-- Administrator account (FQA) has been created successfully... --");
-		}else if (waitForAndGetElement(ELEMENT_ROOT_PASS_ACCOUNT, 5000, 0, 2) != null){
+		}else if (waitForAndGetElement(ELEMENT_ROOT_PASS_ACCOUNT, 3000, 0, 2) != null){
 			info("-- Creating an Admin account: FQA... --");
 			accountSetup();
 			firstTimeLogin = true;
 			info("-- Administrator account (FQA) has been created successfully... --");
 		} 
-		Utils.pause(5000);     
+		Utils.pause(3000);     
 	}
 
 	/**
