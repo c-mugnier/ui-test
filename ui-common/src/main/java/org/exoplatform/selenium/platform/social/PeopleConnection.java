@@ -31,10 +31,10 @@ public class PeopleConnection extends SocialBase {
 	public final By ELEMENT_MY_CONNECTIONS_TAB = By.linkText("My Connections");
 	public final By ELEMENT_EVERYONE_TAB = By.linkText("Everyone");
 	public final By ELEMENT_REQUEST_SENT_TAB = By.linkText("Requests Sent");
-	public final String ELEMENT_CONNECTION_BUTTON = "//a[text()='${peopleName}']/ancestor::div[@class='spaceBox pull-left']//button[contains(text(),'Connect')]";
-	public final String ELEMENT_CANCEL_REQUEST_BUTTON = "//a[text()='${peopleName}']/ancestor::div[@class='spaceBox pull-left']//button[contains(text(),'Cancel Request')]";
-	public final String ELEMENT_REMOVE_CONNECTION_BUTTON = "//a[text()='${peopleName}']/ancestor::div[@class='spaceBox pull-left']//button[contains(text(),'Remove Connection')]";
-	public final String ELEMENT_CONFIRM_BUTTON = "//a[text()='${peopleName}']/ancestor::div[@class='spaceBox pull-left']//button[contains(text(),'Confirm')]";
+	public final String ELEMENT_CONNECTION_BUTTON = "//a[text()='${peopleName}']/ancestor::div[contains(@class,'spaceBox pull-left')]//button[contains(text(),'Connect')]";
+	public final String ELEMENT_CANCEL_REQUEST_BUTTON = "//a[text()='${peopleName}']/ancestor::div[contains(@class,'spaceBox pull-left')]//button[contains(text(),'Cancel Request')]";
+	public final String ELEMENT_REMOVE_CONNECTION_BUTTON = "//a[text()='${peopleName}']/ancestor::div[contains(@class,'spaceBox pull-left')]//button[contains(text(),'Remove Connection')]";
+	public final String ELEMENT_CONFIRM_BUTTON = "//a[text()='${peopleName}']/ancestor::div[contains(@class,'spaceBox pull-left')]//button[contains(text(),'Confirm')]";
 	public final String ELEMENT_IGNORE_BUTTON = "//*[@data-original-title='${peopleName}']/../..//*[text()='Ignore']";
 	public final String ELEMENT_CONNECT_LIST = "//*[text()='Connect']";
 	public final String ELEMENT_PEOPLE_SEARCH = "//*[@class='uiProfileUserSearch']/..//*[text()='${peopleName}']";

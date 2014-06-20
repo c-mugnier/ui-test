@@ -729,6 +729,7 @@ public class PlatformBase extends TestBase {
 	public String ELEMENT_CALENDAR_GADGET_TASK_NORMAL = "//ul[@class='tasksList']//li[@class='taskNotCompleted']//a[contains(text(),'${task}')]";
 	public String ELEMENT_CALENDAR_GADGET_TASK_COMPLETED = "//ul[@class='tasksList']//li[@class='taskCompleted']//a[contains(text(),'${task}')]";
 	public String ELEMENT_CALENDAR_GADGET_TASK_INDEX = "//ul[@class='tasksList']//li['${index}']//a[contains(text(),'${task}')]";
+	public String ELEMENT_CALENDAR_GADGET_TASK_LATE_NORMAL = "//ul[@class='tasksList']//li[@class='taskLateNotCompleted']//a[contains(text(),'${task}')]";
 	public By ELEMENT_CALENDAR_GADGET_EMPTY = By.xpath("//*[contains(text(),'Nothing Planned ')]");
 	public String ELEMENT_CALENDAR_GADGET_EVENT_ITEM = "//div[@class='pull-left eventSummary']//a[contains(text(), '${event}')]";
 

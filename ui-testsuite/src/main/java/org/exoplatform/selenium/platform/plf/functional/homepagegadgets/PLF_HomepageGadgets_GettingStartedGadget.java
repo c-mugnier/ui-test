@@ -41,9 +41,13 @@ public class PLF_HomepageGadgets_GettingStartedGadget extends Activity{
 	ContextMenu cMenu;
 	EcmsBase ecms;
 
+	String user = "John Smith"; 
+	String user1 = "Mary Williams";
+	
 	@BeforeMethod
 	public void setUpBeforeTest(){
-		getDriverAutoSave();
+//		getDriverAutoSave();
+		initSeleniumTest();
 		acc = new ManageAccount(driver);
 		acc.signIn(DATA_USER1, DATA_PASS);
 		homeGad = new HomePageGadget(driver);
@@ -200,10 +204,10 @@ public class PLF_HomepageGadgets_GettingStartedGadget extends Activity{
 		info("79585: Connect to co-workers");
 		click(homeGad.ELEMENT_CONNECT_TO_COWORKERS);
 		click(peoConn.ELEMENT_EVERYONE_TAB);
-		peoConn.connectPeople(DATA_USER1); 
+		peoConn.connectPeople(user); 
 		acc.signOut();
 		acc.signIn(DATA_USER1, DATA_PASS); 
-		peoConn.acceptInvitation(DATA_USER2);
+		peoConn.acceptInvitation(user1);
 		acc.signOut();
 		acc.signIn(DATA_USER2, DATA_PASS); 
 		
@@ -224,8 +228,7 @@ public class PLF_HomepageGadgets_GettingStartedGadget extends Activity{
 		navToolBar.goToSiteExplorer();
 		actBar.chooseDrive(ecms.ELEMENT_PERSONAL_DRIVE);
 		actBar.actionsOnElement(uploadFileName, actionType.DELETE,true,true);
-		acc.signOut();
-		
+//		acc.signOut();
 	}
 	
 	/**
@@ -248,10 +251,9 @@ public class PLF_HomepageGadgets_GettingStartedGadget extends Activity{
 	@Test(priority=2)
 	public void test04_RemoveGettingStartedGadget() { 
 		String file1 = "ECMS_Admin_ManageCategories_Display.jpg";
-		String file2 = "ECMS_Admin_SendMailScript_Template.txt";
+//		String file2 = "ECMS_Admin_SendMailScript_Template.txt";
 		
 		info("79577: confirm display [x] close button");
-		driver.navigate().refresh();
 		mouseOver(By.xpath("//*[@class='gadgetTitle title center']"),true);
 //		waitForAndGetElement(homeGad.ELEMENT_X_CLOSE_BUTTON_GADGET_GETTING_STARTED);
 		
@@ -264,21 +266,23 @@ public class PLF_HomepageGadgets_GettingStartedGadget extends Activity{
 		
 		info("79597: display Getting started gadget for other users in case admin deletes his started gadget");
 		acc.signOut();
-		acc.signIn(DATA_USER2, DATA_PASS);
+		acc.signIn("james", DATA_PASS);
 		driver.navigate().refresh();
 		waitForAndGetElement(homeGad.ELEMENT_GETTING_STARTED_GADGET_FORM);
 		
 		info("79596: Upload a document from a drive other than [Personal Documents]");
 		navToolBar.goToSiteExplorer();
-		ecms.uploadMultiFileSerial(file1, file2);
+		ecms.uploadFile("TestData/" + file1);
 		navToolBar.goToHomePage();
 		waitForAndGetElement(homeGad.ELEMENT_GETTING_STARTED_GADGET_FORM);
-		waitForAndGetElement(homeGad.ELEMENT_FINISH_UPLOAD_FILE.replace("${status}", ""));
+		waitForElementNotPresent(homeGad.ELEMENT_FINISH_UPLOAD_FILE.replace("${status}", "done"));
+//		waitForAndGetElement(homeGad.ELEMENT_FINISH_UPLOAD_FILE.replace("${status}", ""));
 		
 		info("Restore data");
+		navToolBar.goToSiteExplorer();
 		cMenu.deleteData(By.linkText(file1));
-		cMenu.deleteData(By.linkText(file2));
-		acc.signOut();		
+//		cMenu.deleteData(By.linkText(file2));
+//		acc.signOut();		
 	}
 
 }

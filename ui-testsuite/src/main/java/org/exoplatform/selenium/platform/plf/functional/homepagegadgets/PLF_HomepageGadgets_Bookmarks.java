@@ -1,12 +1,9 @@
 package org.exoplatform.selenium.platform.plf.functional.homepagegadgets;
 
 import static org.exoplatform.selenium.TestLogger.info;
-import org.exoplatform.selenium.Button;
-import org.exoplatform.selenium.ManageAlert;
 import org.exoplatform.selenium.platform.HomePageGadget;
 import org.exoplatform.selenium.platform.ManageAccount;
 import org.exoplatform.selenium.platform.ManageApplications;
-import org.exoplatform.selenium.platform.NavigationManagement;
 import org.exoplatform.selenium.platform.NavigationToolbar;
 import org.exoplatform.selenium.platform.PageEditor;
 import org.exoplatform.selenium.platform.forum.ForumManageForum;
@@ -30,23 +27,19 @@ public class PLF_HomepageGadgets_Bookmarks extends WikiBase{
 	ForumManageForum magForum;
 	PageEditor pagEdit;
 	PeopleConnection conn;
-	NavigationManagement navMag;
 	HomePageGadget hpGadget;
-	Button button;
 	Task tsk;
 	ManageApplications magApp;
 
 	@BeforeMethod
 	public void beforeMethods() {
-		getDriverAutoSave();
+//		getDriverAutoSave();
+		initSeleniumTest();
 		naviToolbar = new NavigationToolbar(driver, this.plfVersion);
 		magForum = new ForumManageForum(driver, this.plfVersion);
 		conn = new PeopleConnection(driver, this.plfVersion);
 		pagEdit = new PageEditor(driver, this.plfVersion);
 		magAc = new ManageAccount(driver, this.plfVersion);
-		navMag = new NavigationManagement(driver, this.plfVersion);
-		button = new Button(driver, this.plfVersion);
-		alert = new ManageAlert(driver, this.plfVersion);
 		hpGadget = new HomePageGadget(driver, this.plfVersion);
 		tsk = new Task(driver, this.plfVersion);
 		magApp = new ManageApplications(driver, this.plfVersion);

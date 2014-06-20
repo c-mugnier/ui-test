@@ -352,8 +352,9 @@ public class ManageApplications extends PlatformBase {
 
 	public void importApplication () {
 		alt = new ManageAlert(driver);
-		if(waitForAndGetElement(ELEMENT_IMPORT_APPLICATION,DEFAULT_TIMEOUT,0)==null)
-			click(ELEMENT_MANAGE_APPLICATION);
+		if(waitForAndGetElement(ELEMENT_IMPORT_APPLICATION, 5000 ,0) == null)
+			showImportApplication(true);
+		click(ELEMENT_MANAGE_APPLICATION);
 		click(ELEMENT_IMPORT_APPLICATION);
 		alt.waitForConfirmation(IMPORT_APPLICATION_CONFIRMATION);
 		Utils.pause(1000);

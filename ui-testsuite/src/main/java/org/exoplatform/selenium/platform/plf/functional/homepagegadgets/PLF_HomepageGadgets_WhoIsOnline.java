@@ -136,18 +136,20 @@ public class PLF_HomepageGadgets_WhoIsOnline extends Activity {
 		
 		info("USER2: Accept invitation from user acc 1");
 		hg.acceptInvitationGadget(user);
-		newDriver.navigate().refresh();
+		navToolBar = new NavigationToolbar(newDriver);
+		navToolBar.goToHomePage();
+//		newDriver.navigate().refresh();
 	
 		info("USER2: 79685 - Check popup information of online user 1 when having a connection");
 		hg.checkUserInfoOnWhoisOnlineGadget(DATA_USER1, user, position, true, activity, 4);
 		
 		info("--Clear Data--");
 		peopleC = new PeopleConnection(newDriver);
-		navToolBar = new NavigationToolbar(newDriver);
 		navToolBar.goToConnectionPage();
 		peopleC.removeConnection(user);
 		newDriver.manage().deleteAllCookies();
 		newDriver.quit();
+		navToolBar = new NavigationToolbar(driver);
 		navToolBar.goToHomePage();
 		homeAct.deleteActivity(activity, true, false);
 	}
