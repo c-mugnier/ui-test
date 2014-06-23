@@ -14,10 +14,11 @@ import org.testng.Assert;
  */
 public class ManageAlert extends TestBase{
 
-	public ManageAlert(WebDriver dr) {
+	public ManageAlert(WebDriver dr,String...plfVersion){
+		this.plfVersion = plfVersion.length>0?plfVersion[0]:"4.0";
 		driver = dr;
 	}
-	
+
 	Button button = new Button(driver);
 
 	//ECMS > Symlink
@@ -83,7 +84,7 @@ public class ManageAlert extends TestBase{
 			if (message.contains(confirmationText)) {
 				break;
 			}
-			
+
 			Utils.pause(100);
 		}
 		Alert alert = driver.switchTo().alert();
@@ -109,7 +110,7 @@ public class ManageAlert extends TestBase{
 		}
 		Utils.pause(1000);
 	}
-	
+
 	//Input text
 	public void inputAlertText(String text){
 		try {

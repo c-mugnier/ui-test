@@ -107,8 +107,10 @@ public class CalendarBase extends PlatformBase {
 	public String ELEMENT_LIST_EDIT_EVENT_BUTTON = ".//*[@id='UIEventCategoryList']//span[contains(text(),'${categoryName}')]/parent::td/parent::tr//a[@data-original-title='Edit']/i[@class='uiIconEdit uiIconLightGray']";
 
 	//-----------Menu of calendar------------
-	public By ELEMENT_CAL_ADD_EVENT_MENU = By.id("AddEvent");
-	public By ELEMENT_CAL_ADD_TASK_MENU = By.id("AddTask");
+	//public By ELEMENT_CAL_ADD_EVENT_MENU = By.id("AddEvent");
+	//public By ELEMENT_CAL_ADD_TASK_MENU = By.id("AddTask");
+	public By ELEMENT_CAL_ADD_TASK_MENU = By.xpath("//*[@id='tmpMenuElement']//*[@id='AddTask']");
+	public By ELEMENT_CAL_ADD_EVENT_MENU = By.xpath("//*[@id='tmpMenuElement']//*[@id='AddEvent']");
 	public By ELEMENT_CAL_REMOVE_MENU = By.xpath("//*[@id='tmpMenuElement']//a[contains(@href,'RemoveSharedCalendar')]");
 	public By ELEMENT_CAL_IMPORT_MENU = By.xpath("//*[@id='tmpMenuElement']//a[contains(@href,'ImportCalendar')]");
 	public By ELEMENT_CAL_EXPORT_MENU = By.xpath("//*[@id='tmpMenuElement']//a[contains(@href,'ExportCalendar')]");
@@ -145,12 +147,15 @@ public class CalendarBase extends PlatformBase {
 	public String ELEMENT_EVENT_TASK_ALL_DAY_PLF41 = "//*[@id='UIWeekViewGridAllDay']//div[contains(@class,'eventAlldayContent') and contains(.,'${event}')]";
 	public String ELEMENT_EVENT_TASK_ONE_DAY = "//*[@id='UIWeekViewGrid']//div[contains(text(),'${taskName}')]/parent::div[@class='clearfix']/div[@class='eventContainerBar eventTitle pull-left']";
 	public String ELEMENT_EVENT_TASK_ONE_DAY_PLF41 = "//*[contains(@id, 'UIWeekView')]//div[contains(text(),'${taskName}')]";
+	public String ELEMENT_EVENT_TASK_DETAIL_DATE = "//*[@id='UIWeekViewGrid']//*[contains(@startfull,'${date}')]//div[contains(text(),'${taskName}')]";
+	public String ELEMENT_EVENT_TASK_DETAIL_ALL_DAY = "//*[@id='UIWeekViewGridAllDay']//*[contains(@starttimefull,'${date}')]//div[contains(text(),'${event}')]";
 	public String ELEMENT_EVENT_TASK_WORKING_PANE = "//div[contains(@class,'eventContainer') and contains(text(),'${event}')]";
 	public String ELEMENT_EVENT_TASK_WORKING_PANE_PLF41 = "//*[@id='UIWeekViewGrid']//div[contains(@class,'eventAlldayContent') and contains(.,'${event}')]";
 	public By ELEMENT_EVENT_TASK_DELETE_MENU = By.xpath("//div[@id='tmpMenuElement']//a[@class='eventAction' and contains(@href,'Delete')]");
 	public String MSG_EVENT_TASK_DELETE = "Are you sure you want to delete this event/task?";
 
 	public String MSG_CALENDAR_DELETE = "Are you sure you want to delete this calendar and all its events?";
+	public By ELEMENT_EVENT_TASK_WEEK_PANEL = By.xpath("//*[@class='eventWeekContent eventWeekContent mainWorkingPanel']");
 
 	public String ELEMENT_TASK_EVENT_MENU_DELETE = "//*[@id='tmpMenuElement']//i[@class='uiIconDelete uiIconLightGray']";
 	public String ELEMENT_TASK_EVENT_MENU_EDIT = "//*[@id='tmpMenuElement']//i[@class='uiIconEdit uiIconLightGray']";
@@ -180,6 +185,8 @@ public class CalendarBase extends PlatformBase {
 	public String ELEMENT_CURRENT_DATE = getCurrentDate("EEE MMM dd yyyy HH"); 
 	public String ELEMENT_TARGET_TIME = ELEMENT_CURRENT_DATE +":00:00";
 	public By ELEMENT_TARGET_DATE = By.xpath("//*[contains(@startfull, '${targetDate}')]".replace("${targetDate}", ELEMENT_TARGET_TIME));
+	public String ELEMENT_ANY_TARGET_DATE = "//*[contains(@startfull, '${targetDate}')]";
+
 	//-----------------Calendar Search-----------------------------
 	public String ELEMENT_INPUT_QUICK_SEARCH = "//div[@class='uiSearchForm uiSearchInput pull-right']//*[@id='value']";
 	public String ELEMENT_QUICK_SEARCH_FORM = "//div[@class='uiSearchForm uiSearchInput pull-right']";
@@ -621,7 +628,7 @@ public class CalendarBase extends PlatformBase {
 	}
 
 	/*============Add, Edit, Delete a Calendar ===========*/
-	
+
 	/** Delete calendar
 	 * @author thuntn
 	 * @param name: name of calendar
@@ -631,12 +638,14 @@ public class CalendarBase extends PlatformBase {
 	 */
 	public void deleteCalendar(String name, boolean...verify){
 		alert = new ManageAlert(driver); 
+		button = new Button(driver);
 		boolean check = verify.length > 0 ? verify[0] : true;
 
 		info("--Delete a Calendar-");
 
 		executeActionCalendar(name,"RemoveCalendar");
 		alert.waitForConfirmation("Are%20you%20sure%20you%20want%20to%20delete%20this%20calendar%20and%20all%20its%20events?");
+		button.yes();
 		if (check){
 			assert (waitForAndGetElement(ELEMENT_CALENDAR_GET_BY_TAG_LI.replace("{$calendar}", name), 10000,0) == null) : "Cannot delete the calendar!" ;
 			info("Remove calendar successfully");
@@ -1056,5 +1065,20 @@ public class CalendarBase extends PlatformBase {
 			waitForAndGetElement(ELEMENT_ADD_CALENDAR_GROUP_DELETE_ICON.replace("${group}", groups[0]));
 		}
 		Utils.pause(1000);
+	}
+
+	/**
+	 * @author lientm
+	 * @param cal
+	 * @param action
+	 */
+	public void goToActionOnCalendar(String cal, String action){
+		openMenuOfCalendar(cal);
+		if (action.equalsIgnoreCase("add task")){
+			click(ELEMENT_CAL_ADD_TASK_MENU);
+		}
+		if (action.equalsIgnoreCase("add event")){
+			click(ELEMENT_CAL_ADD_EVENT_MENU);
+		}
 	}
 }

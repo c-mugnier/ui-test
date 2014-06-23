@@ -12,8 +12,9 @@ import org.openqa.selenium.WebDriver;
  */
 public class Button extends TestBase{
 
-	public Button(WebDriver dr) {
+	public Button(WebDriver dr,String...plfVersion) {
 		driver = dr;
+		this.plfVersion = plfVersion.length > 0 ? plfVersion[0]:"4.0";
 	}
 
 	public final By ELEMENT_SHOW_MORE_BUTTON = By.xpath("//*[contains(text(), 'Show More')]"); 
@@ -25,6 +26,7 @@ public class Button extends TestBase{
 	//By.linkText("Save & Close");
 
 	public final By ELEMENT_OK_BUTTON = By.xpath("//*[text()='OK']");
+	public final By ELEMENT_OK_BUTTON_LINK = By.linkText("OK");
 	public final By ELEMENT_NO_BUTTON = By.xpath("//*[text()='No']");
 	public final By ELEMENT_NO_BUTTON_AUX = By.xpath("//*[contains(@class, 'popup')]//*[contains(text(),'No')]");
 	public final By ELEMENT_YES_BUTTON = By.xpath("//*[normalize-space(text())='Yes']");
@@ -78,9 +80,13 @@ public class Button extends TestBase{
 		click(ELEMENT_SAVE_BUTTON);
 		Utils.pause(500);
 	}
+
 	public void ok() {
-		waitForAndGetElement(ELEMENT_OK_BUTTON);
-		click(ELEMENT_OK_BUTTON);
+		if (waitForAndGetElement(ELEMENT_OK_BUTTON, 5000, 0) != null){
+			click(ELEMENT_OK_BUTTON);
+		}else {
+			click(ELEMENT_OK_BUTTON_LINK);
+		}
 		Utils.pause(500);
 	}
 
@@ -89,6 +95,7 @@ public class Button extends TestBase{
 		click(ELEMENT_NO_BUTTON);
 		Utils.pause(500);
 	}
+	
 	public void yes() {	
 		if (waitForAndGetElement(ELEMENT_YES_BUTTON, 3000, 0) != null){
 			click(ELEMENT_YES_BUTTON);

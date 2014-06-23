@@ -166,7 +166,7 @@ public class Calendar_Event extends CalendarBase {
 		if (isElementNotPresent(ELEMENT_EVENT_TASK_ONE_DAY.replace("${taskName}", EVENT05))){
 			waitForAndGetElement(ELEMENT_EVENT_TASK_ONE_DAY_PLF41.replace("${taskName}", EVENT05));
 		}
-		
+
 		info("Delete an event");
 		Utils.pause(5000);
 		deleteEventTask(EVENT05, selectDayOption.ONEDAY);
@@ -365,5 +365,53 @@ public class Calendar_Event extends CalendarBase {
 	@Test(groups={"pending"})
 	public void test13_ResizeEvent(){
 
+	}
+
+	/**
+	 * CaseId: 111483 check date suggestion
+	 */
+	@Test
+	public void test04_CheckDateSuggestion(){
+		String calendar = "Calendar_111483";
+		String color = "sky_blue";
+		String event1 = "Event_111483_1";
+		String event2 = "Event_111483_2";
+		String event3 = "Event_111483_3";
+		String event4 = "Event_111483_4";
+		goToCalendarPage();	
+		info("Create new personal calendar");
+		addCalendar(calendar, null, color);
+		info("Check date suggestion when add event from click setting on calendar");
+		evt.goToAddEventFromCalendar(calendar);
+		evt.checkSuggestionEventTime(null, 60);
+		evt.checkSuggestionEventTime("08:00", 60);
+		evt.inputAddEventForm(event1, null, null, null, null, false, calendar);
+		click(evt.ELEMENT_ADD_EVENT_SAVE_QUICK_BUTTON);
+		waitForElementNotPresent(evt.ELEMENT_ADD_EVENT_POPUP);
+
+		info("Check date suggestion when add event from click setting on action bar");
+		evt.goToAddEventFromActionBar();
+		evt.checkSuggestionEventTime(null, 60);
+		evt.checkSuggestionEventTime("09:00", 60);
+		evt.inputAddEventForm(event2, null, null, null, null, false, calendar);
+		click(evt.ELEMENT_ADD_EVENT_SAVE_QUICK_BUTTON);
+		waitForElementNotPresent(evt.ELEMENT_ADD_EVENT_POPUP);
+
+		info("Check date suggestion when add event from click on block time in main panel");
+		evt.goToAddEventByClickOnCell("10:00");
+		evt.checkSuggestionEventTime(null, 30);
+		evt.checkSuggestionEventTime("11:00", 60);
+		evt.inputAddEventForm(event3, null, null, null, null, false, calendar);
+		click(evt.ELEMENT_ADD_EVENT_SAVE_QUICK_BUTTON);
+		waitForElementNotPresent(evt.ELEMENT_ADD_EVENT_POPUP);
+
+		info("Check date suggestion when add event from right click on main panel");
+		evt.goToAddEventFromMainPane("12:00");
+		evt.checkSuggestionEventTime(null, 60);
+		evt.checkSuggestionEventTime("14:00", 60);
+		evt.inputAddEventForm(event4, null, null, null, null, false, calendar);
+		click(evt.ELEMENT_ADD_EVENT_SAVE_QUICK_BUTTON);
+		waitForElementNotPresent(evt.ELEMENT_ADD_EVENT_POPUP);
+		deleteCalendar(calendar);
 	}
 }
