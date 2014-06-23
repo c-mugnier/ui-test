@@ -94,11 +94,17 @@ public class TestBase {
 	
 	public void initSeleniumTestWithOutTermAndCondition(Object... opParams){
 		String browser = System.getProperty("browser");
+		baseUrl = System.getProperty("baseUrl");
+		if (baseUrl==null) baseUrl = DEFAULT_BASEURL;
 		if("chrome".equals(browser)){
 			driver = new ChromeDriver();
 			chromeFlag = true;
 		} else if ("iexplorer".equals(browser)){
-			driver = new InternetExplorerDriver();
+			System.setProperty("webdriver.ie.driver","D:\\java\\eXoProjects\\IEDriverServer\\IEDriverServer.exe") ;
+			DesiredCapabilities  capabilitiesIE = DesiredCapabilities.internetExplorer();
+			capabilitiesIE.setCapability("ignoreProtectedModeSettings", true); 
+			driver = new InternetExplorerDriver(capabilitiesIE);
+			
 			ieFlag = true;
 		} else {
 			FirefoxProfile profile = new FirefoxProfile();
@@ -107,8 +113,7 @@ public class TestBase {
             capabilities.setCapability(FirefoxDriver.PROFILE, profile);
 			driver = new FirefoxDriver(capabilities);
 		}
-		baseUrl = System.getProperty("baseUrl");
-		if (baseUrl==null) baseUrl = DEFAULT_BASEURL;
+		
 		action = new Actions(driver);
 	}
 

@@ -10,6 +10,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.awt.event.KeyEvent;
+import java.io.File;
+
 /**
  *
  * @author lientm
@@ -21,7 +24,8 @@ public class Wiki_Attachment extends BasicAction {
 
 	@BeforeMethod
 	public void setUpBeforeTest(){
-		getDriverAutoSave();
+//		getDriverAutoSave();
+		initSeleniumTest();
 		driver.get(baseUrl);
 		magAc = new ManageAccount(driver);
 		magAc.signIn(DATA_USER1, DATA_PASS);
@@ -57,13 +61,14 @@ public class Wiki_Attachment extends BasicAction {
 		info("Edit wiki page having attachment");
 		mouseOverAndClick(ELEMENT_EDIT_PAGE_LINK);
 		addWikiPageSourceEditor(newTitle, newContent);
-		attachFileInWiki("TestData/" + newLink, 2);
+		attachFileInWiki("TestData" + File.separator + newLink, 2);
 		click(ELEMENT_SAVE_BUTTON_ADD_PAGE);
 		waitForAndGetElement(ELEMENT_ATTACHMENT_NUMBER.replace("${No}", "2"));
 
 		info("Check download attachment successfully");
 		click(ELEMENT_ATTACHMENT_ICON);
 		click(By.linkText(newLink));
+		Utils.javaSimulateKeyPress(KeyEvent.VK_ENTER);
 		switchToNewWindow();
 		waitForAndGetElement(imgElement);
 		switchToParentWindow();
