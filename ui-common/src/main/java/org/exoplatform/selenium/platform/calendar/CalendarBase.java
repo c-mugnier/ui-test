@@ -57,6 +57,7 @@ public class CalendarBase extends PlatformBase {
 	public String ELEMENT_CALENDAR_GET_BY_TAG_LI = "//a[@class='calendarName' and contains(text(), '${calendar}')]/../..";
 	public By ELEMENT_CALENDAR_POPUP_WINDOW = By.xpath("//*[@id='UICalendarPopupWindow']/div[2]");
 	public String ELEMENT_VERIFY_CALENDAR_FORM = "//*[@id='defaultCalendarTab'] //div[@class='myCalendar']/*[@class='calendarTitle']/..//li[contains(@class,'calendarItem' )]//*[text()='${UserName}']/../a[@class='${CheckboxColor}']";
+	public String ELEMENT_VERIFY_CALENDAR_FORM_AUX = "//div[@class='myCalendar']/*[@class='calendarTitle']/..//li[contains(@class,'calendarItem' )]//*[text()='${UserName}']/../a[@class='${CheckboxColor}']";
 
 	//--------------Mini calendar-------------------
 	public String ELEMENT_MINI_CALENDAR_DATE_HIGHLIGHT = "//td[contains(@class,'highLight') and contains(text(),'${date}')]";
@@ -414,7 +415,8 @@ public class CalendarBase extends PlatformBase {
 		}
 		click(ELEMENT_FEEDS_SAVE_BUTTON);
 		waitForAndGetElement("//*[contains(text(),'"+VERIFY_MESSAGE_URL.replace("${name}", name)+"')]");
-		click(ELEMENT_OK_POPUP_BUTTON);
+		//click(ELEMENT_OK_POPUP_BUTTON);
+		button.ok();
 		waitForAndGetElement("//*[contains(text(),'"+name+"')]");
 	}
 
@@ -458,9 +460,12 @@ public class CalendarBase extends PlatformBase {
 	 */
 	public void deleteFeeds(String name){
 		alert = new ManageAlert(driver);
-		info("--Delete event--");
-		click(ELEMENT_DELETE_FEEDS);
-		alert.waitForConfirmation(MSG_FEEDS_DELETE);
+		button = new Button(driver);
+		info("--Delete a feed--");
+		click(ELEMENT_DELETE_FEEDS);	
+		//alert.waitForConfirmation(MSG_FEEDS_DELETE);
+		alert.verifyAlertMessage(MSG_FEEDS_DELETE);
+		button.yes();
 		waitForElementNotPresent(By.linkText(name));
 		click(ELEMENT_SETTINGS_FORM_SAVE_BUTTON);
 	}
@@ -676,8 +681,9 @@ public class CalendarBase extends PlatformBase {
 	 * @param calendar: name of shared calendar
 	 */
 	public void deleteSharedCalendar(String calendar){
-
+		button = new Button(driver);
 		executeActionCalendar(calendar,"RemoveSharedCalendar");
+		button.yes();
 		waitForElementNotPresent(By.linkText(calendar));
 	}
 

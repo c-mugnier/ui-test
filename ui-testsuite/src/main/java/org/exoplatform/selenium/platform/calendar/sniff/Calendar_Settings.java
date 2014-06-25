@@ -105,8 +105,9 @@ public class Calendar_Settings extends CalendarBase{
 			waitForElementNotPresent(By.xpath(ELEMENT_VERIFY_CALENDAR.replace("${UserName}","John Smith").replace("${CheckboxColor}", "asparagus").replace("${checkicon}", "checkbox iconUnCheckBox")));
 		}
 		click(ELEMENT_SETTINGS_FORM_SAVE_BUTTON);
-		waitForAndGetElement(By.xpath(ELEMENT_VERIFY_CALENDAR_FORM.replace("${UserName}","John Smith").replace("${CheckboxColor}", "asparagus").replace("${checkicon}", "iconCheckBox checkbox")));
-		
+		if (isElementNotPresent(By.xpath(ELEMENT_VERIFY_CALENDAR_FORM.replace("${UserName}","John Smith").replace("${CheckboxColor}", "asparagus").replace("${checkicon}", "iconCheckBox checkbox")))){
+			waitForAndGetElement(By.xpath(ELEMENT_VERIFY_CALENDAR_FORM_AUX.replace("${UserName}","John Smith").replace("${CheckboxColor}", "asparagus").replace("${checkicon}", "iconCheckBox checkbox")));
+		}
 		info("--Delete Calendar--");
 		deleteCalendar(calendar);
 	}
@@ -193,7 +194,6 @@ public class Calendar_Settings extends CalendarBase{
 		WebElement sendInvitation = waitForAndGetElement(ELEMENT_SEND_EVENT_INVITATION.replace("${option}", "Ask"), 5000, 1, 2);
 		assert sendInvitation.isSelected(): "Calendar Settings was failed...";
 		
-		settingCalendar("Week", "mm/dd/yyyy", null, null, "Monday", null, null);
-		
+		settingCalendar("Week", "mm/dd/yyyy", null, null, "Monday", null, null);		
 	}
 }
