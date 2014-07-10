@@ -74,6 +74,9 @@ public class UserGroupManagement extends PlatformBase {
 		dialog = new Dialog(driver);
 		alert = new ManageAlert(driver);
 		button = new Button(driver);
+		type(ELEMENT_INPUT_SEARCH_USER_NAME, username, true);
+		select(ELEMENT_SELECT_SEARCH_OPTION, "User Name");
+		click(ELEMENT_SEARCH_ICON_USERS_MANAGEMENT);
 		String userDeleteIcon = ELEMENT_USER_DELETE_ICON.replace("${username}", username);
 		info("--Deleting user " + username + "--");
 		if (waitForAndGetElement("//*[contains(text(),'Total pages')]",DEFAULT_TIMEOUT,0) != null) {
@@ -82,16 +85,6 @@ public class UserGroupManagement extends PlatformBase {
 		Utils.pause(500);
 		click(userDeleteIcon);
 		alert.waitForConfirmation("Are you sure you want to delete " + username + " user?");
-		Utils.pause(1000);
-		type(ELEMENT_INPUT_SEARCH_USER_NAME, username, true);
-
-		select(ELEMENT_SELECT_SEARCH_OPTION, "User Name");
-
-		click(ELEMENT_SEARCH_ICON_USERS_MANAGEMENT);
-
-		waitForMessage("No result found.");
-
-		dialog.closeMessageDialog();
 		searchUser("", "User Name");
 		waitForTextNotPresent(username);
 	}

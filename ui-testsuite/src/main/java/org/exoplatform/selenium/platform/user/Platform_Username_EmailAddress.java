@@ -44,6 +44,17 @@ public class Platform_Username_EmailAddress extends PlatformBase{
 	public void test01_CreateUser(){
 		info("== Signin to Platform with user... Root");
 		magAccount.signIn(USER_DEFAULT_ROOT, PASS_DEFAULT_ROOT);
+		
+		//Delete old user
+		navBar.goToUsersAndGroupsManagement();
+		userGroup.deleteUser("john");
+		navBar.goToUsersAndGroupsManagement();
+		userGroup.deleteUser("mary");
+		navBar.goToUsersAndGroupsManagement();
+		userGroup.deleteUser("james");
+		navBar.goToUsersAndGroupsManagement();
+		userGroup.deleteUser("jack");
+		
 		navBar.goToNewStaff();
 		//Publisher
 		magAccount.addNewUserAccount(DATA_USER2, DATA_PASS, DATA_PASS, "Mary", "Williams", "", "mary@maryacme.com", "", "", true);
