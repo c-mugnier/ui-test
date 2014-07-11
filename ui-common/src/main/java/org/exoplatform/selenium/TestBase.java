@@ -62,7 +62,7 @@ public class TestBase {
 	//public final By ELEMENT_MENU_EDIT_LINK = By.xpath("//i[@class='uiIconPLF24x24Edit']");
 	//public final By ELEMENT_MENU_PAGE_LINK = By.linkText("Page");
 	//public final String AJAX_LOADING_MASK = "//div[@id='AjaxLoadingMask']";
-	public final String DEFAULT_BASEURL="http://192.168.3.45:8080/portal";
+	public final String DEFAULT_BASEURL="http://localhost:8080/portal";
 
 	/*======= Welcome Screen (Term and Conditions) =====*/
 	public final By ELEMENT_FIRSTNAME_ACCOUNT = By.name("firstNameAccount");

@@ -85,7 +85,6 @@ public class UserGroupManagement extends PlatformBase {
 		Utils.pause(500);
 		click(userDeleteIcon);
 		alert.waitForConfirmation("Are you sure you want to delete " + username + " user?");
-		searchUser("", "User Name");
 		waitForTextNotPresent(username);
 	}
 
