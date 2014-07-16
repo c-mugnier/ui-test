@@ -322,7 +322,7 @@ public class PLF_HomepageGadgets_InvitationGadget extends Activity{
 	@Test (groups = "pending")
 	public  void test06_DisplayALongFirstNameInInvitationGadget() {
 		info("Test 6: Display a long first name in Invitation Gadget");
-		String username = getRandomString();
+		String username = getRandomString()+"@acme.com";;
 		String password = username;
 		String firstName = username+username+username+username+username+username;
 		String lastName = username+username+username+username+username+username;

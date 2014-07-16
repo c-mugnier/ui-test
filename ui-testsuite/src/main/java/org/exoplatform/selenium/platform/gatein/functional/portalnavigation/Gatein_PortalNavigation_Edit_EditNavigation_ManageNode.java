@@ -261,7 +261,7 @@ public class Gatein_PortalNavigation_Edit_EditNavigation_ManageNode extends Plat
 	public void test07_CheckEditRightofUseronPage(){
 		String groupName = "Platform";
 		String subgroupName = "Administration";
-		String username1 = getRandomString();
+		String username1 = getRandomString()+"@acme.com";;
 		String password1 = username1;
 		String email = "test@gmail.com";
 		String membership = "*";
@@ -322,7 +322,7 @@ public class Gatein_PortalNavigation_Edit_EditNavigation_ManageNode extends Plat
 		//New user
 		String groupName = "Platform";
 		String subgroupName = "Administration";
-		String username1 = getRandomString();
+		String username1 = getRandomString()+"@acme.com";;
 		String password1 = username1;
 		String email = username1+"@gmail.com";
 		String membership = "*";

@@ -53,7 +53,7 @@ public class Gatein_Registration_PrivateMode extends PlatformBase {
 	 */
 	 @Test
 	 public void test01_createNewValidAccount(){
-		String username = getRandomString();
+		String username = getRandomString()+"@acme.com";;
 		String password = "123456";
 		String firstName = "Func";
 		String lastName = "Manage User";
@@ -80,7 +80,7 @@ public class Gatein_Registration_PrivateMode extends PlatformBase {
 	 @Test
 	 public void test02_createSameAccountButUpperLetter(){
 
-		 String username = getRandomString();
+		 String username = getRandomString()+"@acme.com";;
 		 String sameusername = username.toUpperCase();
 		 String password = "123456";
 		 String firstName = "Func";
@@ -112,7 +112,7 @@ public class Gatein_Registration_PrivateMode extends PlatformBase {
 	  */
 	 @Test
 	 public void test03_createSameAccountWithExistingOne(){
-		 String username = getRandomString();
+		 String username = getRandomString()+"@acme.com";;
 		 String password = "123456";
 		 String firstName = "Func";
 		 String lastName = "Manage User";
@@ -143,7 +143,7 @@ public class Gatein_Registration_PrivateMode extends PlatformBase {
 	  */
 	 @Test
 	 public void test04_copyPastePassword(){
-		 String username = getRandomString();
+		 String username = getRandomString()+"@acme.com";;
 		 String password = "123456";
 		 String firstName = "Func";
 		 String lastName = "Manage User";
@@ -176,7 +176,7 @@ public class Gatein_Registration_PrivateMode extends PlatformBase {
 	  */
 	 @Test
 	 public void test05_invalidMailAddress(){
-		 String username = getRandomString();
+		 String username = getRandomString()+"@acme.com";;
 		 String password = "123456";
 		 String firstName = "Func";
 		 String lastName = "Manage User";

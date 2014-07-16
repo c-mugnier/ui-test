@@ -411,7 +411,7 @@ public class PLF_HomepageActivityStream_ActivityStream_ActivityFilter_Others ext
 	public  void test10_DisplayTheComposerOnActivityStreamOfAConnectedUser() {
 		info("Test 10 Display the composer on activity stream of a connected user");
 		String text = "Activity 77697";
-		String username = getRandomString();
+		String username = getRandomString()+"@acme.com";;
 		String password = username;
 		String firstName = username;
 		String lastName = username;

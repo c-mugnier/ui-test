@@ -82,7 +82,7 @@ public class PLF_HomepageActivityStream_ActivityStreamEngagement extends Activit
 	@Test
 	public  void test01_DisplayTheHintBlockBelowTheActivityComposer() {
 		/*Create data*/
-		String username = getRandomString();
+		String username = getRandomString()+"@acme.com";;
 		String password = username;
 		String firstName = "firstName";
 		String lastName = "lastName";

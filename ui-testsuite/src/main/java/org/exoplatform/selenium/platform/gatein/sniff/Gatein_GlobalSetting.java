@@ -84,7 +84,7 @@ public class Gatein_GlobalSetting extends PlatformBase {
 	 */
 	@Test
 	public void test02_ChangePassword(){
-		String username = getRandomString();
+		String username = getRandomString()+"@acme.com";;
 		String password = "123456";
 		String firstName = "User";
 		String lastName = "Profile";

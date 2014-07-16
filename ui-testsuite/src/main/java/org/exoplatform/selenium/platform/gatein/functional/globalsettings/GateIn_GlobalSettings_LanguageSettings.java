@@ -287,7 +287,7 @@ public class GateIn_GlobalSettings_LanguageSettings extends PortalManagement {
 		magAc = new ManageAccount(driver);
 		userGroup = new UserGroupManagement(driver);
 		navTool = new NavigationToolbar(driver);
-		String username = getRandomString();
+		String username = getRandomString()+"@acme.com";;
 		String password = username;
 		String firstName = "firstName";
 		String lastName = "lastName";
@@ -343,7 +343,7 @@ public class GateIn_GlobalSettings_LanguageSettings extends PortalManagement {
 		magAc = new ManageAccount(driver);
 		userGroup = new UserGroupManagement(driver);
 		navTool = new NavigationToolbar(driver);
-		String username = getRandomString();
+		String username = getRandomString()+"@acme.com";;
 		String password = username;
 		String firstName = "firstName";
 		String lastName = "lastName";
@@ -440,7 +440,7 @@ public class GateIn_GlobalSettings_LanguageSettings extends PortalManagement {
 		magAc = new ManageAccount(driver);
 		userGroup = new UserGroupManagement(driver);
 		navTool = new NavigationToolbar(driver);
-		String username = getRandomString();
+		String username = getRandomString()+"@acme.com";;
 		String password = username;
 		String firstName = "firstName";
 		String lastName = "lastName";

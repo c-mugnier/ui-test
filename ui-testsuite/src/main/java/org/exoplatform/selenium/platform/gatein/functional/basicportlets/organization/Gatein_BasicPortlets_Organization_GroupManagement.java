@@ -104,7 +104,7 @@ public class Gatein_BasicPortlets_Organization_GroupManagement extends PlatformB
 		String groupLabel = "Group Label 03";
 		String groupDesc = "create new group";
 
-		String newUser = getRandomString();
+		String newUser = getRandomString()+"@acme.com";;
 		String membership = "member";
 		String email = newUser+"@gmail.com";
 		String password = newUser;
@@ -196,7 +196,7 @@ public class Gatein_BasicPortlets_Organization_GroupManagement extends PlatformB
 		String groupLabel = "Group Label 06";
 		String groupDesc = "create new group";
 
-		String newUser = getRandomString();
+		String newUser = getRandomString()+"@acme.com";;
 		String membership = "member";
 		String email = newUser+"@gmail.com";
 		String password = newUser;
@@ -241,7 +241,7 @@ public class Gatein_BasicPortlets_Organization_GroupManagement extends PlatformB
 		String groupLabel = "Group Label 07";
 		String groupDesc = "create new group";
 
-		String newUser = getRandomString();
+		String newUser = getRandomString()+"@acme.com";;
 		String membership = "member";
 		String email = newUser+"@gmail.com";
 		String password = newUser;
@@ -407,7 +407,7 @@ public class Gatein_BasicPortlets_Organization_GroupManagement extends PlatformB
 		String groupLabel = "Group Label 11";
 		String groupDesc = "create new group";
 
-		String newUser = getRandomString();
+		String newUser = getRandomString()+"@acme.com";;
 		String membership = "member";
 		String email = newUser+"@gmail.com";
 		String password = newUser;

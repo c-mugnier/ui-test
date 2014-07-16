@@ -333,7 +333,7 @@ public class PLF_HomePageActivityStream_Activity_Likes extends Activity {
 		//Create many user
 		navToolBar.goToNewStaff();
 		for(int i=0; i<15; i++){
-			username[i] = getRandomString();
+			username[i] = getRandomString()+"@acme.com";;
 			String password = username[i];
 			String firstName = username[i];
 			String lastName = username[i];

@@ -177,7 +177,7 @@ public class PLF_Navigation_TopNavigation_General extends PlatformBase{
 	@Test
 	public  void test05_ShowTopNavigationBarForContentEditorsUser() {
 		info("Test 5: Show Top Navigation bar for Content editors user");
-		String username = getRandomString();
+		String username = getRandomString()+"@acme.com";;
 		String password = "gtn123";
 		String firstName = "BBB";
 		String lastName = "AAA";
@@ -253,7 +253,7 @@ public class PLF_Navigation_TopNavigation_General extends PlatformBase{
 	@Test
 	public  void test07_ShowTopNavigationBarItemsForANormalUser() {
 		info("Test 7: Show Top Navigation bar items for a normal user");
-		String username = getRandomString();
+		String username = getRandomString()+"@acme.com";;
 		String password = "gtn123";
 		String firstName = "BBB";
 		String lastName = "LastName";
