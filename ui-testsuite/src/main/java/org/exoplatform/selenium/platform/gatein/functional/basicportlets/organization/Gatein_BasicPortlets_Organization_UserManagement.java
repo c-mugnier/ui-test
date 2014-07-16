@@ -44,7 +44,7 @@ public class Gatein_BasicPortlets_Organization_UserManagement extends PlatformBa
 	 */
 	@Test
 	public void test01_DeleteUserFromUserManagement(){
-		String username = "funcmanageuser01";
+		String username = getRandomString()+"@acme.com";
 		String password = "123456";
 		String firstName = "Func";
 		String lastName = "Manage User";
@@ -67,7 +67,7 @@ public class Gatein_BasicPortlets_Organization_UserManagement extends PlatformBa
 	 */
 	@Test
 	public void test02_DeleteUserFromSearchResultOfUserManagement(){
-		String username = "funcmanageuser02";
+		String username = getRandomString()+"@acme.com";
 		String password = "123456";
 		String firstName = "Func";
 		String lastName = "Manage User";
@@ -93,7 +93,7 @@ public class Gatein_BasicPortlets_Organization_UserManagement extends PlatformBa
 	 */
 	@Test
 	public void test03_EditUserProfile(){
-		String username = "funcmanageuser03";
+		String username = getRandomString()+"@acme.com";
 		String password = "123456";
 		String firstName = "Func";
 		String lastName = "Manage User";
