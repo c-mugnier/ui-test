@@ -665,7 +665,7 @@ public class Forum_Forum_OtherAction_Search extends ForumBase{
 	    
 	    // Advanced Search categories by moderator when select moderator from list
 		info("Advanced Search: Category with moderator from list.");
-		advancedSearch("Category","",true,null,null,null,"root, demo");
+		advancedSearch("Category","",true,null,null,null,"root, "+DATA_USER4);
 		waitForAndGetElement(By.linkText(catName2));
 		waitForAndGetElement(By.linkText(catName3));
 		waitForAndGetElement(By.linkText(catName5));

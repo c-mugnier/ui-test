@@ -767,7 +767,7 @@ public class ECMS_SE_BasicAction_Delete extends PlatformBase {
 		info("-- Add a relation --");
 		//actBar.addRelationToActionBar();
 		//actBar.addItem2ActionBar("manageRelations", actBar.ELEMENT_ADD_RELATION_LINK);
-		actBar.createRelation("ECMS_Undo_Delete_4", "Users/j___/jo___/joh___/john/Private/"+ data2, true);
+		actBar.createRelation("ECMS_Undo_Delete_4", "Users/j___/jo___/joh___/john.smith@acme.com/Private/"+ data2, true);
 		
 		info("-- Delete file with relation --");
 		click(ecms.ELEMENT_BACK_PREVIOUS_NODE);

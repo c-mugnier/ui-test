@@ -68,7 +68,7 @@ public class Wiki_BasicAction_MoveAPage extends RichTextMode {
 		addBlankWikiPage(PAGE_NAME2, PAGE_NAME2, 0);
 		editPagePermission("any", true, false, false, 2);
 		magAcc.signOut();
-		magAcc.signIn(DATA_USER3, "gtn");
+		magAcc.signIn(DATA_USER3, DATA_PASS);
 		goToWiki();
 		click(ELEMENT_PAGE1);
 		movePage(PAGE_NAME1,PAGE_NAME2);
@@ -105,7 +105,7 @@ public class Wiki_BasicAction_MoveAPage extends RichTextMode {
 		addPagePermission(0,user1);
 		deletePagePermission("any");
 		magAcc.signOut();
-		magAcc.signIn(DATA_USER3, "gtn");
+		magAcc.signIn(DATA_USER3, DATA_PASS);
 		goToWiki();
 		click(ELEMENT_PAGE1);
 		//mouseOver(ELEMENT_MORE_LINK, true);

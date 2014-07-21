@@ -459,11 +459,11 @@ public class Gatein_PortalNavigation_Edit_EditNavigation_OtherNodeActions extend
 
 		info("Check the existence of cloned node");
 		click(ELEMENT_EDIT_NAVIGATION.replace("${navigation}", portalName));
-		waitForAndGetElement(ELEMENT_LIST_NODE_LINK.replace("${nodeLabel}", parentNode).replace("${number}", "1").replace("${childNode}", nodeName));
+		waitForAndGetElement(ELEMENT_LIST_NODE_LINK.replace("${nodeLabel}", parentNode).replace("${number}", "2").replace("${childNode}", nodeName));
 
-		if(isElementNotPresent(ELEMENT_LIST_NODE_LINK.replace("${nodeLabel}", targetNode).replace("${number}", "1").replace("${childNode}", nodeName))){
+		if(isElementNotPresent(ELEMENT_LIST_NODE_LINK.replace("${nodeLabel}", targetNode).replace("${number}", "2").replace("${childNode}", nodeName))){
 			click(nodeNamelocator.replace("${nodeName}", targetNode));
-			waitForAndGetElement(ELEMENT_LIST_NODE_LINK.replace("${nodeLabel}", targetNode).replace("${number}", "1").replace("${childNode}", nodeName));
+			waitForAndGetElement(ELEMENT_LIST_NODE_LINK.replace("${nodeLabel}", targetNode).replace("${number}", "2").replace("${childNode}", nodeName));
 		}
 		button.save();
 

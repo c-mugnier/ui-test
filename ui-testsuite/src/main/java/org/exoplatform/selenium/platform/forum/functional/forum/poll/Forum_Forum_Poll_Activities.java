@@ -312,7 +312,7 @@ public class Forum_Forum_Poll_Activities extends ForumBase{
 	@Test
 	public  void test04_AddUpadeDeletePollsActivityAfterAddANewPollFromSpace() {
 		info("Test 6: Add Poll's activity after add a new poll from space");
-		String spaceName = "Space 77602";
+		String spaceName = "Space 776021";
 		String title = "Topic 77602"; 
 		String message = "Topic 77602"; 
 		String pollQuestion = "Poll 77602";
@@ -331,7 +331,7 @@ public class Forum_Forum_Poll_Activities extends ForumBase{
 		 *Expected Outcome: Poll is added and shown in topic of space		*/
 		mMember.goToMySpacePage();
 		mMember.addNewSpace(spaceName, "");
-		click(mSpace.ELEMENT_SPACE_TAB_NAME.replace("${index}", "2").replace("${tabName}", "Forums"));
+		click(mSpace.ELEMENT_SPACE_TAB_NAME.replace("${index}", "2").replace("${tabName}", "Forum"));
 		topic.quickStartTopic(title, message); 
 		click(By.linkText(title));
 		info("Add Poll in Space");
@@ -357,7 +357,7 @@ public class Forum_Forum_Poll_Activities extends ForumBase{
 		 *Expected Outcome: poll1 is saved with new value		*/
 		info("Edit Poll in Space");
 		mMember.goToSpaceFromMySpaceNavigation(spaceName);
-		click(mSpace.ELEMENT_SPACE_TAB_NAME.replace("${index}", "2").replace("${tabName}", "Forums"));
+		click(mSpace.ELEMENT_SPACE_TAB_NAME.replace("${index}", "2").replace("${tabName}", "Forum"));
 		click(By.linkText(title));
 		poll.editPoll(pollQuestionUpdate, options, "", false);
 
@@ -382,7 +382,7 @@ public class Forum_Forum_Poll_Activities extends ForumBase{
 		 *Expected Outcome: Poll is deleted		*/
 		info("Delete Poll in Space");
 		mMember.goToSpaceFromMySpaceNavigation(spaceName);
-		click(mSpace.ELEMENT_SPACE_TAB_NAME.replace("${index}", "2").replace("${tabName}", "Forums"));
+		click(mSpace.ELEMENT_SPACE_TAB_NAME.replace("${index}", "2").replace("${tabName}", "Forum"));
 		click(By.linkText(title));
 		poll.deletePollInTopic(pollQuestion);
 
@@ -473,7 +473,8 @@ public class Forum_Forum_Poll_Activities extends ForumBase{
 		 *Input Data: 
 		 *Expected Outcome: poll1 is saved with new value		*/
 		info("Edit Poll in Portlet");
-		click(ELEMENT_LEFT_NAVIGATION_ITEM_INDEX.replace("${index}","7").replace("${menuItem}", displayName));
+		click(By.linkText(displayName));
+		//click(ELEMENT_LEFT_NAVIGATION_ITEM_INDEX.replace("${index}","7").replace("${menuItem}", displayName));
 		poll.editPoll(pollQuestionUpdate, options, "", false);
 
 		/*
@@ -493,7 +494,7 @@ public class Forum_Forum_Poll_Activities extends ForumBase{
 		 *Input Data: 
 		 *Expected Outcome: Poll is deleted		*/
 		info("Remove Poll in Portlet");
-		click(ELEMENT_LEFT_NAVIGATION_ITEM_INDEX.replace("${index}","7").replace("${menuItem}", displayName));
+		click(By.linkText(displayName));
 		click(poll.ELEMENT_POLL_MORE_ACTION);
 		click(poll.ELEMENT_POLL_DELETE_LINK);		
 		Utils.pause(500);

@@ -58,7 +58,7 @@ public class Gatein_Registration_PrivateMode extends PlatformBase {
 		String firstName = "Func";
 		String lastName = "Manage User";
 		String displayName = "New User";
-		String email = username+"@gmail.com";
+		String email = username;
 
 		info("Go to User Register");
 		driver.navigate().refresh();
@@ -86,7 +86,7 @@ public class Gatein_Registration_PrivateMode extends PlatformBase {
 		 String firstName = "Func";
 		 String lastName = "Manage User";
 		 String displayName = "New User";
-		 String email = username+"@gmail.com";
+		 String email = username;
 
 		 info("Go to User Register");
 		 driver.navigate().refresh();
@@ -117,7 +117,7 @@ public class Gatein_Registration_PrivateMode extends PlatformBase {
 		 String firstName = "Func";
 		 String lastName = "Manage User";
 		 String displayName = "New User";
-		 String email = username+"@gmail.com";
+		 String email = username;
 
 		 info("Go to User Register");
 		 driver.navigate().refresh();
@@ -148,7 +148,7 @@ public class Gatein_Registration_PrivateMode extends PlatformBase {
 		 String firstName = "Func";
 		 String lastName = "Manage User";
 		 String displayName = "New User";
-		 String email = username+"@gmail.com";
+		 String email = username;
 
 		 info("Go to User Register");
 		 navTool.goToNewStaff();

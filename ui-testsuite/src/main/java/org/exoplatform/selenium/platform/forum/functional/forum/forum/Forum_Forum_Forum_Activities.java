@@ -92,7 +92,7 @@ public class Forum_Forum_Forum_Activities extends ForumBase{
 		String tpContent = "Test 2 new content";
 		spaceMan.goToAllSpaces();
 		spaceMan.addNewSpace(spaceName, spaceName);
-		spaceMan.goToSpaceMenu("Forums");		
+		spaceMan.goToSpaceMenu("Forum");		
 		fmTopic.quickStartTopic(tpName, tpContent);
 		
 		click(ELEMENT_HOME_PAGE);
@@ -140,7 +140,7 @@ public class Forum_Forum_Forum_Activities extends ForumBase{
 	public void test04_DeleteAForumActivityFromSpaceActivityStreamByNotOwner() {
 		info("Test 4: Delete a Forum activity from space activity stream by not owner");
 
-		String spaceName = "Test 4 new space";
+		String spaceName = "space77600";
 		String tpName = "Test 4 new topic";
 		String tpContent = "Test 4 new content";
 		
@@ -150,7 +150,7 @@ public class Forum_Forum_Forum_Activities extends ForumBase{
 		acc.signIn(DATA_USER1, DATA_PASS);
 		
 		spaceMan.goToSpaceFromMySpaceNavigation(spaceName);
-		spaceMan.goToSpaceMenu("Forums");		
+		spaceMan.goToSpaceMenu("Forum");		
 		fmTopic.quickStartTopic(tpName, tpContent);
 		
 		acc.signOut();

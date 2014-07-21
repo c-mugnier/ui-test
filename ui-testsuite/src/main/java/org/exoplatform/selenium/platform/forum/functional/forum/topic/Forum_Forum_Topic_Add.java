@@ -597,7 +597,7 @@ public class Forum_Forum_Topic_Add extends ForumBase{
 	@Test
 	public  void test07_AddNewTopicInCaseLimitPosterInBothCategoryForumWhichContainsThisTopic() {
 		info("Test 7: Add new topic in case limit poster in both category & forum which contains this topic");
-		String catName = "Category 73215";
+		String catName = "Category 173215";
 		String order = "1";
 		int chooseRestricted = 1;
 		String []restricted = {""};

@@ -50,7 +50,7 @@ public class Gatein_BasicPortlets_Organization_MembershipManagement extends Plat
 		String groupLabel = "Group Label 01";
 		String groupDesc = "create new group";
 
-		String newUser = "testa"+"@acme.com";
+		String newUser = "testa";
 		String newMembership = "member";
 		String EditMembership = "manager";
 		String email = "helloworld@gmail.com";
@@ -58,7 +58,7 @@ public class Gatein_BasicPortlets_Organization_MembershipManagement extends Plat
 
 		navTool.goToNewStaff();
 		info("Create new user");
-		magAc.addNewUserAccount(newUser, password, password, newUser, newUser, newUser, email, null, null, true);
+		magAc.addNewUserAccount(newUser+"@acme.com", password, password, newUser, newUser, newUser, email, null, null, true);
 
 		info("Add new group");
 		navTool.goToUsersAndGroupsManagement();
@@ -66,15 +66,15 @@ public class Gatein_BasicPortlets_Organization_MembershipManagement extends Plat
 		user.addGroup(groupName, groupLabel, groupDesc, true);
 
 		info("Add new user into group");
-		user.addUsersToGroup(newUser, newMembership, true, true);
+		user.addUsersToGroup(newUser+"@acme.com", newMembership, true, true);
 
 		info("Edit user membership in group");
-		user.editMembershipInGroup(newUser, EditMembership);
+		user.editMembershipInGroup(newUser+"@acme.com", EditMembership);
 
 		info("Restore data");
 		user.deleteGroup(groupName, true);
 		user.chooseUserTab();
-		user.deleteUser(newUser);
+		user.deleteUser(newUser+"@acme.com");
 	}
 
 	/**
@@ -106,14 +106,14 @@ public class Gatein_BasicPortlets_Organization_MembershipManagement extends Plat
 		String groupLabel = "Group Label 03";
 		String groupDesc = "create new group";
 
-		String newUser = "testb"+"@acme.com";
+		String newUser = "testb";
 		String membership = "member";
 		String email = "helloworld@gmail.com";
 		String password = DATA_PASS;
 
 		navTool.goToNewStaff();
 		info("Create new user");
-		magAc.addNewUserAccount(newUser, password, password, newUser, newUser, newUser, email, null, null, true);
+		magAc.addNewUserAccount(newUser+"@acme.com", password, password, newUser, newUser, newUser, email, null, null, true);
 
 		info("Add new group");
 		navTool.goToUsersAndGroupsManagement();
@@ -121,7 +121,7 @@ public class Gatein_BasicPortlets_Organization_MembershipManagement extends Plat
 		user.addGroup(groupName, groupLabel, groupDesc, true);
 
 		info("Add some user into group");
-		user.addUsersToGroup(newUser, membership, true, true);
+		user.addUsersToGroup(newUser+"@acme.com", membership, true, true);
 
 		info("Edit user membership in group");
 		user.deleteUserInGroup(groupName, groupLabel, newUser);
@@ -131,7 +131,7 @@ public class Gatein_BasicPortlets_Organization_MembershipManagement extends Plat
 		Utils.pause(3000);
 		user.chooseUserTab();
 		Utils.pause(3000);
-		user.deleteUser(newUser);
+		user.deleteUser(newUser+"@acme.com");
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class Gatein_BasicPortlets_Organization_MembershipManagement extends Plat
 		String groupLabel = "Group Label 04";
 		String groupDesc = "create new group";
 
-		String newUser = "testc"+"@acme.com";
+		String newUser = "testc";
 		String membership = "test";
 		String membershipDesc = "test";
 		String email = "helloworld@gmail.com";
@@ -153,7 +153,7 @@ public class Gatein_BasicPortlets_Organization_MembershipManagement extends Plat
 
 		navTool.goToNewStaff();
 		info("Create new user");
-		magAc.addNewUserAccount(newUser, password, password, newUser, newUser, newUser, email, null, null, true);
+		magAc.addNewUserAccount(newUser+"@acme.com", password, password, newUser, newUser, newUser, email, null, null, true);
 
 		navTool.goToUsersAndGroupsManagement();
 		info("Add new membership");
@@ -164,7 +164,7 @@ public class Gatein_BasicPortlets_Organization_MembershipManagement extends Plat
 		user.addGroup(groupName, groupLabel, groupDesc, true);
 
 		info("Add new user into group");
-		user.addUsersToGroup(newUser, membership, true, true);
+		user.addUsersToGroup(newUser+"@acme.com", membership, true, true);
 
 		info("Delete new membership");
 		user.chooseMembershipTab();
@@ -180,7 +180,7 @@ public class Gatein_BasicPortlets_Organization_MembershipManagement extends Plat
 		Utils.pause(2000);
 		user.chooseUserTab();
 		Utils.pause(2000);
-		user.deleteUser(newUser);
+		user.deleteUser(newUser+"@acme.com");
 	}
 
 	/**

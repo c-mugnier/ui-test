@@ -552,10 +552,10 @@ public class Wiki_BasicAction_Add extends ManageDraft{
 	@Test
 	public  void test03_AddAPageWithAddNewLink() {
 		info("Test 3: Add a page with add new link");
-		String pageLink = "Page Link 71100";
-		String title = "Case 71100";
+		String pageLink = "Page Link 711001";
+		String title = "Case 711001";
 		String label = "Link to New Link";
-		String content = "Update content 71100";
+		String content = "Update content 711001";
 
 		/*Add page
 		- Go to Wiki

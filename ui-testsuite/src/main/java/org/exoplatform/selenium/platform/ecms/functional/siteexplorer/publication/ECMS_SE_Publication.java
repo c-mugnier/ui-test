@@ -40,9 +40,8 @@ public class ECMS_SE_Publication extends PlatformBase{
 		ecms = new EcmsBase(driver);
 		conMenu = new ContextMenu(driver);
 		button= new Button(driver);
-		navToolBar.goToSiteExplorer();
-		
 		magAc.signIn(DATA_USER1, DATA_PASS);
+		navToolBar.goToSiteExplorer();
 	}
 
 	@AfterMethod

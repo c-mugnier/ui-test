@@ -287,7 +287,7 @@ public class GateIn_GlobalSettings_LanguageSettings extends PortalManagement {
 		magAc = new ManageAccount(driver);
 		userGroup = new UserGroupManagement(driver);
 		navTool = new NavigationToolbar(driver);
-		String username = getRandomString()+"@acme.com";;
+		String username = getRandomString();
 		String password = username;
 		String firstName = "firstName";
 		String lastName = "lastName";
@@ -302,12 +302,12 @@ public class GateIn_GlobalSettings_LanguageSettings extends PortalManagement {
 		//Register a new account with valid values 
 		//New account is registered successfully
 		navTool.goToNewStaff();
-		magAc.addNewUserAccount(username,password,password,firstName,lastName,displayName,email,userNameGiven,language,verify);
+		magAc.addNewUserAccount(username+"@acme.com",password,password,firstName,lastName,displayName,email,userNameGiven,language,verify);
 
 		/* Step 2: Check display after login to portal */
 		//Sign In portal by new account
 		magAc.signOut();
-		magAc.signIn(username, password);
+		magAc.signIn(username+"@acme.com", password);
 
 		//- Portal in private mode is displayed
 		//- It is displayed in language of current user
@@ -323,7 +323,7 @@ public class GateIn_GlobalSettings_LanguageSettings extends PortalManagement {
 
 		//- At next time when edited user sign in, the displaying language will be in the new selected
 		magAc.signOut();
-		magAc.signIn(username, password);
+		magAc.signIn(username+"@acme.com", password);
 		waitForAndGetElement(ELEMENT_HOME_TEXT_ENGLISH);
 	}
 
@@ -343,7 +343,7 @@ public class GateIn_GlobalSettings_LanguageSettings extends PortalManagement {
 		magAc = new ManageAccount(driver);
 		userGroup = new UserGroupManagement(driver);
 		navTool = new NavigationToolbar(driver);
-		String username = getRandomString()+"@acme.com";;
+		String username = getRandomString();
 		String password = username;
 		String firstName = "firstName";
 		String lastName = "lastName";
@@ -358,12 +358,12 @@ public class GateIn_GlobalSettings_LanguageSettings extends PortalManagement {
 		//Register a new account with valid values 
 		//New account is registered successfully
 		navTool.goToNewStaff();
-		magAc.addNewUserAccount(username,password,password,firstName,lastName,displayName,email,userNameGiven,language,verify);
+		magAc.addNewUserAccount(username+"@acme.com",password,password,firstName,lastName,displayName,email,userNameGiven,language,verify);
 
 		/* Step 3: Check displaying language when language of browser don't support by portal with new account */
 		//Sign In portal by new account
 		magAc.signOut();
-		magAc.signIn(username, password);
+		magAc.signIn(username+"@acme.com", password);
 
 		//- Portal in private mode is displayed
 		//- It is displayed in language of current user
@@ -379,7 +379,7 @@ public class GateIn_GlobalSettings_LanguageSettings extends PortalManagement {
 
 		//- At next time when edited user sign in, the displaying language will be in the new selected
 		magAc.signOut();
-		magAc.signIn(username, password);
+		magAc.signIn(username+"@acme.com", password);
 		waitForAndGetElement(ELEMENT_HOME_TEXT_ENGLISH);
 
 	}

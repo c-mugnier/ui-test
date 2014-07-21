@@ -78,7 +78,7 @@ public class PlatformPermission extends PlatformBase {
 						select(ELEMENT_SELECT_SEARCH, "Last Name");
 						break;
 					case 4:	
-						select(ELEMENT_SELECT_SEARCH, "Email Name");
+						select(ELEMENT_SELECT_SEARCH, "Email");
 						break;
 					default:
 						break;

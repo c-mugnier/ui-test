@@ -522,7 +522,7 @@ public class AnswerManageQuestion extends AnswerBase {
 				}else break;
 			}
 		}
-		waitForAndGetElement(eQuestion.replace("${question}", questionName));
+		waitForAndGetElement(eQuestion.replace("${question}", questionName), DEFAULT_TIMEOUT,1,2);
 
 	}
 }

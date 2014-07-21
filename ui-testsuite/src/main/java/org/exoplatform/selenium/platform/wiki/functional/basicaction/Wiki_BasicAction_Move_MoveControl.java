@@ -778,7 +778,7 @@ public class Wiki_BasicAction_Move_MoveControl extends BasicAction{
 		String spaceMove = "SpaceMove79567";
 		String spaceView = "SpaceView";
 		String title1 = "Page A";
-		String user = "mary";
+		String user = DATA_USER2;
 		String userGroup1 = "*:/spaces/spaceview";
 		String userGroup2[] = {user};
 		

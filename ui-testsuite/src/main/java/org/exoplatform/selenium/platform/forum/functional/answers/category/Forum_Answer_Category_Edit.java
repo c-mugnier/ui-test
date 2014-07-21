@@ -122,7 +122,7 @@ public class Forum_Answer_Category_Edit extends AnswerBase{
 	 */
 	@Test
 	public void test01_EditCategoryWithValidModeratorBySelectGroup() {
-		String category = "Category 3 72720";
+		String category = "Category 31 72720";
 		String[] userGroup = {"Platform/Content Management"};
 		String newCategory = "New category 72720";
 

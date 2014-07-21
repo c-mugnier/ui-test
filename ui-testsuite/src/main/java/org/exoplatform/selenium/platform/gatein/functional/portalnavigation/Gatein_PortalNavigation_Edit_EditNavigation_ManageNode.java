@@ -261,7 +261,7 @@ public class Gatein_PortalNavigation_Edit_EditNavigation_ManageNode extends Plat
 	public void test07_CheckEditRightofUseronPage(){
 		String groupName = "Platform";
 		String subgroupName = "Administration";
-		String username1 = getRandomString()+"@acme.com";;
+		String username1 = getRandomString();
 		String password1 = username1;
 		String email = "test@gmail.com";
 		String membership = "*";
@@ -274,14 +274,14 @@ public class Gatein_PortalNavigation_Edit_EditNavigation_ManageNode extends Plat
 		info("=========Add new user=========");
 		navToolbar.goToNewStaff();
 		info("Create new user");
-		magAc.addNewUserAccount(username1, password1, password1, username1, username1, username1, email, null, null, true);
+		magAc.addNewUserAccount(username1+"@acme.com", password1, password1, username1, username1, username1, email, null, null, true);
 		
 		info("=========Add new user into Management/Admin Group=========");
 		navToolbar.goToUsersAndGroupsManagement();
 		userGroupMag.chooseGroupTab();
 		click(ELEMENT_GROUP_TREE.replace("${groupName}", groupName));
 		click(ELEMENT_GROUP_TREE.replace("${groupName}", subgroupName));
-		userGroupMag.addUsersToGroup(username1, membership, false, true);
+		userGroupMag.addUsersToGroup(username1+"@acme.com", membership, false, true);
 		
 		info("=====Add new page=======");
 		navToolbar.goToManagePages();
@@ -290,7 +290,7 @@ public class Gatein_PortalNavigation_Edit_EditNavigation_ManageNode extends Plat
 
 		info("Login by added-to-admin-group user");
 		magAc.signOut();
-		magAc.signIn(username1, password1);
+		magAc.signIn(username1+"@acme.com", password1);
 		
 		info("==========Check edit right of added-to-admin-group user============");
 		navToolbar.goToManagePages();
@@ -307,7 +307,7 @@ public class Gatein_PortalNavigation_Edit_EditNavigation_ManageNode extends Plat
 		magAc.signIn(username, password);
 		navToolbar.goToUsersAndGroupsManagement();
 		userGroupMag.chooseUserTab();
-		userGroupMag.deleteUser(username1);
+		userGroupMag.deleteUser(username1+"@acme.com");
 		info("Delete user done");
 	}
 
@@ -322,7 +322,7 @@ public class Gatein_PortalNavigation_Edit_EditNavigation_ManageNode extends Plat
 		//New user
 		String groupName = "Platform";
 		String subgroupName = "Administration";
-		String username1 = getRandomString()+"@acme.com";;
+		String username1 = getRandomString();
 		String password1 = username1;
 		String email = username1+"@gmail.com";
 		String membership = "*";
@@ -345,14 +345,14 @@ public class Gatein_PortalNavigation_Edit_EditNavigation_ManageNode extends Plat
 		info("=========Add new user=========");
 		navToolbar.goToNewStaff();
 		info("Create new user");
-		magAc.addNewUserAccount(username1, password1, password1, username1, username1, username1, email, null, null, true);
+		magAc.addNewUserAccount(username1+"@acme.com", password1, password1, username1, username1, username1, email, null, null, true);
 		
 		info("=========Add new user into Management/Admin Group=========");
 		navToolbar.goToUsersAndGroupsManagement();
 		userGroupMag.chooseGroupTab();
 		click(ELEMENT_GROUP_TREE.replace("${groupName}", groupName));
 		click(ELEMENT_GROUP_TREE.replace("${groupName}", subgroupName));
-		userGroupMag.addUsersToGroup(username1, membership, false, true);
+		userGroupMag.addUsersToGroup(username1+"@acme.com", membership, false, true);
 		
 		info("=====Add new page=======");
 		navToolbar.goToManagePages();
@@ -373,7 +373,7 @@ public class Gatein_PortalNavigation_Edit_EditNavigation_ManageNode extends Plat
 		
 		info("Login by added-to-admin-group user");
 		magAc.signOut();
-		magAc.signIn(username1, password1);
+		magAc.signIn(username1+"@acme.com", password1);
 		
 		info("==========Check edit right of added-to-admin-group user============");
 		waitForAndGetElement(nodepath.replace("${nodeName}", nodeName));

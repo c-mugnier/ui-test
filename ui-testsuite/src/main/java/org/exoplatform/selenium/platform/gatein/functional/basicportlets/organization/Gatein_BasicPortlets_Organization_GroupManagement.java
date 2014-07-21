@@ -104,14 +104,14 @@ public class Gatein_BasicPortlets_Organization_GroupManagement extends PlatformB
 		String groupLabel = "Group Label 03";
 		String groupDesc = "create new group";
 
-		String newUser = getRandomString()+"@acme.com";;
+		String newUser = getRandomString();
 		String membership = "member";
 		String email = newUser+"@gmail.com";
 		String password = newUser;
 
 		info("Add new user");
 		navTool.goToNewStaff();
-		magAc.addNewUserAccount(newUser, password, password, newUser, newUser, newUser, email, null, null, true);
+		magAc.addNewUserAccount(newUser+"@acme.com", password, password, newUser, newUser, newUser, email, null, null, true);
 
 		info("Add new group");
 		navTool.goToUsersAndGroupsManagement();
@@ -119,7 +119,7 @@ public class Gatein_BasicPortlets_Organization_GroupManagement extends PlatformB
 		user.addGroup(groupName, groupLabel, groupDesc, true);
 
 		info("Add new user to new group");
-		user.addUsersToGroup(newUser, membership, true, true);
+		user.addUsersToGroup(newUser+"@acme.com", membership, true, true);
 
 		info("Remove user from group");
 		user.deleteUserInGroup(groupName, groupLabel, newUser);
@@ -129,7 +129,7 @@ public class Gatein_BasicPortlets_Organization_GroupManagement extends PlatformB
 		Utils.pause(3000);
 		user.chooseUserTab();
 		Utils.pause(3000);
-		user.deleteUser(newUser);
+		user.deleteUser(newUser+"@acme.com");
 	}
 
 
@@ -196,14 +196,14 @@ public class Gatein_BasicPortlets_Organization_GroupManagement extends PlatformB
 		String groupLabel = "Group Label 06";
 		String groupDesc = "create new group";
 
-		String newUser = getRandomString()+"@acme.com";;
+		String newUser = getRandomString();
 		String membership = "member";
 		String email = newUser+"@gmail.com";
 		String password = newUser;
 		
 		info("Add new user");
 		navTool.goToNewStaff();
-		magAc.addNewUserAccount(newUser, password, password, newUser, newUser, newUser, email, null, null, true);
+		magAc.addNewUserAccount(newUser+"@acme.com", password, password, newUser, newUser, newUser, email, null, null, true);
 
 		info("Add new group");
 		navTool.goToUsersAndGroupsManagement();
@@ -211,20 +211,20 @@ public class Gatein_BasicPortlets_Organization_GroupManagement extends PlatformB
 		user.addGroup(groupName, groupLabel, groupDesc, true);
 
 		info("Add new user to new group");
-		user.addUsersToGroup(newUser, membership, true, true);
+		user.addUsersToGroup(newUser+"@acme.com", membership, true, true);
 		
 		info("Delete user from group");
 		user.deleteUserInGroup(groupName, groupLabel, newUser);
 		
 		info("Check membership information of deleted user in group");
 		user.chooseUserTab();
-		user.goToEditUserInfo(newUser);
+		user.goToEditUserInfo(newUser+"@acme.com");
 		click(ELEMENT_USER_MANAGEMENT_MEMBERSHIP_TAB);
 		waitForElementNotPresent(ELEMENT_USER_MEMBERSHIP_TAB_GROUPID.replace("${groupName}", groupName));
 		
 		info("Restore data");
 		click(ELEMENT_USER_MEMBERSHIP_TAB_CLOSE_BUTTON);
-		user.deleteUser(newUser);
+		user.deleteUser(newUser+"@acme.com");
 		Utils.pause(3000);
 		user.chooseGroupTab();
 		user.deleteGroup(groupName, true);
@@ -241,14 +241,14 @@ public class Gatein_BasicPortlets_Organization_GroupManagement extends PlatformB
 		String groupLabel = "Group Label 07";
 		String groupDesc = "create new group";
 
-		String newUser = getRandomString()+"@acme.com";;
+		String newUser = getRandomString();
 		String membership = "member";
 		String email = newUser+"@gmail.com";
 		String password = newUser;
 
 		info("Add new user");
 		navTool.goToNewStaff();
-		magAc.addNewUserAccount(newUser, password, password, newUser, newUser, newUser, email, null, null, true);
+		magAc.addNewUserAccount(newUser+"@acme.com", password, password, newUser, newUser, newUser, email, null, null, true);
 
 		info("Add new group");
 		navTool.goToUsersAndGroupsManagement();
@@ -256,17 +256,17 @@ public class Gatein_BasicPortlets_Organization_GroupManagement extends PlatformB
 		user.addGroup(groupName, groupLabel, groupDesc, true);
 
 		info("Add new user to new group");
-		user.addUsersToGroup(newUser, membership, true, true);
+		user.addUsersToGroup(newUser+"@acme.com", membership, true, true);
 
 		info("Delete group");
 		user.deleteGroup(groupName, true);
 
 		info("Check user existence after delete group");
 		user.chooseUserTab();
-		user.searchUser(newUser, "User Name");
+		user.searchUser(newUser+"@acme.com", "User Name");
 
 		info("Restore data");
-		user.deleteUser(newUser);
+		user.deleteUser(newUser+"@acme.com");
 	}
 
 	/**
@@ -407,7 +407,7 @@ public class Gatein_BasicPortlets_Organization_GroupManagement extends PlatformB
 		String groupLabel = "Group Label 11";
 		String groupDesc = "create new group";
 
-		String newUser = getRandomString()+"@acme.com";;
+		String newUser = getRandomString();
 		String membership = "member";
 		String email = newUser+"@gmail.com";
 		String password = newUser;
@@ -416,7 +416,7 @@ public class Gatein_BasicPortlets_Organization_GroupManagement extends PlatformB
 
 		info("Add new user");
 		navTool.goToNewStaff();
-		magAc.addNewUserAccount(newUser, password, password, newUser, newUser, newUser, email, null, null, true);
+		magAc.addNewUserAccount(newUser+"@acme.com", password, password, newUser, newUser, newUser, email, null, null, true);
 
 		info("Add new group");
 		navTool.goToUsersAndGroupsManagement();
@@ -425,9 +425,9 @@ public class Gatein_BasicPortlets_Organization_GroupManagement extends PlatformB
 
 		info("Add duplicated user to new group");
 		// the first
-		user.addUsersToGroup(newUser, membership, true, true);
+		user.addUsersToGroup(newUser+"@acme.com", membership, true, true);
 		// the second
-		user.addUsersToGroup(newUser, membership, true, false);
+		user.addUsersToGroup(newUser+"@acme.com", membership, true, false);
 		waitForAndGetElement(ELEMENT_FAIL_ADD_DUPLICATED_USER_MSG);
 
 		info("Delete group");

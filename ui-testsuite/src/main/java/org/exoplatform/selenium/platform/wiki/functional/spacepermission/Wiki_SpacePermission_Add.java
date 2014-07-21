@@ -235,7 +235,7 @@ public class Wiki_SpacePermission_Add extends BasicAction {
 
 		By ELEMENT_PAGE1 = By.linkText(PAGE_NAME1);
 
-		prepareDataWikiSpacePermissionV2(PAGE_NAME1, "james.davis@acme.exoplatform.com", DATA_USER3, 4);
+		prepareDataWikiSpacePermissionV2(PAGE_NAME1, "james@jamesacme.com", DATA_USER3, 4);
 
 		magAcc.userSignIn(ManageAccount.userType.AUTHOR);
 		
@@ -268,7 +268,7 @@ public class Wiki_SpacePermission_Add extends BasicAction {
 
 		By ELEMENT_PAGE1 = By.linkText(PAGE_NAME1);
 
-		prepareDataWikiSpacePermissionV2(PAGE_NAME1, "james/mary", DATA_USER3);
+		prepareDataWikiSpacePermissionV2(PAGE_NAME1, DATA_USER2+"/"+DATA_USER3, DATA_USER3);
 
 		editSpacePermission(DATA_USER2, true, true, true, true, 2);
 

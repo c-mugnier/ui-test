@@ -55,7 +55,7 @@ public class ContextMenu extends EcmsBase{
 	public final String ELEMENT_POPUP_VIEW_INFORMATION_TYPE = "//*[@class='UIViewInfoManager']//td[text()='Type']/../td[text()='${folderName}']";
 	public final By ELEMENT_MENU_DOWNLOAD = By.xpath("//*[@class='uiContextMenuContainer']//*[@class='uiIconDownload uiIconLightGray']");
 
-	public final String ELEMENT_FILE_LOCKED_BY_ADMIN = "//*[@data-original-title = '${titleOfFile} (Locked by john)']";
+	public final String ELEMENT_FILE_LOCKED_BY_ADMIN = "//*[@data-original-title = '${titleOfFile} (Locked by john.smith@acme.com)']";
 	public final String ELEMENT_FILE_TITLE = "//*[@title = '${titleOfFile}']";
 	public final String ELEMENT_FILE_TITLE_AUX = "//*[@title='${title1}']/following::*[@title='${title2}']";
 	public final By ELEMENT_DOCUMENT = By.linkText("documents");
